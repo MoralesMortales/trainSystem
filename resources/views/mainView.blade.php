@@ -17,8 +17,17 @@
     </head>
 
     <body>
-    <h2 class="bg-black h-screen">
+    <x-nav-bar title="Título de la tarjeta">
+    Contenido principal de la tarjeta
+
+    <x-slot name="footer">
+        Pie de tarjeta
+    </x-slot>
+</x-nav-bar>
+
+    <h2 class="">
         holas
     </h2>
+
     </body>
 </html>
