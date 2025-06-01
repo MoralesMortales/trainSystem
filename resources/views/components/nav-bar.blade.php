@@ -6,6 +6,7 @@
 
 <div class="right flex flex-row justify-end gap-9 w-3/4 pr-40">
     <div id="login" class="">
+    <a href="{{ url('/login') }}"></a>
     <h5>Login</h5>
     </div>
     <div id="register" class="">
