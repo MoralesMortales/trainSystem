@@ -10,19 +10,23 @@
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
 @vite(['resources/css/app.css'])
+@vite(['resources/css/mainView.css'])
 
-            <style>
-            </style>
     </head>
 
     <body>
-    <x-nav-bar title="Título de la tarjeta">
-    Contenido principal de la tarjeta
-    </x-nav-bar>
+    <div id="container">
+    <x-nav-bar/>
 
-    <h2 class="">
-        holas
+    <h2 class="title text-6xl">
+        Book Your Next Travel
     </h2>
+
+    <h4 class="title text-5xl">
+    Title two
+    </h4>
+
+    </div>
 
     </body>
 </html>
