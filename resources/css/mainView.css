@@ -1,0 +1,16 @@
+#container{
+    min-height: 100dvh;
+    background-image: url("../../public/img/trains/bullet-train-punjab.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.title{
+ font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+    color: #E9AF6D;
+    -webkit-text-stroke: 10px black;
+    paint-order: stroke fill;
+
+}
