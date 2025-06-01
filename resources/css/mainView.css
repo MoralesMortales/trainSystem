@@ -1,6 +1,6 @@
-login#container{
+#container{
     min-height: 100dvh;
-    background-image: url("../../public/img/trains/bullet-train-punjab.jpg");
+    background-image: url("../../public/img/trains/maintrain.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }

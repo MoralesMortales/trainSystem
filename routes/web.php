@@ -6,5 +6,5 @@ Route::get('/', function () {
     return view('mainView');
 });
 Route::get('/login', function () {
-    return view('register/login');
+    return view('auth.login');
 });
