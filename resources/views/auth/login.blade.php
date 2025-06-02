@@ -17,20 +17,20 @@
 <h4>Sign In</h4>
 </div>
 
-<form action="" class="h-full">
-
-<div id="inputs" class=" h-4/6 pt-14 flex items-center justify-center flex-col">
+<form action="{{ url('/login') }}" class="h-full" method="post">
+@csrf
+<div id="inputs" class="h-4/6 pt-14 flex items-center justify-center flex-col">
 
 <div id="mainInput" style="margin-top:-5em;" class="flex justify-around h-4/6 items-center flex-col w-full">
 
 <div id="inputBox_1" class="input">
 <label for="">Email</label>
-<input type="text">
+<input name="login" type="text">
 </div>
 
 <div id="inputBox_2" class="input">
 <label for="">Password</label>
-<input type="text">
+<input name="password" type="text">
 </div>
 
 </div>
