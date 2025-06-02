@@ -5,6 +5,13 @@
     background-size: cover;
 }
 
+h2.title{
+    font-size: 4rem;
+}
+
+h4.title{
+    font-size: 3rem;
+}
 .title{
  font-family: "Ubuntu", sans-serif;
   font-weight: 700;
@@ -14,3 +21,5 @@
     paint-order: stroke fill;
 
 }
+
+

@@ -12,6 +12,11 @@ Route::get('/register', function () {
 });
 
 Route::get('/login',  [LoginAuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login',  [LoginAuthController::class, 'formValidation'])->name('login.submit');
+Route::post('/login', [LoginAuthController::class, 'formValidation'])->name('login.submit');
+
+Route::get('/menu', function () {
+    return view('main.menu');
+})->middleware('auth');
+
 
 

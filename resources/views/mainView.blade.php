@@ -21,14 +21,14 @@
 
     <div id="container">
 
-    <x-nav-bar/>
-<div class="titles h-full flex flex-col justify-center pt-40 pl-20 gap-14">
+    <x-navbar/>
+<div class="titles tw:h-full tw:flex tw:flex-col tw:justify-center tw:pt-40 tw:pl-20 tw:gap-14">
 
-    <h2 class="title text-6xl">
+    <h2 class="title" style="font-size:'32rem'">
         Book Your Next Travel
     </h2>
 
-    <h4 class="title text-5xl">
+    <h4 class="title tw:text-5xl">
     Book Now!
     </h4>
 </div>
