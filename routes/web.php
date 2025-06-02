@@ -7,6 +7,11 @@ Route::get('/', function () {
     return view('mainView');
 });
 
+Route::get('/register', function () {
+    return view('auth/register');
+});
+
 Route::get('/login',  [LoginAuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login',  [LoginAuthController::class, 'formValidation'])->name('login.submit');
+
 
