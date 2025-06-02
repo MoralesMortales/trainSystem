@@ -26,12 +26,17 @@
 <div id="inputBox_1" class="input">
 <label for="">Email</label>
 <input name="email" type="email">
+
 </div>
 
 <div id="inputBox_2" class="input">
 <label for="">Password</label>
 <input name="password" type="text">
 </div>
+
+@error('email')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+@enderror
 
 </div>
 
