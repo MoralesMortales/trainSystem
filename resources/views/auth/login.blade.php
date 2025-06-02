@@ -37,7 +37,7 @@
                             </div>
 
                             @error('email')
-                                <span class="tw:text-red-500 tw:text-sm">{{ $message }}</span>
+                                <span class="tw:text-red-500 error">{{ $message }}</span>
                             @enderror
 
                         </div>

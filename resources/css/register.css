@@ -4,13 +4,17 @@
     background-repeat: no-repeat;
     background-size: cover;
 height: 100dvh;
+
 padding-top: 80px;
+}
+
+#inputs{
 }
 
 .input{
     display: flex;
-    gap: 1rem;
-    height: 34px;
+    gap: 3rem;
+    height: 48px;
     width:100%;
     justify-content: center;
     align-items: center;
@@ -31,11 +35,6 @@ padding-top: 80px;
     font-size: 20px;
 }
 
-.error{
-    font-size: 1.52rem;
-    font-weight: bold;
-}
-
 .box{
     background-color: rgba(217, 217, 217, .83);
 }
@@ -44,6 +43,15 @@ padding-top: 80px;
 
 }
 
+/* .title{ */
+/*  font-family: "Ubuntu", sans-serif; */
+/*   font-weight: 700; */
+/*   font-style: normal; */
+/*     color: #E9AF6D; */
+/*     -webkit-text-stroke: 10px black; */
+/*     paint-order: stroke fill; */
+
+/* } */
 
 input{
     background-color: white;

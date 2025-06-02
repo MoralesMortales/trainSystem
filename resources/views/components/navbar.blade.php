@@ -21,9 +21,11 @@
     <h5>Login</h5>
     </div>
     </a>
+    <a href="{{ url('/register') }}">
     <div id="register" class="">
     <h5>Register</h5>
     </div>
+    </a>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
