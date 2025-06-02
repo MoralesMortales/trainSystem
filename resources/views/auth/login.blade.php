@@ -10,7 +10,7 @@
 
 <body>
 <div id="container">
-    <x-nav-bar/>
+    <x-navbar/>
 <div id="boxContainer" class="h-10/12 w-full flex justify-center items-center">
 <div class="box w-8/12 h-9/12">
 <div id="TopTitle" class="text-4xl pt-10 flex justify-center items-center h-1/6">

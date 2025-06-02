@@ -21,7 +21,7 @@
 
     <div id="container">
 
-    <x-nav-bar/>
+    <x-navbar/>
 <div class="titles h-full flex flex-col justify-center pt-40 pl-20 gap-14">
 
     <h2 class="title text-6xl">
@@ -31,6 +31,10 @@
     <h4 class="title text-5xl">
     Book Now!
     </h4>
+        @auth
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate aliquam aut, corrupti eius doloribus dolore repudiandae repellendus qui nesciunt debitis veniam mollitia, cum voluptatem odit omnis, repellat nisi possimus deleniti.
+    @endauth
+
 </div>
     </div>
 
