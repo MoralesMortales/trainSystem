@@ -14,10 +14,10 @@ class LoginAuthController extends Controller
 
     public function formValidation(Request $request)
     {
-        $validatedData = $request->validate([
-            'email' => 'required|string',
+    $validatedData = $request->validate([
+            'email' => 'required|email',
             'password' => 'required|string',
-        ]);
+    ]);
 
     if (Auth::attempt($validatedData)) {
         $request->session()->regenerate();
@@ -25,7 +25,6 @@ class LoginAuthController extends Controller
     }
 
     return back()->withErrors([
-        'login' => 'El correo electrónico o contraseña son incorrectos',
-    ])->onlyInput('login');
-    }
-}
+        'email' => 'El correo electrónico o contraseña son incorrectos',
+    ])->onlyInput('email');
+}}

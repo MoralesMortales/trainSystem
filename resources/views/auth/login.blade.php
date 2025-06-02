@@ -17,7 +17,7 @@
 <h4>Sign In</h4>
 </div>
 
-<form action="{{ url('/login') }}" class="h-full" method="post">
+<form action="{{ route('login.submit') }}" class="h-full" method="post">
 @csrf
 <div id="inputs" class="h-4/6 pt-14 flex items-center justify-center flex-col">
 
@@ -25,7 +25,7 @@
 
 <div id="inputBox_1" class="input">
 <label for="">Email</label>
-<input name="login" type="text">
+<input name="email" type="email">
 </div>
 
 <div id="inputBox_2" class="input">
