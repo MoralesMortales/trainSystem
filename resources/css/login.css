@@ -4,12 +4,8 @@
     background-repeat: no-repeat;
     background-size: cover;
 height: 100dvh;
-
+padding-top: 80px;
 }
-
-#inputs{
-}
-
 .input{
     display: flex;
     gap: 3rem;
@@ -36,6 +32,7 @@ height: 100dvh;
 
 .box{
     background-color: rgba(217, 217, 217, .83);
+    margin-bottom: ;
 }
 
 #forgotPass{
