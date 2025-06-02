@@ -9,11 +9,13 @@
 <div class="right flex flex-row justify-end gap-9 w-3/4 pr-40">
 <a href="{{ url('/login') }}">
     <div id="login" class="">
-    <h5>Login</h5>
+        <h5>Login</h5>
     </div>
-    </a>
+</a>
+<a href="{{ url('/register') }}">
     <div id="register" class="">
-    <h5>Register</h5>
+        <h5>Register</h5>
     </div>
+</a>
 </div>
 </div>
