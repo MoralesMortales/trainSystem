@@ -4,14 +4,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginAuthController;
 use App\Http\Controllers\logoutController;
 use App\Http\Controllers\registerController;
+use App\Http\Controllers\trainController;
 
 Route::get('/', function () {
     return view('mainView');
 });
 
-Route::get('/register', function () {
-    return view('auth/register');
-});
+
+Route::get('/register',  [registerController::class, 'showRegisterForm'])->name('register');
+
+Route::post('/register',  [registerController::class, 'formRegister'])->name('register.submit');
 
 Route::get('/register',  [registerController::class, 'showRegisterForm'])->name('register');
 
@@ -24,7 +26,10 @@ Route::post('/logout', [logoutController::class, 'logoutAndDestroy'])->name('log
 
 Route::get('/menu', function () {
     return view('main.menu');
-})->middleware('auth');
+})->middleware('auth')->name('menu');
 
+Route::get('/menu/createTrain', [trainController::class, 'createTrain'])->middleware('auth')->name('createTrain');
+
+Route::get('/menu/trains', [trainController::class, 'showMyTrains'])->middleware('auth')->name('Trains');
 
 
