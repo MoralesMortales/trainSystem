@@ -22,9 +22,9 @@
     <br>
          @if ( Auth::user()->isEmployee == 0 )
              empleado form
-             <a href="">Create Train</a>
+             <a href="{{ route('createTrain') }}">Create Train</a>
              <br>
-             <a href="">My Trains</a>
+             <a href="{{ route('Trains') }}">My Trains</a>
          @else
             no empleado form
          @endif
