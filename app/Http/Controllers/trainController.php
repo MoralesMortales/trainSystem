@@ -1,47 +1,53 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\trains;
 use Illuminate\Http\Request;
 
 class trainController extends Controller
 {
-      public function showMyTrains()
+    public function showMyTrains()
     {
         $trains = trains::all();
         return view('main.trains.myTrains', ['trains' => $trains]);
     }
 
-      public function createTrain()
+    public function createTrain()
     {
         return view('main.trains.createTrain');
     }
 
     public function createTrainSubmit(Request $request)
     {
-         $validatedData = $request->validate([
-            'name' => 'required|string',
-            'type' => 'required|string',
-            'capacity' => 'required|integer',
-            'maxVelocity' => 'required|float',
-            'vipCapacity' => 'integer',
-            'turistCapacity' => 'integer',
-            'economicCapacity' => 'integer',
+        $request->merge([
+            'vipCapacity' => $request->vipCapacity ?? 0,
+            'turistCapacity' => $request->turistCapacity ?? 0,
+            'economicCapacity' => $request->economicCapacity ?? 0,
         ]);
 
-        /* $train = new trains(); */
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'type' => 'required|string|max:255',
+            'capacity' => 'required|integer|min:1',
+            'maxVelocity' => 'required|numeric|min:0',
+            'vipCapacity' => 'nullable|integer|min:0',
+            'turistCapacity' => 'nullable|integer|min:0',
+            'economicCapacity' => 'nullable|integer|min:0',
+        ]);
 
-        /* $train->email = $validatedData['email']; */
+        $train = new trains();
 
-        /* $train->cedula = $validatedData['cedula']; */
+        $train->name = $validatedData['name'];
+        $train->type = $validatedData['type'];
+        $train->capacity = $validatedData['capacity'];
+        $train->maxVelocity = $validatedData['maxVelocity'];
+        $train->vipCapacity = $validatedData['vipCapacity'];
+        $train->turistCapacity = $validatedData['turistCapacity'];
+        $train->economicCapacity = $validatedData['economicCapacity'];
 
-        /* $train->isEmployee = 0; */
+        $train->save();
 
-        /* $train->save(); */
-
-        return redirect()->back()->with('success', 'User created successfully!');
+        return redirect()->route('menu')->with('success', 'User created successfully!');
     }
-
-
-
 }
