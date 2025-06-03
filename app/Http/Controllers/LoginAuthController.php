@@ -21,7 +21,8 @@ class LoginAuthController extends Controller
 
     if (Auth::attempt($validatedData)) {
         $request->session()->regenerate();
-        return redirect()->intended('menu');
+        return redirect()->route('menu')->with('success', 'User logged successfully!')
+;
     }
 
     return back()->withErrors([
