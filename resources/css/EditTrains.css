@@ -1,0 +1,45 @@
+#container{
+    min-height: 100dvh;
+    background-image: url("../../public/img/trains/train.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+height: 100dvh;
+
+padding-top: 80px;
+}
+
+#inputs{
+}
+
+.input{
+    display: flex;
+    gap: 3rem;
+    height: 24px;
+    width: 22em;
+    justify-content: center;
+    align-items: center;
+}
+
+.input label{
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.input input{
+    width: 50%;
+    height: 100%;
+    border-radius: .0412em;
+    padding: 0 10px;
+    font-size: 20px;
+}
+
+.box{
+    background-color: rgba(153, 215, 103, 0.83); /* Verde de Tailwind 500 */
+}
+
+
+input{
+    background-color: white;
+    border: black .3px solid;
+}

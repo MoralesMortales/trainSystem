@@ -21,6 +21,10 @@ Route::get('/createtrain', function () {
     return view('auth/CreateTrain');
 });
 
+Route::get('/edittrains', function () {
+    return view('auth/EditTrains');
+});
+
 Route::get('/login',  [LoginAuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginAuthController::class, 'formValidation'])->name('login.submit');
 

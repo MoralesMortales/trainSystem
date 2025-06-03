@@ -1,0 +1,62 @@
+#container{
+    min-height: 100dvh;
+    background-image: url("../../public/img/trains/train.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+height: 100dvh;
+
+padding-top: 80px;
+}
+
+#inputs{
+}
+
+.input{
+    display: flex;
+    gap: 3rem;
+    height: 24px;
+    width: 22em;
+    justify-content: center;
+    align-items: center;
+}
+
+.input label{
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.input input{
+    width: 50%;
+    height: 100%;
+    border-radius: .0412em;
+    padding: 0 10px;
+    font-size: 20px;
+}
+
+.box{
+    background-color: rgba(217, 217, 217, .83);
+}
+
+/*.box{
+/*    background-color: rgba(74, 222, 128, .83); /* Verde de Tailwind 500 */
+/*}
+
+#forgotPass{
+
+}
+
+/* .title{ */
+/*  font-family: "Ubuntu", sans-serif; */
+/*   font-weight: 700; */
+/*   font-style: normal; */
+/*     color: #E9AF6D; */
+/*     -webkit-text-stroke: 10px black; */
+/*     paint-order: stroke fill; */
+
+/* } */
+
+input{
+    background-color: white;
+    border: black .3px solid;
+}
