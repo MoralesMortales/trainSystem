@@ -46,12 +46,16 @@ quesooooo
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
+          @auth
+
           <li class="nav-item">
           <form action="{{ route('logout.submit') }}" method="post">
+
           @csrf
             <button class="nav-link">Logout</button>
           </form>
           </li>
+          @endauth
             </ul>
           </li>
         </ul>
