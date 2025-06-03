@@ -44,9 +44,6 @@
                         </div>
                     </div>
 
-                         @if (session('success'))
-    <span class="tw:text-green-500">{{ session('success') }}</span>
-@endif
 
 @if ($errors->any())
     <div class="tw:text-red-700 tw:font-bold tw:mb-4">
@@ -71,6 +68,17 @@
 
     </div>
 </div>
+
+  <script>
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: '¡Amazing!',
+                text: '{{ session('success') }}',
+                confirmButtonText: 'Accept'
+            });
+        @endif
+    </script>
 
 </body>
 </html>
