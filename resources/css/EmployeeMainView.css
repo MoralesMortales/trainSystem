@@ -1,0 +1,22 @@
+/* En tu archivo CSS (por ejemplo, ClientMainView.css o app.css) */
+
+/* Establece el color de fondo para los elementos más externos */
+html, body {
+    background-color: #000; /* O un color muy oscuro que se mezcle con tu imagen de tren */
+    /* Si la imagen de tu tren tiene un tono específico, puedes intentar usar ese color.
+       Por ejemplo, si es un tren nocturno, un gris oscuro o negro.
+       Si es un tren diurno, un azul cielo o gris claro. */
+
+    /* Asegúrate de que el body pueda expandirse si el contenido es más alto */
+    min-height: 100vh;
+}
+
+
+#container {
+    min-height: 100dvh;
+    background-image: url("../../public/img/trains/train.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; /* ¡Importante para que la imagen de fondo no se desplace! */
+    padding-top: 80px;
+}
