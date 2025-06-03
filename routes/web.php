@@ -15,6 +15,10 @@ Route::get('/register',  [registerController::class, 'showRegisterForm'])->name(
 
 Route::post('/register',  [registerController::class, 'formRegister'])->name('register.submit');
 
+Route::get('/register',  [registerController::class, 'showRegisterForm'])->name('register');
+
+Route::post('/register',  [registerController::class, 'formRegister'])->name('register.submit');
+
 Route::get('/login',  [LoginAuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginAuthController::class, 'formValidation'])->name('login.submit');
 

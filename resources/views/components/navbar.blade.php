@@ -46,8 +46,6 @@
                 <a href="{{ url('/') }}" class="tw:h-full tw:w-max">
                     <img class="tw:max-h-full" src="{{ asset('img/trainLogo.png') }}" alt="foyo">
                 </a>
-
-
             @endauth
 
             @auth
