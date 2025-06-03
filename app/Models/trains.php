@@ -17,6 +17,7 @@ class trains extends Model
 
     protected $fillable = [
         'type',
+        'name',
         'capacity',
         'maxVelocity',
         'vipCapacity',

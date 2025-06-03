@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('trains', function (Blueprint $table) {
             $table->id('train_id')->unique();
             $table->string('type');
+            $table->string('name');
             $table->integer('capacity');
             $table->float('maxVelocity');
             $table->integer('vipCapacity');

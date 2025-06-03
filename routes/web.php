@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginAuthController;
 use App\Http\Controllers\logoutController;
 use App\Http\Controllers\registerController;
+use App\Http\Controllers\trainController;
 
 Route::get('/', function () {
     return view('mainView');
@@ -26,12 +27,8 @@ Route::get('/menu', function () {
     return view('main.menu');
 })->middleware('auth');
 
-Route::get('/menu/createTrain', function () {
-    return view('main.trains.createTrain');
-})->middleware('auth')->name('createTrain');
+Route::get('/menu/createTrain', [trainController::class, 'createTrain'])->middleware('auth')->name('createTrain');
 
-Route::get('/menu/trains', function () {
-    return view('main.trains.myTrains');
-})->middleware('auth')->name('Trains');
+Route::get('/menu/trains', [trainController::class, 'showMyTrains'])->middleware('auth')->name('Trains');
 
 

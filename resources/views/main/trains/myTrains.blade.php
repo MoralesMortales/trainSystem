@@ -7,5 +7,10 @@
 </head>
 <body>
    trains
+   @foreach ($trains as $train)
+            <li>
+                <a href="/trains/{{ $train->id }}">{{ $train->type }} (Capacidad: {{ $train->capacity }})</a>
+            </li>
+        @endforeach
 </body>
 </html>
