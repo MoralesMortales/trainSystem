@@ -17,31 +17,47 @@
                 <h4>Register</h4>
             </div>
 
-            <form action="" class="tw:h-full">
+            <form action="{{ route('register.submit') }}" class="tw:h-full" method="post">
+            @csrf
 
                 <div id="inputs" class=" tw:h-3/6 tw:pt-14 tw:flex tw:items-center tw:justify-center tw:flex-col">
 
                     <div id="mainInput" style="margin-top:-5em;" class="tw:flex tw:justify-around tw:h-4/6 tw:items-center tw:flex-col tw:w-full">
                         <div id="inputBox_1" class="input tw:mb-4"> <!-- Añade mb-4 (margin-bottom) -->
                             <label style="font-size: 18px;">Email</label>
-                            <input type="text">
+                            <input type="text" name="email">
                         </div>
 
                         <div id="inputBox_2" class="input tw:mb-4">
                             <label style="font-size: 18px;">Cedula</label>
-                            <input type="text">
+                            <input type="text" name="cedula">
                         </div>
 
                         <div id="inputBox_3" class="input tw:mb-4">
                             <label style="font-size: 18px;">Password</label>
-                            <input type="text">
+                            <input type="text" name="password_1">
                         </div>
 
                         <div id="inputBox_4" class="input">
                             <label style="font-size: 18px;">Confirm Password</label>
-                            <input type="text">
+                            <input type="text" name="password_2">
                         </div>
                     </div>
+
+                         @if (session('success'))
+    <span class="tw:text-green-500">{{ session('success') }}</span>
+@endif
+
+@if ($errors->any())
+    <div class="tw:text-red-700 tw:font-bold tw:mb-4">
+        Please correct the following errors:
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
                 </div>
 
