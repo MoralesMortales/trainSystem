@@ -11,5 +11,22 @@
 </head>
 <body>
     <x-navbar/>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+         @if ( Auth::user()->isEmployee == 0 )
+             empleado form
+             <a href="">Create Train</a>
+             <br>
+             <a href="">My Trains</a>
+         @else
+            no empleado form
+         @endif
 </body>
 </html>

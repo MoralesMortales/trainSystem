@@ -43,7 +43,10 @@
                 </a>
 
                 @auth
-                    quesooooo
+                                       <div class="tw:flex tw:justify-end tw:w-5/6">
+
+                                       <h5 class="tw:full ">Bienvenid@</h5>
+                                       </div>
                 @else
                 <div class="tw:flex tw:justify-end tw:gap-16 tw:w-5/6">
                     <a href="{{ url('/login') }}" class="link">

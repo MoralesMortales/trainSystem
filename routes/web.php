@@ -26,5 +26,12 @@ Route::get('/menu', function () {
     return view('main.menu');
 })->middleware('auth');
 
+Route::get('/menu/createTrain', function () {
+    return view('main.trains.createTrain');
+})->middleware('auth')->name('createTrain');
+
+Route::get('/menu/trains', function () {
+    return view('main.trains.myTrains');
+})->middleware('auth')->name('Trains');
 
 
