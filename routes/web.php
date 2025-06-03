@@ -12,6 +12,15 @@ Route::get('/register', function () {
     return view('auth/register');
 });
 
+Route::get('/employeemainview', function () {
+    return view('auth/EmployeeMainView');
+});
+
+
+Route::get('/createtrain', function () {
+    return view('auth/CreateTrain');
+});
+
 Route::get('/login',  [LoginAuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginAuthController::class, 'formValidation'])->name('login.submit');
 

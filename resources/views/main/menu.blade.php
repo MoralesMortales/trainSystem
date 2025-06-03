@@ -6,7 +6,7 @@
     <title>TrainMenu</title>
 
     @vite(['resources/css/app.css'])
-@vite(['resources/css/mainView.css'])
+    @vite(['resources/css/mainView.css'])
 
 </head>
 <body>
