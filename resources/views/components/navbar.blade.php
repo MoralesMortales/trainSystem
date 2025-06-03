@@ -8,7 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
 
-
     <style>
         .link:link,
         .link:visited,
@@ -45,8 +44,6 @@
                 <a href="{{ url('/') }}" class="tw:h-full tw:w-max">
                     <img class="tw:max-h-full" src="{{ asset('img/trainLogo.png') }}" alt="foyo">
                 </a>
-
-
             @endauth
 
             @auth
