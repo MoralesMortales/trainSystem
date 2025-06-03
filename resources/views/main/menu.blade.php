@@ -35,7 +35,7 @@
 
             <div class="tw:w-1/2 tw:max-w-md tw:flex tw:flex-col ">
                 <div id="inputBox_4_2" class="tw:text-center ">
-                    <a href="/login" class="tw:inline-block">
+                    <a href="{{ route('Trains') }}" class="tw:inline-block">
                         <img src="img/images/02.png" alt="Descripción de la imagen" width="500" height="300">
                     </a>
                 </div>
