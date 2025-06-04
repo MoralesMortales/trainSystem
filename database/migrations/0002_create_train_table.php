@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('vipCapacity');
             $table->integer('turistCapacity');
             $table->integer('economicCapacity');
+            $table->boolean('status');
             $table->timestamps();
         });
 

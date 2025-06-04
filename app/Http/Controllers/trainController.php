@@ -40,6 +40,7 @@ class trainController extends Controller
 
         $train->name = $validatedData['name'];
         $train->type = $validatedData['type'];
+        $train->status = 0;
         $train->capacity = $validatedData['capacity'];
         $train->maxVelocity = $validatedData['maxVelocity'];
         $train->vipCapacity = $validatedData['vipCapacity'];
