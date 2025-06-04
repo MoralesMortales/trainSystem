@@ -16,6 +16,9 @@ Route::get('/employeemainview', function () {
     return view('auth/EmployeeMainView');
 });
 
+Route::get('/mytrains', function () {
+    return view('auth/MyTrains');
+});
 
 Route::get('/createtrain', function () {
     return view('auth/CreateTrain');
