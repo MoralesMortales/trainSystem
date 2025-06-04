@@ -29,5 +29,6 @@ Route::get('/menu/createTrain', [trainController::class, 'createTrain'])->middle
 Route::post('/menu/createTrain', [trainController::class, 'createTrainSubmit'])->middleware('auth')->name('createTrain.submit');
 
 Route::get('/menu/trains', [trainController::class, 'showMyTrains'])->middleware('auth')->name('Trains');
+Route::delete('/menu/trains/{train}', [trainController::class, 'destroy'])->middleware('auth')->name('Trains.destroy');
 
 

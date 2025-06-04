@@ -51,4 +51,12 @@ class trainController extends Controller
 
         return redirect()->route('menu')->with('success', 'User created successfully!');
     }
+
+    public function destroy(trains $train)
+    {
+        $train->delete();
+
+        return redirect()->route('Trains')
+            ->with('success', 'Train deleted successfully');
+    }
 }
