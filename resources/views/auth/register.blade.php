@@ -13,7 +13,7 @@
         <x-navbar/>
     <div id="boxContainer" class="tw:h-10/12 tw:w-full tw:flex tw:justify-center tw:items-center">
         <div class="box tw:w-8/12 tw:h-9/12">
-            <div id="TopTitle" class="tw:text-4xl tw:pt-10 tw:flex tw:justify-center tw:items-center tw:h-1/6">
+            <div id="TopTitle" class="tw:text-4xl tw:pt-10 tw:flex tw:justify-center tw:pb-12 tw:items-center tw:h-1/6">
                 <h4>Register</h4>
             </div>
 
