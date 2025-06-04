@@ -13,14 +13,7 @@
     <x-navbar/>
 
 
-            {{-- @if ( Auth::user()->isEmployee == 0 ) --}}
-            {{--  empleado form --}}
-            {{--  <a href="{{ route('createTrain') }}">Create Train</a> --}}
-            {{--  <br> --}}
-            {{--  <a href="{{ route('Trains') }}">My Trains</a> --}}
-         {{-- @else --}}
-            {{-- no empleado form --}}
-         {{-- @endif --}}
+ 
 
     <div class="tw:h-full tw:flex tw:w-full tw:justify-center">
 
@@ -41,6 +34,8 @@
                     </a>
                 </div>
             </div>
+
+            @if ( Auth::user()->isEmployee == 1 )
 
 
             <div class="tw:w-2/3 tw:h-full tw:flex tw:flex-col">
@@ -91,6 +86,7 @@
                 </div>
             </div>
 
+@endif
         </div>
 
     </div>
