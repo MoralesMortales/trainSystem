@@ -13,7 +13,7 @@ class trains extends Model
      * @var list<string>
      */
 
-    protected $primaryKey = 'train_id';  // ¡Importante!
+    protected $primaryKey = 'train_id';
 
     protected $fillable = [
         'type',
@@ -23,6 +23,7 @@ class trains extends Model
         'vipCapacity',
         'turistCapacity',
         'economicCapacity',
+        'status',
     ];
 }
 
