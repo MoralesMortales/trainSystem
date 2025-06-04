@@ -49,8 +49,37 @@ class trainController extends Controller
 
         $train->save();
 
-        return redirect()->route('menu')->with('success', 'User created successfully!');
+        return redirect()->route('menu')->with('success', 'Train created successfully!');
     }
+
+    public function updateTrain(trains $train)
+    {
+        return view('main.trains.updateTrain', ['train' => $train]);
+    }
+
+    public function updateTrainSubmit(Request $request, trains $train)
+    {
+        $request->merge([
+            'vipCapacity' => $request->vipCapacity ?? 0,
+            'turistCapacity' => $request->turistCapacity ?? 0,
+            'economicCapacity' => $request->economicCapacity ?? 0,
+        ]);
+
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'type' => 'required|string|max:255',
+            'capacity' => 'required|integer|min:1',
+            'maxVelocity' => 'required|numeric|min:0',
+            'vipCapacity' => 'nullable|integer|min:0',
+            'turistCapacity' => 'nullable|integer|min:0',
+            'economicCapacity' => 'nullable|integer|min:0',
+        ]);
+    $train->update($validatedData);
+             $train->save();
+
+return redirect()->route('Trains')->with('success', 'Train updated successfully');
+    }
+
 
     public function destroy(trains $train)
     {

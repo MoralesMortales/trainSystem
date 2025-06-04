@@ -53,7 +53,7 @@
                                     <td class="tw:py-3 tw:px-6">
                                         <div class="tw:flex tw:justify-center">
 
-                                            <a href="/trains/{{ $train->train_id }}" class="tw:text-blue-500  hover:tw:text-blue-700">
+                                            <a href="{{ route('updateTrain', $train->train_id) }}" class="tw:text-blue-500  hover:tw:text-blue-700">
                                                 <div class="tw:w-full tw:flex tw:justify-center">
                                                     <!-- Icono de Editar (SVG) -->
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="tw:h-5 tw:w-5"

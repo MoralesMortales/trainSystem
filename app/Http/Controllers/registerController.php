@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class registerController extends Controller
 {
 
-        public function showRegisterForm()
+    public function showRegisterForm()
     {
         return view('auth.register');
     }
@@ -18,7 +18,7 @@ class registerController extends Controller
 
     public function formRegister(Request $request)
     {
-            $validatedData = $request->validate([
+        $validatedData = $request->validate([
             'email' => 'required|email|unique:users,email',
             'cedula' => 'required|string|unique:users,cedula',
             'password_1' => 'required|string|min:8',
@@ -36,5 +36,6 @@ class registerController extends Controller
 
         $user->save();
 
-        return redirect()->back()->with('success', 'User created successfully!');
-    }}
+        return redirect()->route('menu')->with('success', 'User created successfully!');
+    }
+}

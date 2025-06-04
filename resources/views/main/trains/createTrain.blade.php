@@ -11,9 +11,11 @@
 <body>
 <div id="container">
     <x-navbar/>
-    <div id="boxContainer" class="tw:h-10/12 tw:w-full tw:flex tw:justify-center tw:items-center">
-        <div class="box tw:w-8/12 tw:h-9/12">
-
+    <div id="boxContainer" class="tw:h-10/12  tw:w-full tw:flex tw:justify-center tw:items-center">
+        <div class="box tw:w-8/12">
+<div class="tw:w-full tw:flex tw:justify-center tw:items-center tw:py-10">
+        <h4 class="">Create Train</h4>
+</div>
             <form action="{{ route('createTrain.submit') }}" method="post" class="tw:h-full tw:flex tw:flex-col tw:justify-between">
             @csrf
                 <div id="formContent" class="tw:h-full tw:flex tw:flex-col tw:justify-around tw:px-4 tw:py-4">
@@ -43,21 +45,24 @@
                     </div>
 
                     <div class="tw:mb-6">
-                        <label class="tw:text-lg tw:mb-2 tw:block tw:font-bold" style="font-size: 14px;">Classes</label>
-                        <div class="tw:flex tw:gap-x-8 tw:justify-center">
-                            <label class="tw:flex tw:items-center" style="font-size: 14px;">
-                               Turist <input type="checkbox" class="tw:mr-2 tw:h-7 tw:w-7 tw:rounded">
+                        <label class="tw:text-lg tw:mb-2 tw:w-full tw:text-center tw:pb-4 tw:font-bold" style="font-size: 19px;">Classes</label>
+                        <div class="tw:flex tw:gap-x-8 tw:justify-center tw:items-center tw:h-12">
+                            <label class="tw:flex tw:items-center tw:font-bold" style="font-size: 14px;">
+                               Turist
                             </label>
-                            <label class="tw:flex tw:items-center" style="font-size: 14px;">
-                               Economic <input type="checkbox" class="tw:mr-2 tw:h-7 tw:w-7 tw:rounded">
+                            <input type="checkbox" class="tw:mr-2 tw:h-7 tw:w-7 tw:rounded">
+                            <label class="tw:flex tw:items-center tw:font-bold" style="font-size: 14px;">
+                               Economic
                             </label>
-                            <label class="tw:flex tw:items-center" style="font-size: 14px;">
-                               VIP <input type="checkbox" class="tw:mr-2 tw:h-7 tw:w-7 tw:rounded">
+                            <input type="checkbox" class="tw:mr-2 tw:h-7 tw:w-7 tw:rounded">
+                            <label class="tw:flex tw:items-center tw:font-bold" style="font-size: 14px;">
+                               VIP
                             </label>
+                            <input type="checkbox" class="tw:mr-2 tw:h-7 tw:w-7 tw:rounded">
                         </div>
                     </div>
 
-                    <div class="tw:flex tw:justify-between tw:gap-x-4 tw:mb-6">
+                    <div class="tw:flex tw:justify-between tw:gap-x-4 tw:my-6">
                         <div class="input tw:w-1/3">
                             <label class="tw:text-lg" style="font-size: 14px;">Turist Seats</label>
                             <input type="text"name="turistCapacity" class="tw:w-full tw:p-2 tw:border tw:rounded">
