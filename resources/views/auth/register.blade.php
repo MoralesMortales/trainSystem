@@ -58,7 +58,7 @@
 
                 </div>
 
-                <div id="btnBottom" class="tw:h-3/6 tw:flex tw:justify-center tw:items-center tw:pb-20 tw:w-full">
+                <div id="btnBottom" class="tw:h-3/6 tw:flex tw:justify-center tw:items-center tw:pb-12 tw:w-full">
                     <button class="tw:w-50 tw:h-15 tw:mb-10 tw:bg-green-200 tw:text-2xl tw:font-bold">Confirm</button>
                 </div>
 

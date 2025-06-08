@@ -3,7 +3,7 @@
     background-image: url("../../public/img/trains/train.png");
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: fixed; /* ¡Importante para que la imagen de fondo no se desplace! */
+    background-attachment: fixed; /* ¡Importante para que la imagen de fondo no se desplace */
     padding-top: 80px;
 }
 
