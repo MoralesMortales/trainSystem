@@ -9,8 +9,45 @@
 </head>
 
 <body>
-<div id="container">
+<div id="container" class="tw:flex tw:justify-center tw:items-center">
     <x-navbar/>
+        @if ($showPassword)
+            <div class="box tw:w-8/12 tw:h-10/12">
+                <div id="TopTitle" class="tw:text-4xl tw:pt-10 tw:flex tw:justify-center tw:items-center tw:h-1/6">
+                    <h4 style="font-size:2.732rem; font-weight:bold;">Restringed Area!</h4>
+                </div>
+
+                <form action="{{ route('login.submit') }}" class="tw:h-full" method="post">
+                    @csrf
+                    <div id="inputs" class="tw:h-4/6 tw:pt-14 tw:flex tw:items-center tw:justify-center tw:flex-col">
+
+                        <div id="mainInput" style="margin-top:-5em;"
+                            class="tw:flex tw:justify-around tw:h-4/6 tw:items-center tw:flex-col tw:w-full">
+
+                            <div id="inputBox_2" class="input">
+                                <label for="">Password</label>
+                                <input name="password" type="text">
+                            </div>
+
+                            @error('email')
+                                <span class="tw:text-red-500 error">{{ $message }}</span>
+                            @enderror
+
+                        </div>
+
+
+                    </div>
+
+                    <div id="btnBottom" class="tw:h-1/6 tw:flex tw:justify-center tw:items-center tw:pb-36 tw:w-full">
+                        <button class="tw:w-54  tw:h-13 tw:bg-green-200 tw:text-2xl tw:font-bold">
+                            Confirm
+                        </button>
+                    </div>
+
+
+                </form>
+    @else
+
     <div id="boxContainer" class="tw:h-9/12 tw:w-full tw:flex tw:justify-center tw:items-center tw:pt-13">
         <div class="box">
             <form action="{{ route('register.submit') }}" class="tw:h-full tw:w-full tw:flex tw:flex-col tw:justify-center tw:items-center" method="post">
@@ -61,6 +98,7 @@
 
         </div>
 
+    @endif
     </div>
 </div>
 

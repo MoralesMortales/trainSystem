@@ -9,13 +9,15 @@ class createEmployee extends Controller
 {
     public function showCreateEmployeeAdmin()
     {
-        return view('main.EmployeeCreation.createEmployee');
+        $showPassword = true;
+        return view('main.EmployeeCreation.createEmployee')->with('showPassword', $showPassword);
     }
 
 
     public function showCreateEmployee()
     {
-        return view('main.EmployeeCreation.createEmployee');
+        $showPassword = false;
+        return view('main.EmployeeCreation.createEmployee')->with('showPassword', $showPassword);
     }
 
     public function formValidation(Request $request)
