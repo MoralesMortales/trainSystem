@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginAuthController;
 use App\Http\Controllers\logoutController;
 use App\Http\Controllers\registerController;
+use App\Http\Controllers\RestringedArea;
 use App\Http\Controllers\trainController;
 
 Route::get('/', function () {
@@ -50,7 +51,7 @@ Route::get('/menu/createEmployee', [createEmployee::class, 'showCreateEmployee']
 
 Route::get('/admin/createEmployee', [createEmployee::class, 'showCreateEmployeeAdmin'])->name('showEmployeeAdmin');
 
-
+Route::post('/admin/createEmployee', [RestringedArea::class, 'RestringedAreaSubmit'])->name('restringed.submit');
 
 Route::get('/menu/createEmployee/confirmEmployee', function () {
     return view('main/EmployeeCreation/ConfirmEmployee');
