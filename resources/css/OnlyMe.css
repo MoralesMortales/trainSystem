@@ -21,25 +21,29 @@
 }
 
 input{
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.75);
     border: black 1px solid;
     text-align: center;
 }
 
 select{
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.75);
     border: black 1px solid;
     text-align: center;
 }
 
 table th{
-    /* border: black 1px solid; */
+/*     border: black 1px solid; */
     text-align: center;
     font-size: 18px;
     padding: 7px 24px;
 }
 
 table td{
-    /* border: black 1px solid; */
+/*     border: black 1px solid; */
     padding: 10px 10px;
+}
+
+button{
+    padding: 10px 0px;
 }
