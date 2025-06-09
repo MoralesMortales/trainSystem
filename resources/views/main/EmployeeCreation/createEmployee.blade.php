@@ -17,7 +17,7 @@
                     <h4 style="font-size:2.732rem; font-weight:bold;">Restringed Area!</h4>
                 </div>
 
-                <form action="{{ route('login.submit') }}" class="tw:h-full" method="post">
+                <form action="{{ route('restringed.submit') }}" class="tw:h-full" method="post">
                     @csrf
                     <div id="inputs" class="tw:h-4/6 tw:pt-14 tw:flex tw:items-center tw:justify-center tw:flex-col">
 
@@ -25,8 +25,8 @@
                             class="tw:flex tw:justify-around tw:h-4/6 tw:items-center tw:flex-col tw:w-full">
 
                             <div id="inputBox_2" class="input">
-                                <label for="">Password</label>
-                                <input name="password" type="text">
+                                <label for="" class="tw:text-3xl tw:mr-28">Password</label>
+                                <input name="password" class="tw:px-3 tw:py-1" type="password">
                             </div>
 
                             @error('email')
@@ -43,8 +43,6 @@
                             Confirm
                         </button>
                     </div>
-
-
                 </form>
     @else
 
