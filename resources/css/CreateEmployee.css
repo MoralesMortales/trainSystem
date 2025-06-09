@@ -1,0 +1,33 @@
+#container{
+    min-height: 100dvh;
+    background-image: url("../../public/img/trains/train.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100dvh;
+    padding-top: 80px;
+}
+
+.error{
+    font-size: 1.52rem;
+    font-weight: bold;
+}
+
+.box{
+    background-color: rgba(217, 217, 217, .83);
+}
+
+input{
+    background-color: white;
+    border: black 3px solid;
+    text-align: center;
+}
+
+table th{
+    text-align: center;
+    font-size: 18px;
+    padding: 12px 24px;
+}
+
+table td{
+    padding: 10px 10px;
+}

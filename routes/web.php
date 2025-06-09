@@ -41,3 +41,15 @@ Route::get('/menu/trains', [trainController::class, 'showMyTrains'])->middleware
 Route::delete('/menu/trains/{train}', [trainController::class, 'destroy'])->middleware('auth')->name('Trains.destroy');
 
 
+
+Route::get('/menu/createEmployee', function () {
+    return view('main/EmployeeCreation/createEmployee');
+});
+
+Route::get('/menu/createEmployee/confirmEmployee', function () {
+    return view('main/EmployeeCreation/ConfirmEmployee');
+});
+
+Route::get('/menu/createReservation', function () {
+    return view('main/Reservation/Reserving');
+});

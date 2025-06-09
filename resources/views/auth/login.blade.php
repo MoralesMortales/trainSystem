@@ -42,25 +42,19 @@
 
                         </div>
 
-                        <div id="forgotPass" class="tw:w-full tw:flex tw:justify-end tw:pr-44">
-                            <h4>
+                        <div id="forgotPass" class="tw:w-full tw:flex tw:justify-end tw:pr-30 ">
+                            
+                            <h4 class="tw:cursor-pointer">
                                 Forgot Password?
                             </h4>
                         </div>
 
-                        <div id="checkEmployee" class="tw:w-full tw:flex tw:justify-start tw:pl-52 tw:gap-4">
-                            <input type="checkbox">
-                            <h4>
-                                Im employee
-                            </h4>
-                        </div>
                     </div>
 
                     <div id="btnBottom" class="tw:h-1/6 tw:flex tw:justify-center tw:items-center tw:pb-36 tw:w-full">
-                        <button class="tw:w-60  tw:h-20 tw:bg-green-200 tw:text-2xl tw:font-bold">
+                        <button class="tw:w-54  tw:h-13 tw:bg-green-200 tw:text-2xl tw:font-bold">
                             Confirm
                         </button>
-
                     </div>
 
 
