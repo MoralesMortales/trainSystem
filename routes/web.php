@@ -12,23 +12,25 @@ Route::get('/', function () {
     return view('mainView');
 });
 
-
-Route::get('/register',  [registerController::class, 'showRegisterForm'])->name('register');
-
-Route::post('/register',  [registerController::class, 'formRegister'])->name('register.submit');
+// Auth
 
 Route::get('/register',  [registerController::class, 'showRegisterForm'])->name('register');
 
 Route::post('/register',  [registerController::class, 'formRegister'])->name('register.submit');
 
 Route::get('/login',  [LoginAuthController::class, 'showLoginForm'])->name('login');
+
 Route::post('/login', [LoginAuthController::class, 'formValidation'])->name('login.submit');
 
 Route::post('/logout', [logoutController::class, 'logoutAndDestroy'])->name('logout.submit');
 
+// Menu
+
 Route::get('/menu', function () {
     return view('main.menu');
 })->middleware('auth')->name('menu');
+
+// Trains
 
 Route::get('/menu/createTrain', [trainController::class, 'createTrain'])->middleware('auth')->name('createTrain');
 
@@ -42,10 +44,7 @@ Route::get('/menu/trains', [trainController::class, 'showMyTrains'])->middleware
 
 Route::delete('/menu/trains/{train}', [trainController::class, 'destroy'])->middleware('auth')->name('Trains.destroy');
 
-
-Route::get('/menu/createEmployee', function () {
-    return view('main/EmployeeCreation/createEmployee');
-});
+// Employee Management
 
 Route::get('/menu/createEmployee', [createEmployee::class, 'showCreateEmployee'])->middleware('auth')->name('showEmployeeBase');
 
@@ -53,9 +52,13 @@ Route::get('/admin/createEmployee', [createEmployee::class, 'showCreateEmployeeA
 
 Route::post('/admin/createEmployee', [RestringedArea::class, 'RestringedAreaSubmit'])->name('restringed.submit');
 
+Route::post('/admin/createEmployee', [RestringedArea::class, 'createEmployeeSubmit'])->name('createEmployeeFr.submit');
+
 Route::get('/menu/createEmployee/confirmEmployee', function () {
     return view('main/EmployeeCreation/ConfirmEmployee');
 });
+
+// Reservations
 
 Route::get('/menu/newreservation', function () {
     return view('main/Reservation/NewReservation');

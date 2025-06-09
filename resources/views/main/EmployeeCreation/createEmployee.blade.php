@@ -47,7 +47,7 @@
     @else
 
             <div class="box tw:w-8/12 tw:h-10/12">
-            <form action="{{ route('register.submit') }}" class="tw:h-full tw:w-full tw:flex tw:flex-col tw:justify-center tw:items-center" method="post">
+            <form action="{{ route('createEmployeeFr.submit') }}" class="tw:h-full tw:w-full tw:flex tw:flex-col tw:justify-center tw:items-center" method="post">
             @csrf
 <table class="min-w-full text-left text-sm tw:border-separate font-light text-surface dark:text-white">
     <thead class="border-b border-neutral-200 font-medium dark:border-white/10">
