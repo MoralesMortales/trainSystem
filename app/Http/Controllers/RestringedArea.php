@@ -14,9 +14,9 @@ class RestringedArea extends Controller
         ]);
 
         if ($validatedData['password'] == "87654321") {
-            $allowAccess = true;
-            return redirect()->route('createAdmin')->with('allowAccess', $allowAccess);
+            $showPassword = false;
+            return redirect()->route('showEmployeeAdmin')->with('showPassword', $showPassword);
         }
-        return back()->with('error', 'Contraseña incorrecta'); // <- ¡Nuevo!
+            return back()->with('error', 'Contraseña incorrecta');
     }
 }

@@ -26,7 +26,7 @@
 
                             <div id="inputBox_2" class="input">
                                 <label for="" class="tw:text-3xl tw:mr-28">Password</label>
-                                <input name="password" class="tw:px-3 tw:py-1" type="password">
+                                <input autocomplete="off" name="password" class="tw:px-3 tw:py-1" type="password">
                             </div>
 
                             @error('email')
@@ -46,40 +46,43 @@
                 </form>
     @else
 
-    <div id="boxContainer" class="tw:h-9/12 tw:w-full tw:flex tw:justify-center tw:items-center tw:pt-13">
-        <div class="box">
+            <div class="box tw:w-8/12 tw:h-10/12">
             <form action="{{ route('register.submit') }}" class="tw:h-full tw:w-full tw:flex tw:flex-col tw:justify-center tw:items-center" method="post">
             @csrf
-            <table class="min-w-full text-left text-sm font-light text-surface dark:text-white">
-                <thead class="border-b border-neutral-200 font-medium dark:border-white/10">
-                    <tr>
-                        <th class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">User Email</th>
-                        <th class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">With Privileges?</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                             <td class="tw:text-center">
-                                 <input type="text" name="email" class="tw:w-64">
-                             </td>
-                        <td class="tw:py-2 tw:text-center  tw:border-2">
-                            <input type="checkbox" name="Privileges" class="tw:w-6 tw:h-6">
-                        </td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td colspan="2" class="tw:text-center tw:py-2">
-                            <div id="btnBottom" class="tw:flex tw:justify-center tw:items-center tw:pt-4 tw:pb-4 tw:w-full">
-                                <button type="button" id="confirmRedirectButton"
-                                   class="tw:w-54 tw:h-13 tw:bg-red-200 tw:text-2xl tw:font-bold tw:rounded-lg hover:tw:bg-green-300">
-                                    Confirm
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+<table class="min-w-full text-left text-sm tw:border-separate font-light text-surface dark:text-white">
+    <thead class="border-b border-neutral-200 font-medium dark:border-white/10">
+        <tr>
+            <th class="tw:px-16 tw:py-4"> <!-- Añadido padding horizontal -->
+                <h3 class="tw:text-3xl">User Email</h3>
+            </th>
+            <th class="tw:px-16 tw:py-4"> <!-- Añadido padding horizontal -->
+                <h3 class="tw:text-3xl">With Privileges?</h3>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="tw:px-16 tw:py-4 tw:text-center"> <!-- Añadido padding -->
+                <input type="text" name="email" class="tw:w-96 tw:px-4 tw:py-2 tw:border tw:rounded-lg"> <!-- Input más grande -->
+            </td>
+            <td class="tw:px-16 tw:py-4 tw:text-center tw:border-2"> <!-- Añadido padding -->
+                <input type="checkbox" name="Privileges" class="tw:w-8 tw:h-8 tw:mx-auto"> <!-- Checkbox más grande y centrado -->
+            </td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td colspan="2" class="tw:text-center tw:py-8"> <!-- Más espacio vertical -->
+                <div id="btnBottom" class="tw:flex tw:justify-center tw:items-center tw:pt-40 tw:pb-4 tw:w-full">
+                    <button type="button" id="confirmRedirectButton"
+                       class="tw:w-64 tw:h-14 tw:px-8 tw:py-2 tw:bg-red-200 tw:text-2xl tw:font-bold tw:rounded-lg hover:tw:bg-green-300 tw:transition-colors tw:duration-300">
+                        Confirm
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
             @if ($errors->any())
                 <div class="tw:text-red-700 tw:font-bold tw:mb-4 tw:text-center tw:mt-4">

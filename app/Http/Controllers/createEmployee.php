@@ -9,7 +9,7 @@ class createEmployee extends Controller
 {
     public function showCreateEmployeeAdmin()
     {
-        $showPassword = true;
+        $showPassword = session('showPassword', true);
         return view('main.EmployeeCreation.createEmployee')->with('showPassword', $showPassword);
     }
 
