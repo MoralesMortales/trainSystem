@@ -33,13 +33,13 @@ select{
 }
 
 table th{
-    /* border: black 1px solid; */
+    border: black 1px solid;
     text-align: center;
     font-size: 18px;
     padding: 7px 24px;
 }
 
 table td{
-    /* border: black 1px solid; */
+    border: black 1px solid;
     padding: 10px 10px;
 }
