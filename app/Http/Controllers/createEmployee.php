@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class LoginAuthController extends Controller
+class createEmployee extends Controller
 {
-    public function showLoginForm()
+    public function showCreateEmployeeAdmin()
     {
-        return view('auth.login');
+        return view('main.EmployeeCreation.createEmployee');
+    }
+
+
+    public function showCreateEmployee()
+    {
+        return view('main.EmployeeCreation.createEmployee');
     }
 
     public function formValidation(Request $request)
@@ -21,7 +27,7 @@ class LoginAuthController extends Controller
 
         if (Auth::attempt($validatedData)) {
             $request->session()->regenerate();
-            return redirect()->route('menu')->with('success', 'User logged successfully!')->with('no_cache', true);
+            return redirect()->route('menu')->with('success', 'User logged successfully!');
         }
 
         return back()->withErrors([
@@ -29,3 +35,4 @@ class LoginAuthController extends Controller
         ])->onlyInput('email');
     }
 }
+

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\createEmployee;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginAuthController;
 use App\Http\Controllers\logoutController;
@@ -41,15 +42,19 @@ Route::get('/menu/trains', [trainController::class, 'showMyTrains'])->middleware
 Route::delete('/menu/trains/{train}', [trainController::class, 'destroy'])->middleware('auth')->name('Trains.destroy');
 
 
-
 Route::get('/menu/createEmployee', function () {
     return view('main/EmployeeCreation/createEmployee');
 });
 
+Route::get('/menu/createEmployee', [createEmployee::class, 'showCreateEmployee'])->middleware('auth')->name('showEmployeeBase');
+
+Route::get('/admin/createEmployee', [createEmployee::class, 'showCreateEmployeeAdmin'])->name('showEmployeeAdmin');
+
+
+
 Route::get('/menu/createEmployee/confirmEmployee', function () {
     return view('main/EmployeeCreation/ConfirmEmployee');
 });
-
 
 Route::get('/menu/newreservation', function () {
     return view('main/Reservation/NewReservation');
@@ -58,7 +63,6 @@ Route::get('/menu/newreservation', function () {
 Route::get('/menu/myreservation', function () {
     return view('main/Reservation/MyReservations');
 });
-
 
 Route::get('/menu/newreservation/reserving', function () {
     return view('main/Reservation/Reserving/Reserving');
@@ -75,3 +79,4 @@ Route::get('/menu/newreservation/reserving/meandothers', function () {
 Route::get('/menu/newreservation/reserving/others', function () {
     return view('main/Reservation/Reserving/Others');
 });
+

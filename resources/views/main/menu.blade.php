@@ -93,11 +93,13 @@
         @if(session('success'))
             Swal.fire({
                 icon: 'success',
-                title: '¡Amazing!',
+                title: '¡Amazittng!',
                 text: '{{ session('success') }}',
                 confirmButtonText: 'Accept'
             });
+         {{ Session::forget('success') }}
         @endif
+
     </script>
 
 </body>
