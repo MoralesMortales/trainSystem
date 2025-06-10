@@ -10,15 +10,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('reservations', function (Blueprint $table) {
-            $table->id('reservingNumber');
+
+            $table->id('reservationNumber');
             $table->string('travelCode');
+
             $table->string('fullname');
-            $table->unsignedBigInteger('cedula');
             $table->string('gender');
             $table->string('passportNumber')->unique();
+            $table->unsignedBigInteger('cedula');
 
             $table->boolean('status')->default(true);
             $table->timestamps();
+
 
             $table->foreign('travelCode')->references('travelCode')->on('travels');
             $table->foreign('cedula')->references('cedula')->on('users');
