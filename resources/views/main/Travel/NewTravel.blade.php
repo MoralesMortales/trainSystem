@@ -54,10 +54,19 @@
                 <tbody>
                     <tr>
                         <td class="tw:text-center">
-                            <input type="text" name="City Origin" class="tw:w-48">
+                               <select name="train_id" class="tw-w-48 tw-bg-white tw-border tw-border-gray-300 tw-rounded tw-py-2 tw-px-3">
+        @foreach($cities as $city)
+            <option value="{{ $city->name }}">{{ $city->name }}</option>
+        @endforeach
+    </select>
+
                         </td>
                         <td class="tw:text-center">
-                            <input type="text" name="City Destiny" class="tw:w-48">
+                               <select name="train_id" class="tw-w-48 tw-bg-white tw-border tw-border-gray-300 tw-rounded tw-py-2 tw-px-3">
+        @foreach($cities as $city)
+            <option value="{{ $city->name }}">{{ $city->name }}</option>
+        @endforeach
+    </select>
                     </tr>
                 </tbody>
             <table>
