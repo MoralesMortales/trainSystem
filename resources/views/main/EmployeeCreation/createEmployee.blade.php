@@ -62,11 +62,11 @@
     </thead>
     <tbody>
         <tr>
-            <td class="tw:px-16 tw:py-4 tw:text-center"> <!-- Añadido padding -->
-                <input type="text" name="email" class="tw:w-96 tw:px-4 tw:py-2 tw:border tw:rounded-lg"> <!-- Input más grande -->
+            <td class="tw:px-16 tw:py-4 tw:text-center">
+                <input type="text" name="email" class="tw:w-96 tw:px-4 tw:py-2 tw:border tw:rounded-lg">
             </td>
-            <td class="tw:px-16 tw:py-4 tw:text-center tw:border-2"> <!-- Añadido padding -->
-                <input type="checkbox" name="Privileges" class="tw:w-8 tw:h-8 tw:mx-auto"> <!-- Checkbox más grande y centrado -->
+            <td class="tw:px-16 tw:py-4 tw:text-center tw:border-2">
+                <input type="checkbox" name="Privileges" class="tw:w-8 tw:h-8 tw:mx-auto">
             </td>
         </tr>
     </tbody>

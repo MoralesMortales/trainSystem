@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+use function GuzzleHttp\json_decode;
 
 class RestringedArea extends Controller
 {
@@ -51,7 +54,6 @@ class RestringedArea extends Controller
                 ])->withInput();
             }
 
-
             if ($privileges) {
                 $user->isEmployee = 2;
             } else {
@@ -75,20 +77,21 @@ class RestringedArea extends Controller
                 ->withInput();
         }
     }
-    public function confirm(Request $request, $userId)
+    public function confirm(Request $request)
     {
         $validatedData = $request->validate([
             'password' => 'required|string',
         ]);
 
+        $userData = json_decode($request->input('userData'), true);
+
         $myuser = Auth::user();
 
-        $userToUpdate = User::findOrFail($userId);
+        dd($userData->email);
 
-        if ($validatedData['password'] == $myuser->password) {
-            dd("good");
-        } else {
-            dd("noo");
+        if (Hash::check($validatedData['password'], $myuser->password)) {
+            $userToUpdate->save();
+            return redirect()->route('menu');
         }
 
         return back()->with('error', 'Contraseña incorrecta');

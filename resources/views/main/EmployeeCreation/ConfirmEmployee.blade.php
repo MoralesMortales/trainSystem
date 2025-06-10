@@ -13,8 +13,9 @@
     <x-navbar/>
     <div id="boxContainer" class="tw:h-9/12  tw:w-full tw:flex tw:justify-center tw:items-center tw:pt-13">
         <div class="box tw:h-10/12 tw:w-8/12 tw:flex tw:justify-center tw:items-center">
-            <form action="{{ route('confirmCreateEmployee.submit',  ['userId' => session('theUser')->id])}}" class="tw:h-full tw:w-full tw:flex tw:flex-col tw:justify-center tw:items-center" method="post">
+            <form action="{{ route('confirmCreateEmployee.submit') }} class="tw:h-full tw:w-full tw:flex tw:flex-col tw:justify-center tw:items-center" method="post">
             @csrf
+                <input type="hidden" name="userData" value="{{ json_encode(session('theUser')) }}">
             <table class="min-w-full text-left text-sm font-light text-surface dark:text-white">
                 <tbody>
                     <tr>

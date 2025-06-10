@@ -67,6 +67,7 @@
                     </a>
                 </div>
             </div>
+@if (Auth::user()->isEmployee == 2 )
 
             <div class="tw:w-2/3 tw:h-full tw:flex tw:flex-col">
                 <div id="inputBox_4_5" class="tw:text-center ">
@@ -84,6 +85,7 @@
                 </div>
             </div>
 
+@endif
 @endif
         </div>
 
