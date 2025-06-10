@@ -31,9 +31,11 @@
                             <div class="input">
                                 <label class="tw:text-lg" style="font-size: 14px;">Type</label>
 <select name="type" class="tw-w-48 mt-4">
-    <option value="{{ old('type') }}" disabled selected>Seleccione tipo</option>
+    <option value="" disabled @selected(!old('type'))>Seleccione tipo</option>
     @foreach($trainTypes as $key => $type)
-        <option value="{{ $key }}">{{ $type }}</option>
+        <option value="{{ $key }}" @selected(old('type') == $key)>
+            {{ $type }}
+        </option>
     @endforeach
 </select>
                             </div>
