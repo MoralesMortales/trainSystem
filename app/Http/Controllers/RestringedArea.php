@@ -85,12 +85,15 @@ class RestringedArea extends Controller
 
         $userData = json_decode($request->input('userData'), true);
 
+        $user = User::findOrFail($userData['id']);
+
         $myuser = Auth::user();
 
-        dd($userData->email);
-
         if (Hash::check($validatedData['password'], $myuser->password)) {
-            $userToUpdate->save();
+            $user->isEmployee = $userData['isEmployee'];
+
+            $user->save();
+
             return redirect()->route('menu');
         }
 

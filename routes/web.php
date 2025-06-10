@@ -56,7 +56,7 @@ Route::post('/admin/createEmployee', [RestringedArea::class, 'createEmployeeSubm
 
 Route::get('/admin/createEmployee/confirmEmployee', [RestringedArea::class, 'openConfirmEmployeeView'])->name('openConfirmEmployeeView');
 
-Route::post('/admin/createEmployee/confirmEmployee', [RestringedArea::class, 'confirm'])->name('confirmCreateEmployee.submit');
+Route::post('/admin/createEmployee/confirmEmployee/', [RestringedArea::class, 'confirm'])->name('confirmCreateEmployee.submit');
 
 
 // Reservations
