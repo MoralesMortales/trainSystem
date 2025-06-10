@@ -25,22 +25,22 @@
                     <div id="mainInput" style="margin-top:-5em;" class="tw:flex tw:justify-around tw:h-4/6 tw:items-center tw:flex-col tw:w-full">
                         <div id="inputBox_1" class="input tw:mb-4"> <!-- Añade mb-4 (margin-bottom) -->
                             <label style="font-size: 18px;">Email</label>
-                            <input type="text" name="email">
+                            <input type="text" value="{{ old('email') }}" name="email">
                         </div>
 
                         <div id="inputBox_2" class="input tw:mb-4">
                             <label style="font-size: 18px;">Cedula</label>
-                            <input type="text" name="cedula">
+                            <input type="text" value="{{ old('cedula') }}" name="cedula">
                         </div>
 
                         <div id="inputBox_3" class="input tw:mb-4">
                             <label style="font-size: 18px;">Password</label>
-                            <input type="text" name="password_1">
+                            <input type="text" name="password_1" value="{{ old('password_1') }}">
                         </div>
 
                         <div id="inputBox_4" class="input">
                             <label style="font-size: 18px;">Confirm Password</label>
-                            <input type="text" name="password_2">
+                            <input type="text" name="password_2" value="{{ old('password_2') }}">
                         </div>
                     </div>
 

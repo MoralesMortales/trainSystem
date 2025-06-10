@@ -23,7 +23,7 @@
                             Password
                             </td>
                             <td class="tw:text-center">
-                                <input type="text" name="password" class="tw:w-64">
+                                <input type="password" name="password" class="tw:w-64">
                             </td>
                     </tr>
                 </tbody>
