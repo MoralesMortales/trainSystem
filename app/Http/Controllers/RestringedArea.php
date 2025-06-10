@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RestringedArea extends Controller
 {
@@ -21,30 +22,70 @@ class RestringedArea extends Controller
         return back()->with('error', 'Contraseña incorrecta');
     }
 
+    public function openConfirmEmployeeView()
+    {
+        $user = session('theUser');
+
+        return view('main/EmployeeCreation/ConfirmEmployee')->with('theUser', $user);
+    }
+
     public function createEmployeeSubmit(Request $request)
     {
+        try {
+            $request->validate([
+                'email' => 'required|email|max:255',
+            ]);
+
+            if ($request->has('Privileges')) {
+                $privileges = True;
+            } else {
+                $privileges = false;
+            }
+
+
+            $user = User::where('email', $request->email)->first();
+
+            if (!$user) {
+                return back()->with('showPassword', false)->withErrors([
+                    'email' => 'El email no está registrado en nuestro sistema',
+                ])->withInput();
+            }
+
+            if ($privileges) {
+                $user->isEmployee = 2;
+            } else {
+                $user->isEmployee = 1;
+            }
+
+            $userToUpgrade = $user;
+
+            session(['theUser' => $userToUpgrade]);
+
+            return redirect()->route('openConfirmEmployeeView');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->back()
+                ->with('showPassword', false)
+                ->withErrors($e->validator)
+                ->withInput();
+        }
+    }
+    public function confirm(Request $request, $userId)
+    {
         $validatedData = $request->validate([
-            'email' => 'required|email|max:255',
-            'Privileges' => 'sometimes|boolean',
+            'password' => 'required|string',
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        $myuser = Auth::user();
 
-        if (!$user) {
-            return back()->withErrors([
-                'email' => 'El email no está registrado en nuestro sistema',
-            ])->withInput();
+        $userToUpdate = User::findOrFail($userId);
+
+        if ($validatedData['password'] == $myuser->password) {
+            dd("good");
+        }
+        else {
+            dd("noo");
         }
 
-        if ($validatedData['Privileges']) {
-            $user->isEmployee = 2;
-        } else {
-            $user->isEmployee = 1;
-        }
-
-        $userToUpgrade = $user;
-
-        return redirect()->route('menu')->with('theUser', $userToUpgrade);
-
+        return back()->with('error', 'Contraseña incorrecta');
     }
 }

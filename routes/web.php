@@ -50,13 +50,14 @@ Route::get('/menu/createEmployee', [createEmployee::class, 'showCreateEmployee']
 
 Route::get('/admin/createEmployee', [createEmployee::class, 'showCreateEmployeeAdmin'])->name('showEmployeeAdmin');
 
-Route::post('/admin/createEmployee', [RestringedArea::class, 'RestringedAreaSubmit'])->name('restringed.submit');
+Route::post('/admin/createEmployee/password', [RestringedArea::class, 'RestringedAreaSubmit'])->name('restringed.submit');
 
 Route::post('/admin/createEmployee', [RestringedArea::class, 'createEmployeeSubmit'])->name('createEmployeeFr.submit');
 
-Route::get('/menu/createEmployee/confirmEmployee', function () {
-    return view('main/EmployeeCreation/ConfirmEmployee');
-});
+Route::get('/admin/createEmployee/confirmEmployee', [RestringedArea::class, 'openConfirmEmployeeView'])->name('openConfirmEmployeeView');
+
+Route::post('/admin/createEmployee/confirmEmployee/{userId}', [RestringedArea::class, 'confirm'])->name('confirmCreateEmployee.submit');
+
 
 // Reservations
 

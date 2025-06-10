@@ -74,7 +74,7 @@
         <tr>
             <td colspan="2" class="tw:text-center tw:py-8"> <!-- Más espacio vertical -->
                 <div id="btnBottom" class="tw:flex tw:justify-center tw:items-center tw:pt-40 tw:pb-4 tw:w-full">
-                    <button type="button" id="confirmRedirectButton"
+                    <button type="submit"
                        class="tw:w-64 tw:h-14 tw:px-8 tw:py-2 tw:bg-red-200 tw:text-2xl tw:font-bold tw:rounded-lg hover:tw:bg-green-300 tw:transition-colors tw:duration-300">
                         Confirm
                     </button>
@@ -114,15 +114,6 @@
         });
     @endif
 
-    // Script para la redirección del botón
-    document.addEventListener('DOMContentLoaded', function() {
-        const confirmButton = document.getElementById('confirmRedirectButton');
-        if (confirmButton) {
-            confirmButton.addEventListener('click', function() {
-                window.location.href = 'http://localhost:8000/menu/createEmployee/confirmEmployee';
-            });
-        }
-    });
 </script>
 
 </body>
