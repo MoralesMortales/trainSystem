@@ -112,7 +112,6 @@ class trainController extends Controller
 
         $validatedData = $validatedData->validated();
 
-
         $train->update($validatedData);
         $train->save();
 
