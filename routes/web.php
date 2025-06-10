@@ -51,14 +51,22 @@ Route::get('/menu/createEmployee/confirmEmployee', function () {
 });
 
 
-Route::get('/menu/newreservation', function () {
-    return view('main/Reservation/NewReservation');
-});
-
 Route::get('/menu/myreservation', function () {
     return view('main/Reservation/MyReservations');
 });
 
+Route::get('/menu/myreservation/viewreservation', function () {
+    return view('main/Reservation/ViewReservation');
+});
+
+Route::get('/menu/myreservation/editreservation', function () {
+    return view('main/Reservation/EditReservation');
+});
+
+
+Route::get('/menu/newreservation', function () {
+    return view('main/Reservation/NewReservation');
+});
 
 Route::get('/menu/newreservation/reserving', function () {
     return view('main/Reservation/Reserving/Reserving');
@@ -74,4 +82,13 @@ Route::get('/menu/newreservation/reserving/meandothers', function () {
 
 Route::get('/menu/newreservation/reserving/others', function () {
     return view('main/Reservation/Reserving/Others');
+});
+
+
+Route::get('/menu/newtravel', function () {
+    return view('main/Travel/NewTravel');
+});
+
+Route::get('/menu/mytravels', function () {
+    return view('main/Travel/MyTravels');
 });

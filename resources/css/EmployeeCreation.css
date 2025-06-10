@@ -14,10 +14,10 @@
 
 .box{
     background-color: rgba(217, 217, 217, .83);
-    padding-top: 1em;
-    padding-right: 1em;
-    padding-bottom: 1em;
-    padding-left: 1em;
+    padding-top: 2em;
+    padding-right: 2em;
+    padding-bottom: 2em;
+    padding-left: 2em;
 }
 
 input{
@@ -25,7 +25,6 @@ input{
     border: black 3px solid;
     text-align: center;
 }
-
 
 table th{
     text-align: center;

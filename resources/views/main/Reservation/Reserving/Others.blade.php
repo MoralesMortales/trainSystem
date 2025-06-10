@@ -3,83 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrainSystem</title>
-@vite(['resources/css/app.css'])
-@vite(['resources/css/OnlyMe.css'])
+    <title>TrainSystem - My Trains</title>
+    @vite(['resources/css/app.css'])
+    <!-- Puedes crear un CSS específico para MyTrains si lo necesitas, similar a CreateTrain.css -->
+    @vite(['resources/css/MyTrains.css'])
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
-<div id="container">
-    <x-navbar/>
-    <div id="boxContainer" class="tw:h-9/12 tw:w-full tw:flex tw:justify-center tw:items-center tw:pt-28">
-        <div class="box">
-            <form action="{{ route('register.submit') }}" class="tw:h-full tw:w-full tw:flex tw:flex-col tw:justify-center tw:items-center" method="post">
-            @csrf
-            <table class="min-w-full text-left text-sm font-light text-surface dark:text-white tw:mr-10px" name="Tabla de Reservas">
-                <thead>
-                    <tr>
-                        <th colspan="6" class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">Ohio - Train (A113)</th>
-                        
-                    </tr>
-                </thead>
-                <thead class="border-b border-neutral-200 font-medium dark:border-white/10" name="Datos de la persona">
-                    <tr>
-                        <th class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">Fullname</th>
-                        <th class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">Gender</th>
-                        <th class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">Age</th>
-                        <th class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">Class</th>
-                        <th class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">Seat</th>
-                        <th class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">Seat Cost</th>
-                    </tr>
-                </thead>
+    <div id="container" class="tw:min-h-screen tw:bg-cover tw:bg-center tw:bg-no-repeat tw:fixed tw:inset-0">
+        <x-navbar />
+        <div id="boxContainer" class="tw:h-full tw:w-full tw:flex tw:justify-center tw:items-center tw:pt-20">
+            <div class="box tw:w-10/12 md:tw:w-8/12 tw:h-auto tw:min-h-[70vh] tw:bg-gray-200 tw:bg-opacity-80 tw:rounded-lg tw:p-6 tw:shadow-lg tw:flex tw:flex-col">
 
-                <tbody id="personRowsContainer">
-                    <tr class="person-row tw:opacity-60"> <td class="tw:text-center">
-                                <input type="text" name="persons[0][fullname]" class="tw:w-48 tw:text-white" readonly> </td>
-                        <td class="tw:text-center">
-                            <input type="text" name="persons[0][gender]" class="tw:w-48 tw:text-white" readonly>
-                        </td>
-                        <td class="tw:text-center">
-                            <input type="number" name="persons[0][age]" class="tw:w-40 tw:text-white" readonly>
-                        </td>
-                        <td class="tw:text-center">
-                            <select name="persons[0][class]" class="tw:text-white" disabled> <option value="Turist">Turist</option>
-                                <option value="Normal">Normal</option>
-                                <option value="VIP">VIP</option>
-                            </select>
-                        </td>
-                        <td class="tw:text-center">
-                            <select name="persons[0][seat]" class="tw:bg-gray-800 tw:text-white" disabled>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                        </td>
-                        <td class="tw:text-center">
-                            <input type="text" name="persons[0][seat_cost]" class="tw:w-40 tw:bg-gray-800 tw:text-white" readonly>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <table>
+                <!-- Tabla de trenes -->
+                <div class="tw:overflow-x-auto tw:flex-grow">
+                <table class="tw:min-w-full tw:bg-gray-300 tw:rounded-lg tw:shadow-md tw:overflow-hidden" name="Tabla de Reservas">
+                    <thead class="tw:bg-gray-400 tw:text-gray-800 tw:uppercase tw:text-sm tw:leading-normal">
+                        <tr>
+                            <th colspan="7" class="tw:text-center tw:py-2 tw:text-xl">Ohio - Train (A113)</th>
+                            
+                        </tr>
+                    </thead>
+                    <thead class="tw:bg-gray-400 tw:text-gray-800 tw:uppercase tw:text-sm tw:leading-normal" name="Datos de la persona">
+                        <tr>
+                            <th class="tw:py-3 tw:px-6 tw:text-left">Fullname</th>
+                            <th class="tw:py-3 tw:px-6 tw:text-left">Gender</th>
+                            <th class="tw:py-3 tw:px-6 tw:text-left">Age</th>
+                            <th class="tw:py-3 tw:px-6 tw:text-left">Class</th>
+                            <th class="tw:py-3 tw:px-6 tw:text-left">Seat</th>
+                            <th class="tw:py-3 tw:px-6 tw:text-left">Seat Cost</th>
+                            <th class="tw:py-3 tw:px-6 tw:text-left">Delete</th>
+                        </tr>
+                    </thead>
+    
+                    <tbody id="personRowsContainer">
+                        <tr class="person-row">
+                            <td class="tw:text-center">
+                                <input type="text" name="persons[0][fullname]" class="tw:w-48">
+                            </td>
+                            <td class="tw:text-center">
+                                <select id="genderSelect" name="persons[0][gender]"> <!-- Cambiado id para ser más específico -->
+                                    <option value=""></option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Femenino</option>
+                                    <option value="O">Otro</option>
+                                </select>
+                            </td> 
+                            <td class="tw:text-center">
+                                <input type="number" name="persons[0][age]" class="tw:w-16">
+                            </td>
+                            <td class="tw:text-center">
+                                <select name="persons[0][class]"> 
+                                    <option value=""></option>
+                                    <option value="Turist">Turist</option>
+                                    <option value="Normal">Normal</option>
+                                    <option value="VIP">VIP</option>
+                                </select>
+                            </td>
+                            <td class="tw:text-center">
+                                <select name="persons[0][seat]">
+                                    <option value=""></option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </td>
+                            <td class="tw:text-center">
+                                <input type="text" name="persons[0][seat_cost]" class="tw:w-40 text-center" placeholder="0" readonly>
+                            </td>
+                            <td class="tw:text-center">
+                                <button type="button" class="delete-row-btn tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
+                                    <i class="fa-solid fa-trash" style="color: #000000;"></i>
+                                </button>
+                            </td>  
+                        </tr>
+                    </tbody>
                 <tbody>
                     <tr>
-                        <td colspan="6" class="tw:text-center"> <div class="tw:flex tw:justify-center tw:items-center tw:pt-2 tw:pb-2 tw:w-full tw:space-x-4">
+                        <td colspan="7" class="tw:text-center">
                                 <button type="button" id="addAnotherPerson" class="tw:w-54 tw:h-13 tw:bg-green-200 tw:text-2xl tw:font-bold tw:rounded-lg hover:tw:bg-green-300">
                                     Agregar otro
                                 </button>
-                                <button type="button" id="removeLastPerson" class="tw:w-54 tw:h-13 tw:bg-red-200 tw:text-2xl tw:font-bold tw:rounded-lg hover:tw:bg-red-300">
-                                    Eliminar último
-                                </button>
-                            </div>
                         </td>
                     </tr>
                     <tr>
-                        <th colspan="6" class="tw:text-center tw:py-2 tw:text-xl tw:font-bold"> Total a pagar:
+                        <th colspan="7" class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">
+                            Total a pagar:
                         </th>
                     </tr>
                     <tr>
-                        <td colspan="6" class="tw:text-center"> <div id="btnBottom" class="tw:flex tw:justify-center tw:items-center tw:pt-2 tw:pb-2 tw:w-full">
+                        <td colspan="7" class="tw:text-center">
+                            <div id="btnBottom" class="tw:flex tw:justify-center tw:items-center tw:pt-2 tw:pb-2 tw:w-full">
                                 <button type="submit" class="tw:w-54 tw:h-13 tw:bg-green-200 tw:text-2xl tw:font-bold tw:rounded-lg hover:tw:bg-green-300">
                                     Confirm
                                 </button>
@@ -118,72 +133,104 @@
         });
     @endif
 </script>
-
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const addAnotherBtn = document.getElementById('addAnotherPerson');
-        const removeLastBtn = document.getElementById('removeLastPerson'); // Nuevo botón
         const personRowsContainer = document.getElementById('personRowsContainer');
-        let personIndex = 0; // Para llevar la cuenta de las personas (empezamos en 0 para la primera)
-
-        // Inicializa personIndex si ya hay filas precargadas (aunque en tu caso solo hay una)
+        const MAX_ROWS = 4; // Límite de filas (1 inicial + 3 adicionales)
+        let personIndex = 0;
+        // Inicializa personIndex si ya hay filas precargadas
         if (personRowsContainer.children.length > 0) {
             personIndex = personRowsContainer.children.length - 1;
         }
-
-        // Función para actualizar el estado del botón "Eliminar último"
-        function updateRemoveButtonState() {
-            // Deshabilita el botón si solo queda la fila original (para evitar eliminar la primera persona)
-            if (personRowsContainer.children.length <= 1) {
-                removeLastBtn.disabled = true;
-                removeLastBtn.classList.add('tw:opacity-50', 'tw:cursor-not-allowed'); // Estilo de deshabilitado
+        // Función para actualizar el estado del botón "Agregar otro"
+        function updateAddButtonState() {
+            if (personRowsContainer.children.length >= MAX_ROWS) {
+                addAnotherBtn.disabled = true;
+                addAnotherBtn.classList.add('tw:opacity-50', 'tw:cursor-not-allowed');
             } else {
-                removeLastBtn.disabled = false;
-                removeLastBtn.classList.remove('tw:opacity-50', 'tw:cursor-not-allowed'); // Quita estilo de deshabilitado
+                addAnotherBtn.disabled = false;
+                addAnotherBtn.classList.remove('tw:opacity-50', 'tw:cursor-not-allowed');
             }
         }
-
-        // Llamar al inicio para establecer el estado inicial del botón
-        updateRemoveButtonState();
-
+        // Función para reindexar los nombres de los inputs en todas las filas
+        function reindexRows() {
+            Array.from(personRowsContainer.children).forEach((row, index) => {
+                row.querySelectorAll('input, select').forEach(input => {
+                    const currentName = input.getAttribute('name');
+                    if (currentName) {
+                        input.setAttribute('name', currentName.replace(/\[\d+\]/, '[' + index + ']'));
+                    }
+                });
+            });
+            // Actualizar personIndex para que siempre refleje el último índice disponible
+            personIndex = personRowsContainer.children.length > 0 ? personRowsContainer.children.length - 1 : 0;
+            updateAddButtonState(); // Actualizar el estado del botón después de reindexar
+        }
+        // Llamar al inicio para establecer el estado inicial del botón "Agregar otro"
+        updateAddButtonState();
         addAnotherBtn.addEventListener('click', function() {
-            personIndex++; // Incrementa el índice para la nueva persona
-
-            // Clona la primera fila como plantilla (sin las clases de opacidad/color para los campos clonados)
-            const templateRow = personRowsContainer.children[0]; // Siempre clonar la primera fila
-            const newRow = templateRow.cloneNode(true); // Clonar en profundidad (con todos sus hijos)
-
-            // Eliminar las clases de estilo "deshabilitado" de la fila clonada y de sus inputs/selects
-            newRow.classList.remove('tw:opacity-60', 'tw:bg-gray-700');
-            newRow.querySelectorAll('input, select').forEach(input => {
-                input.classList.remove('tw:bg-gray-800', 'tw:text-white');
-                // Keep readonly for seat_cost inputs, but enable others
-                if (input.name.includes('[seat_cost]')) {
-                    input.setAttribute('readonly', 'true'); // Ensure it remains readonly
-                } else {
-                    input.removeAttribute('readonly'); // Habilitar la edición de los inputs
+            if (personRowsContainer.children.length < MAX_ROWS) {
+                personIndex++; // Incrementa el índice para la nueva persona
+                const originalRow = personRowsContainer.lastElementChild;
+                if (!originalRow) return;
+                const newRow = originalRow.cloneNode(true);
+                newRow.querySelectorAll('input, select').forEach(input => {
+                    input.value = (input.tagName === 'SELECT' ? input.options[0].value : '');
+                    const currentName = input.getAttribute('name');
+                    if (currentName) {
+                        input.setAttribute('name', currentName.replace(/\[\d+\]/, '[' + personIndex + ']'));
+                    }
+                    if (input.name.includes('[seat_cost]')) {
+                        input.setAttribute('readonly', 'true');
+                    } else {
+                        input.removeAttribute('readonly');
+                    }
+                });
+                // Reasigna el event listener al nuevo botón de eliminar en la fila clonada
+                const newDeleteButton = newRow.querySelector('.delete-row-btn');
+                if (newDeleteButton) {
+                    newDeleteButton.addEventListener('click', function() {
+                        if (personRowsContainer.children.length > 1) { // Asegura que no se elimine la última fila
+                            newRow.remove();
+                            reindexRows(); // Reindexar después de eliminar una fila
+                        } else {
+                            // Opcional: mostrar un mensaje si intentan eliminar la última fila
+                            Swal.fire({
+                                icon: 'info',
+                                title: '¡Atención!',
+                                text: 'Debe haber al menos una persona registrada.',
+                                confirmButtonText: 'Aceptar'
+                            });
+                        }
+                    });
                 }
-                input.removeAttribute('disabled'); // Habilitar los selects
-                
-                input.value = (input.tagName === 'SELECT' ? input.options[0].value : ''); // Limpiar selectores a la primera opción
-                const currentName = input.getAttribute('name');
-                if (currentName) {
-                    input.setAttribute('name', currentName.replace(/\[\d+\]/, '[' + personIndex + ']'));
+                personRowsContainer.appendChild(newRow);
+                updateAddButtonState(); // Actualizar el estado del botón después de agregar una fila
+            } else {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '¡Límite alcanzado!',
+                    text: 'No puedes agregar más de ' + MAX_ROWS + ' personas.',
+                    confirmButtonText: 'Entendido'
+                });
+            }
+        });
+        // Añadir event listeners a los botones de "Delete" existentes al cargar la página
+        personRowsContainer.querySelectorAll('.delete-row-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                if (personRowsContainer.children.length > 1) { // Asegura que no se elimine la última fila
+                    button.closest('.person-row').remove();
+                    reindexRows(); // Reindexar después de eliminar una fila
+                } else {
+                    Swal.fire({
+                        icon: 'info',
+                        title: '¡Atención!',
+                        text: 'Debe haber al menos una persona registrada.',
+                        confirmButtonText: 'Aceptar'
+                    });
                 }
             });
-
-            personRowsContainer.appendChild(newRow); // Añadir la nueva fila al contenedor
-            updateRemoveButtonState(); // Actualizar el estado del botón después de añadir una fila
-        });
-
-        // Event listener para el botón "Eliminar último"
-        removeLastBtn.addEventListener('click', function() {
-            // Asegurarse de que haya más de una fila antes de eliminar (para no eliminar la fila original)
-            if (personRowsContainer.children.length > 1) {
-                personRowsContainer.lastElementChild.remove(); // Elimina el último elemento hijo (la última fila)
-                personIndex--; // Decrementa el índice
-                updateRemoveButtonState(); // Actualizar el estado del botón después de eliminar una fila
-            }
         });
     });
 </script>
