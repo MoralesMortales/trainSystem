@@ -11,36 +11,35 @@
 <body>
 <div id="container">
     <x-navbar/>
-    <div id="boxContainer" class="tw:h-9/12 tw:w-full tw:flex tw:justify-center tw:items-center tw:pt-28">
+    <div id="boxContainer" class="tw:h-11/12 tw:w-full tw:flex tw:justify-center tw:items-center tw:pt-28">
         <div class="box">
-            <form action="" class="tw:h-full tw:w-full tw:flex tw:flex-col tw:justify-center tw:items-center" method="get">
+            <form id="reservingForm" action="" class="tw:h-full tw:w-full tw:flex tw:flex-col tw:justify-center tw:items-center" method="get">
             @csrf
             <table class="min-w-full text-left text-sm font-light text-surface dark:text-white tw:mr-10px">
                 <thead class="border-b border-neutral-200 font-medium dark:border-white/10">
                     <tr>
                         <th class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">Train</th>
-                        <th class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">Departure Day</th>
-                        <th class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">Departure Hour</th>
+                        <th class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">Department Day</th>
+                        <th class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">Department Hour</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <tr>
                         <td class="tw:text-center">
-                                 <input type="text" name="Reserva" class="tw:w-48">
-                             </td>
-                             <td class="tw:text-center">
-                                 <input type="text" name="Num_passport" class="tw:w-48">
-                             </td>        
-                             <td class="tw:text-center">
-                                 <input type="text" name="Depart" class="tw:w-40">
-                                 
-                             </td>
+                            <input type="text" name="Train" class="tw:w-48">
+                        </td>
+                        <td class="tw:text-center">
+                            <input type="text" name="Department Day" class="tw:w-48">
+                        </td>        
+                        <td class="tw:text-center">
+                            <input type="text" name="Department Hour" class="tw:w-48">
+                        </td>
                     </tr>
                 </tbody>
             </table>
 
-            <table>
+            <table class="min-w-full text-left text-sm font-light text-surface dark:text-white tw:mr-10px">
                 <thead class="border-b border-neutral-200 font-medium dark:border-white/10">
                     <tr>
                         <th class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">City Origin</th>
@@ -51,40 +50,38 @@
                 <tbody>
                     <tr>
                         <td class="tw:text-center">
-                                 <input type="text" name="Reserva" class="tw:w-48">
-                             </td>
-                             <td class="tw:text-center">
-                                 <input type="text" name="Num_passport" class="tw:w-48">
-                             </td>        
+                            <input type="text" name="City Origin" class="tw:w-48">
+                        </td>
+                        <td class="tw:text-center">
+                            <input type="text" name="City Destiny" class="tw:w-48">
                     </tr>
                 </tbody>
-            </table>
+            <table>
 
             <table class="min-w-full text-left text-sm font-light text-surface dark:text-white tw:mr-10px">
                 <thead class="border-b border-neutral-200 font-medium dark:border-white/10">
                     <tr>
                         <th class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">Cost VIP</th>
                         <th class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">Cost Normal</th>
-                        <th class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">Cost Turista</th>
+                        <th class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">Cost Turists</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <tr>
                         <td class="tw:text-center">
-                                 <input type="text" name="Reserva" class="tw:w-48">
-                             </td>
-                             <td class="tw:text-center">
-                                 <input type="text" name="Num_passport" class="tw:w-48">
-                             </td>        
-                             <td class="tw:text-center">
-                                 <input type="text" name="Depart" class="tw:w-40">
-                                 
-                             </td>
+                            <input type="text" name="Cost VIP" class="tw:w-48">
+                        </td>
+                        <td class="tw:text-center">
+                            <input type="text" name="Cost Normal" class="tw:w-48">
+                        </td>        
+                        <td class="tw:text-center">
+                            <input type="text" name="Cost Turists   " class="tw:w-48">
+                        </td>
                     </tr>
                 </tbody>
             </table>
-
+            
             <table>
                 <tbody>
                     <tr>

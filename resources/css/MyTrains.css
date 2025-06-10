@@ -47,16 +47,17 @@ select{
 input{
     background-color: white;
     border: black .3px solid;
+    text-align: center;
 }
 
 table th{
-/*     border: black 1px solid; */
+    border: black 1px solid;
     text-align: center;
     padding: 7px 24px;
 }
 
 table td{
-/*     border: black 1px solid; */
+    border: black 1px solid;
     text-align: center;
     padding: 10px 10px;
 }
