@@ -19,6 +19,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+    view()->share('trainTypes', [
+        'Nozomi' => 'Nozomi',
+        'Hikari' => 'Hikari',
+        'Kodama' => 'Kodama',
+        'Mizuho' => 'Mizuho',
+        'Sakura' => 'Sakura'
+    ]);
     }
 }

@@ -27,11 +27,15 @@
                 <tbody>
                     <tr>
                         <td class="tw:text-center">
-                            <input type="text" name="Train" class="tw:w-48">
+   <select name="train_id" class="tw-w-48 tw-bg-white tw-border tw-border-gray-300 tw-rounded tw-py-2 tw-px-3">
+        @foreach($trains as $train)
+            <option value="{{ $train->id }}">{{ $train->name }}</option>
+        @endforeach
+    </select>
                         </td>
                         <td class="tw:text-center">
                             <input type="text" name="Department Day" class="tw:w-48">
-                        </td>        
+                        </td>
                         <td class="tw:text-center">
                             <input type="text" name="Department Hour" class="tw:w-48">
                         </td>
@@ -50,10 +54,19 @@
                 <tbody>
                     <tr>
                         <td class="tw:text-center">
-                            <input type="text" name="City Origin" class="tw:w-48">
+                               <select name="train_id" class="tw-w-48 tw-bg-white tw-border tw-border-gray-300 tw-rounded tw-py-2 tw-px-3">
+        @foreach($cities as $city)
+            <option value="{{ $city->name }}">{{ $city->name }}</option>
+        @endforeach
+    </select>
+
                         </td>
                         <td class="tw:text-center">
-                            <input type="text" name="City Destiny" class="tw:w-48">
+                               <select name="train_id" class="tw-w-48 tw-bg-white tw-border tw-border-gray-300 tw-rounded tw-py-2 tw-px-3">
+        @foreach($cities as $city)
+            <option value="{{ $city->name }}">{{ $city->name }}</option>
+        @endforeach
+    </select>
                     </tr>
                 </tbody>
             <table>
@@ -74,14 +87,14 @@
                         </td>
                         <td class="tw:text-center">
                             <input type="text" name="Cost Normal" class="tw:w-48">
-                        </td>        
+                        </td>
                         <td class="tw:text-center">
                             <input type="text" name="Cost Turists   " class="tw:w-48">
                         </td>
                     </tr>
                 </tbody>
             </table>
-            
+
             <table>
                 <tbody>
                     <tr>

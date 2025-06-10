@@ -86,7 +86,7 @@
                                 <!-- Puedes añadir más filas de trenes aquí -->
                             @endforeach
                             <!-- Fila de ejemplo 1 -->
-                             
+
                         </tbody>
                     </table>
                 </div>
