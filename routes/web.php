@@ -4,6 +4,7 @@ use App\Http\Controllers\createEmployee;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginAuthController;
 use App\Http\Controllers\logoutController;
+use App\Http\Controllers\newReservation;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\RestringedArea;
 use App\Http\Controllers\trainController;
@@ -61,9 +62,8 @@ Route::post('/admin/createEmployee/confirmEmployee/', [RestringedArea::class, 'c
 
 // Reservations
 
-Route::get('/menu/newreservation', function () {
-    return view('main/Reservation/NewReservation');
-});
+Route::get('/menu/newreservation', [newReservation::class, 'showCreateAvailableReservations'])->name('showAvailableReservations');
+
 
 Route::get('/menu/myreservation', function () {
     return view('main/Reservation/MyReservations');
