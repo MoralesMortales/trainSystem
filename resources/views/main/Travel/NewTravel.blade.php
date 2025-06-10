@@ -60,7 +60,7 @@
                 </tbody>
             </table>
 
-                        <table class="min-w-full text-left text-sm font-light text-surface dark:text-white tw:mr-10px">
+            <table class="min-w-full text-left text-sm font-light text-surface dark:text-white tw:mr-10px">
                 <thead class="border-b border-neutral-200 font-medium dark:border-white/10">
                     <tr>
                         <th class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">Cost VIP</th>

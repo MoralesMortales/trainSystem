@@ -74,10 +74,10 @@ class trainController extends Controller
             'turistCapacity' => 'nullable|integer|min:0',
             'economicCapacity' => 'nullable|integer|min:0',
         ]);
-    $train->update($validatedData);
-             $train->save();
+        $train->update($validatedData);
+        $train->save();
 
-return redirect()->route('Trains')->with('success', 'Train updated successfully');
+        return redirect()->route('Trains')->with('success', 'Train updated successfully');
     }
 
 

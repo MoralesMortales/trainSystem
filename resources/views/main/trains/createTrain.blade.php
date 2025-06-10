@@ -22,24 +22,27 @@
 
                     <div class="tw:flex tw:justify-between tw:gap-x-4 tw:mb-6">
                         <div class="tw:flex tw:flex-col tw:gap-y-4 tw:w-1/2">
+
                             <div class="input">
                                 <label class="tw:text-lg" style="font-size: 14px;">Train name</label>
-                                <input type="text" name="name"class="tw:w-full tw:p-2 tw:border tw:rounded">
+                                <input type="text" name="name" value="{{ old('name') }}" class="tw:w-full tw:p-2 tw:border tw:rounded">
                             </div>
+
                             <div class="input">
                                 <label class="tw:text-lg" style="font-size: 14px;">Type</label>
-                                <input type="text" name="type" class="tw:w-full tw:p-2 tw:border tw:rounded">
+                                <input type="text" name="type" value="{{ old('type') }}" class="tw:w-full tw:p-2 tw:border tw:rounded">
                             </div>
                         </div>
 
                         <div class="tw:flex tw:flex-col tw:gap-y-4 tw:w-1/2">
                             <div class="input">
                                 <label class="tw:text-lg" style="font-size: 14px;">Capacity</label>
-                                <input type="text" name="capacity" class="tw:w-full tw:p-2 tw:border tw:rounded">
+                                <input type="text" value="{{ old('capacity') }}" name="capacity" class="tw:w-full tw:p-2 tw:border tw:rounded">
                             </div>
+
                             <div class="input">
                                 <label class="tw:text-lg" style="font-size: 14px;">Max Velocity</label>
-                                <input type="text" name="maxVelocity" class="tw:w-full tw:p-2 tw:border tw:rounded">
+                                <input type="text" name="maxVelocity" value="{{ old('maxVelocity') }}" class="tw:w-full tw:p-2 tw:border tw:rounded">
                             </div>
                         </div>
                     </div>
@@ -65,15 +68,16 @@
                     <div class="tw:flex tw:justify-between tw:gap-x-4 tw:my-6">
                         <div class="input tw:w-1/3">
                             <label class="tw:text-lg" style="font-size: 14px;">Turist Seats</label>
-                            <input type="text"name="turistCapacity" class="tw:w-full tw:p-2 tw:border tw:rounded">
+                            <input type="text"name="turistCapacity" value="{{ old('turistCapacity') }}" class="tw:w-full tw:p-2 tw:border tw:rounded">
                         </div>
                         <div class="input tw:w-1/3">
                             <label class="tw:text-lg" style="font-size: 14px;">VIP Seats</label>
-                            <input type="text"name="vipCapacity" class="tw:w-full tw:p-2 tw:border tw:rounded">
+                            <input type="text"name="vipCapacity" value="{{ old('vipCapacity') }}" class="tw:w-full tw:p-2 tw:border tw:rounded">
                         </div>
                         <div class="input tw:w-1/3">
                             <label class="tw:text-lg" style="font-size: 14px;">Economic Seats</label>
-                            <input type="text" name="economicCapacity" class="tw:w-full tw:p-2 tw:border tw:rounded">
+                            <input type="text" name="economicCapacity" value="{{ old('economicCapacity') }}" class="tw:w-full tw:p-2 tw:border tw:rounded">
+
                         </div>
                     </div>
 

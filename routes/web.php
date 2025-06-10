@@ -1,32 +1,36 @@
 <?php
 
+use App\Http\Controllers\createEmployee;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginAuthController;
 use App\Http\Controllers\logoutController;
 use App\Http\Controllers\registerController;
+use App\Http\Controllers\RestringedArea;
 use App\Http\Controllers\trainController;
 
 Route::get('/', function () {
     return view('mainView');
 });
 
-
-Route::get('/register',  [registerController::class, 'showRegisterForm'])->name('register');
-
-Route::post('/register',  [registerController::class, 'formRegister'])->name('register.submit');
+// Auth
 
 Route::get('/register',  [registerController::class, 'showRegisterForm'])->name('register');
 
 Route::post('/register',  [registerController::class, 'formRegister'])->name('register.submit');
 
 Route::get('/login',  [LoginAuthController::class, 'showLoginForm'])->name('login');
+
 Route::post('/login', [LoginAuthController::class, 'formValidation'])->name('login.submit');
 
 Route::post('/logout', [logoutController::class, 'logoutAndDestroy'])->name('logout.submit');
 
+// Menu
+
 Route::get('/menu', function () {
     return view('main.menu');
 })->middleware('auth')->name('menu');
+
+// Trains
 
 Route::get('/menu/createTrain', [trainController::class, 'createTrain'])->middleware('auth')->name('createTrain');
 
@@ -40,16 +44,26 @@ Route::get('/menu/trains', [trainController::class, 'showMyTrains'])->middleware
 
 Route::delete('/menu/trains/{train}', [trainController::class, 'destroy'])->middleware('auth')->name('Trains.destroy');
 
+// Employee Management
+
+Route::get('/menu/createEmployee', [createEmployee::class, 'showCreateEmployee'])->middleware('auth')->name('showEmployeeBase');
+
+Route::get('/admin/createEmployee', [createEmployee::class, 'showCreateEmployeeAdmin'])->name('showEmployeeAdmin');
+
+Route::post('/admin/createEmployee/password', [RestringedArea::class, 'RestringedAreaSubmit'])->name('restringed.submit');
+
+Route::post('/admin/createEmployee', [RestringedArea::class, 'createEmployeeSubmit'])->name('createEmployeeFr.submit');
+
+Route::get('/admin/createEmployee/confirmEmployee', [RestringedArea::class, 'openConfirmEmployeeView'])->name('openConfirmEmployeeView');
+
+Route::post('/admin/createEmployee/confirmEmployee/', [RestringedArea::class, 'confirm'])->name('confirmCreateEmployee.submit');
 
 
-Route::get('/menu/createEmployee', function () {
-    return view('main/EmployeeCreation/createEmployee');
+// Reservations
+
+Route::get('/menu/newreservation', function () {
+    return view('main/Reservation/NewReservation');
 });
-
-Route::get('/menu/createEmployee/confirmEmployee', function () {
-    return view('main/EmployeeCreation/ConfirmEmployee');
-});
-
 
 Route::get('/menu/myreservation', function () {
     return view('main/Reservation/MyReservations');
@@ -64,9 +78,6 @@ Route::get('/menu/myreservation/editreservation', function () {
 });
 
 
-Route::get('/menu/newreservation', function () {
-    return view('main/Reservation/NewReservation');
-});
 
 Route::get('/menu/newreservation/reserving', function () {
     return view('main/Reservation/Reserving/Reserving');
