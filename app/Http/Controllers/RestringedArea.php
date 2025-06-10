@@ -51,6 +51,7 @@ class RestringedArea extends Controller
                 ])->withInput();
             }
 
+
             if ($privileges) {
                 $user->isEmployee = 2;
             } else {
@@ -61,7 +62,12 @@ class RestringedArea extends Controller
 
             session(['theUser' => $userToUpgrade]);
 
-            return redirect()->route('openConfirmEmployeeView');
+            if (Auth::user()) {
+                return redirect()->route('openConfirmEmployeeView');
+            } else {
+                $userToUpgrade->save();
+                return redirect()->route('login');
+            }
         } catch (\Illuminate\Validation\ValidationException $e) {
             return redirect()->back()
                 ->with('showPassword', false)
@@ -81,8 +87,7 @@ class RestringedArea extends Controller
 
         if ($validatedData['password'] == $myuser->password) {
             dd("good");
-        }
-        else {
+        } else {
             dd("noo");
         }
 
