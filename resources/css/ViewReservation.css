@@ -1,0 +1,69 @@
+#container{
+    min-height: 100dvh;
+    background-image: url("../../public/img/trains/train.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100dvh;
+
+}
+
+#inputs{
+}
+
+.input{
+    display: flex;
+    gap: 3rem;
+    height: 24px;
+    width: 22em;
+    justify-content: center;
+    align-items: center;
+}
+
+.input label{
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.input input{
+    width: 50%;
+    height: 100%;
+    border-radius: .0412em;
+    padding: 0 10px;
+    font-size: 20px;
+}
+
+.box{
+    background-color: rgba(217, 217, 217, .83);
+    padding-bottom: 1em;
+    max-height: 35vh;
+}
+
+select{
+    background-color: rgba(255, 255, 255, 0.75);
+    border: black 1px solid;
+    text-align: center;
+}
+
+input{
+    background-color: white;
+    border: black .3px solid;
+    text-align: center;
+}
+
+table{
+
+    text-align: center;
+}
+
+table th{
+/*     border: black 1px solid; */
+    text-align: center;
+    padding: 7px 24px;
+}
+
+table td{
+/*     border: black 1px solid; */
+    text-align: center;
+    padding: 10px 10px;
+}
