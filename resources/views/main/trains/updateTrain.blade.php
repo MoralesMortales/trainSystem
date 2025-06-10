@@ -52,12 +52,12 @@
                             <div class="tw:flex tw:flex-col tw:gap-y-4 tw:w-1/2">
                                 <div class="input">
                                     <label class="tw:text-lg" style="font-size: 14px;">Capacity</label>
-                                    <input type="number" name="capacity" value="{{ old('name', $train->capacity) }}"
+                                    <input type="number" name="capacity" value="{{ old('capacity', $train->capacity) }}"
                                         class="tw:w-full tw:p-2 tw:border tw:rounded">
                                 </div>
                                 <div class="input">
                                     <label class="tw:text-lg" style="font-size: 14px;">Max Velocity</label>
-                                    <input type="number" value="{{ old('name', $train->maxVelocity) }}"
+                                    <input type="number" value="{{ old('maxVelocity', $train->maxVelocity) }}"
                                         name="maxVelocity" class="tw:w-full tw:p-2 tw:border tw:rounded">
                                 </div>
                             </div>
@@ -86,19 +86,19 @@
                         <div class="tw:flex tw:justify-between tw:gap-x-4 tw:my-6">
                             <div class="input tw:w-1/3">
                                 <label class="tw:text-lg" style="font-size: 14px;">Turist Seats</label>
-                                <input type="text"name="turistCapacity"
-                                    value="{{ old('name', $train->turistCapacity) }}"
+                                <input type="number" name="turistCapacity"
+                                    value="{{ old('turistCapacity', $train->turistCapacity) }}"
                                     class="tw:w-full tw:p-2 tw:border tw:rounded">
                             </div>
                             <div class="input tw:w-1/3">
                                 <label class="tw:text-lg" style="font-size: 14px;">VIP Seats</label>
-                                <input type="text"name="vipCapacity"
-                                    value="{{ old('name', $train->vipCapacity) }}"class="tw:w-full tw:p-2 tw:border tw:rounded">
+                                <input type="number" name="vipCapacity"
+                                    value="{{ old('vipCapacity', $train->vipCapacity) }}"class="tw:w-full tw:p-2 tw:border tw:rounded">
                             </div>
                             <div class="input tw:w-1/3">
                                 <label class="tw:text-lg" style="font-size: 14px;">Economic Seats</label>
-                                <input type="text"
-                                    name="economicCapacity"value="{{ old('name', $train->economicCapacity) }}"
+                                <input type="number"
+                                    name="economicCapacity"value="{{ old('economicCapacity', $train->economicCapacity) }}"
                                     class="tw:w-full tw:p-2 tw:border tw:rounded">
                             </div>
                         </div>
