@@ -19,7 +19,7 @@ return new class extends Migration
             $table->boolean('status')->default(true);
             $table->timestamps();
 
-            $table->foreign('train_id')->references('id')->on('trains');
+            $table->foreign('train_id')->references('train_id')->on('trains');
         });
     }
 
