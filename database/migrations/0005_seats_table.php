@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('gender');
             $table->string('fullname');
             $table->integer('age');
-            $table->integer('reservationNumber');
+            $table->unsignedBigInteger('reservationNumber');
 
             $table->boolean('status')->default(true);
             $table->timestamps();
