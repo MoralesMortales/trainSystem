@@ -22,20 +22,22 @@ class registerController extends Controller
             'email' => 'required|email|unique:users,email',
             'cedula' => 'required|string|unique:users,cedula',
             'password_1' => 'required|string|min:8',
+            'password_2' => 'required|string|min:8|same:password_1'
         ]);
 
-        $user = new User();
 
-        $user->email = $validatedData['email'];
+            $user = new User();
 
-        $user->cedula = $validatedData['cedula'];
+            $user->email = $validatedData['email'];
 
-        $user->password = Hash::make($validatedData['password_1']);
+            $user->cedula = $validatedData['cedula'];
 
-        $user->isEmployee = 0;
+            $user->password = Hash::make($validatedData['password_1']);
 
-        $user->save();
+            $user->isEmployee = 0;
 
-        return redirect()->route('menu')->with('success', 'User created successfully!');
+            $user->save();
+
+            return redirect()->route('menu')->with('success', 'User created successfully!');
     }
 }

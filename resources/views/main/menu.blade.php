@@ -94,7 +94,7 @@
         @if(session('success'))
             Swal.fire({
                 icon: 'success',
-                title: '¡Amazittng!',
+                title: '¡Amazing!',
                 text: '{{ session('success') }}',
                 confirmButtonText: 'Accept'
             });

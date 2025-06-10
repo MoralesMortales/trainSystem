@@ -63,7 +63,7 @@
     <tbody>
         <tr>
             <td class="tw:px-16 tw:py-4 tw:text-center">
-                <input type="text" name="email" class="tw:w-96 tw:px-4 tw:py-2 tw:border tw:rounded-lg">
+                <input type="email" required name="email" value="{{ old('email') }}" class="tw:w-96 tw:px-4 tw:py-2 tw:border tw:rounded-lg">
             </td>
             <td class="tw:px-16 tw:py-4 tw:text-center tw:border-2">
                 <input type="checkbox" name="Privileges" class="tw:w-8 tw:h-8 tw:mx-auto">

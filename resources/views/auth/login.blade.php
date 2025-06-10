@@ -27,13 +27,13 @@
 
                             <div id="inputBox_1" class="input">
                                 <label for="">Email</label>
-                                <input name="email" type="email">
+                                <input name="email" type="email" value="{{ old('email') }}">
 
                             </div>
 
                             <div id="inputBox_2" class="input">
                                 <label for="">Password</label>
-                                <input name="password" type="text">
+                                <input name="password" type="password">
                             </div>
 
                             @error('email')
@@ -42,12 +42,6 @@
 
                         </div>
 
-                        <div id="forgotPass" class="tw:w-full tw:flex tw:justify-end tw:pr-30 ">
-                            
-                            <h4 class="tw:cursor-pointer">
-                                Forgot Password?
-                            </h4>
-                        </div>
 
                     </div>
 
