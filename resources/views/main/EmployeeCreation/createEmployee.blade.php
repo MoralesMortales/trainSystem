@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TrainSystem</title>
 @vite(['resources/css/app.css'])
-@vite(['resources/css/CreateEmployee.css'])
+@vite(['resources/css/EmployeeCreation.css'])
 </head>
 
 <body>
 <div id="container" class="tw:flex tw:justify-center tw:items-center">
     <x-navbar/>
         @if ($showPassword)
-            <div class="box tw:w-8/12 tw:h-10/12">
+            <div class="box">
                 <div id="TopTitle" class="tw:text-4xl tw:pt-10 tw:flex tw:justify-center tw:items-center tw:h-1/6">
                     <h4 style="font-size:2.732rem; font-weight:bold;">Restringed Area!</h4>
                 </div>
@@ -46,34 +46,30 @@
                 </form>
     @else
 
-            <div class="box tw:w-8/12 tw:h-10/12">
+            <div class="box">
             <form action="{{ route('createEmployeeFr.submit') }}" class="tw:h-full tw:w-full tw:flex tw:flex-col tw:justify-center tw:items-center" method="post">
             @csrf
 <table class="min-w-full text-left text-sm tw:border-separate font-light text-surface dark:text-white">
     <thead class="border-b border-neutral-200 font-medium dark:border-white/10">
         <tr>
-            <th class="tw:px-16 tw:py-4"> <!-- Añadido padding horizontal -->
-                <h3 class="tw:text-3xl">User Email</h3>
-            </th>
-            <th class="tw:px-16 tw:py-4"> <!-- Añadido padding horizontal -->
-                <h3 class="tw:text-3xl">With Privileges?</h3>
-            </th>
+            <th class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">User Email</th>
+            <th class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">With Privileges?</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td class="tw:px-16 tw:py-4 tw:text-center">
-                <input type="email" required name="email" value="{{ old('email') }}" class="tw:w-96 tw:px-4 tw:py-2 tw:border tw:rounded-lg">
+                <input type="email" required name="email" value="{{ old('email') }}" class="tw:w-72 tw:px-4 tw:py-2 tw:border tw:rounded-lg">
             </td>
             <td class="tw:px-16 tw:py-4 tw:text-center tw:border-2">
-                <input type="checkbox" name="Privileges" class="tw:w-8 tw:h-8 tw:mx-auto">
+                <input type="checkbox" name="Privileges" class="tw:w-6 tw:h-6">
             </td>
         </tr>
     </tbody>
     <tbody>
         <tr>
             <td colspan="2" class="tw:text-center tw:py-8"> <!-- Más espacio vertical -->
-                <div id="btnBottom" class="tw:flex tw:justify-center tw:items-center tw:pt-40 tw:pb-4 tw:w-full">
+                <div id="btnBottom" class="tw:flex tw:justify-center tw:items-center tw:pb-2 tw:pt-2 tw:w-full">
                     <button type="submit"
                        class="tw:w-64 tw:h-14 tw:px-8 tw:py-2 tw:bg-red-200 tw:text-2xl tw:font-bold tw:rounded-lg hover:tw:bg-green-300 tw:transition-colors tw:duration-300">
                         Confirm

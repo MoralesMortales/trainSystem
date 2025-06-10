@@ -4,7 +4,6 @@
     background-repeat: no-repeat;
     background-size: cover;
     height: 100dvh;
-    padding-top: 80px;
 }
 
 .error{
@@ -41,5 +40,6 @@ table th{
 
 table td{
     /* border: black 1px solid; */
+    text-align: center;
     padding: 10px 10px;
 }

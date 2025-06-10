@@ -3,8 +3,6 @@
     background-image: url("../../public/img/trains/train.png");
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100dvh;
-    padding-top: 80px;
 }
 
 .error{
@@ -14,10 +12,8 @@
 
 .box{
     background-color: rgba(217, 217, 217, .83);
-    padding-top: 1em;
-    padding-right: 1em;
+    max-height: 35vh;
     padding-bottom: 1em;
-    padding-left: 1em;
 }
 
 input{

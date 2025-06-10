@@ -15,8 +15,7 @@
         <x-navbar />
 
         <div id="boxContainer" class="tw:h-full tw:w-full tw:flex tw:justify-center tw:items-center tw:pt-20">
-            <div
-                class="box tw:w-10/12 md:tw:w-8/12 tw:h-auto tw:min-h-[70vh] tw:bg-gray-200 tw:bg-opacity-80 tw:rounded-lg tw:p-6 tw:shadow-lg tw:flex tw:flex-col">
+            <div class="box tw:w-10/12 md:tw:w-8/12 tw:h-auto tw:min-h-[70vh] tw:bg-gray-200 tw:bg-opacity-80 tw:rounded-lg tw:p-6 tw:shadow-lg tw:flex tw:flex-col">
 
                 <!-- Tabla de trenes -->
                 <div class="tw:overflow-x-auto tw:flex-grow">
@@ -88,6 +87,7 @@
                                 <!-- Puedes añadir más filas de trenes aquí -->
                             @endforeach
                             <!-- Fila de ejemplo 1 -->
+                             
                         </tbody>
                     </table>
                 </div>

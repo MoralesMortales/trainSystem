@@ -35,54 +35,54 @@
             @if ( Auth::user()->isEmployee == 1  ||  Auth::user()->isEmployee == 2 )
 
 
-            <div class="tw:w-2/3 tw:h-full tw:flex tw:flex-col">
-                <div id="inputBox_4_3" class="tw:text-center ">
-                    <a href="{{ route('Trains') }}" class="tw:inline-block">
-                        <img src="img/images/03.png" alt="Descripción de la imagen" width="500" height="300">
-                    </a>
+                <div class="tw:w-2/3 tw:h-full tw:flex tw:flex-col">
+                    <div id="inputBox_4_3" class="tw:text-center ">
+                        <a href="{{ route('Trains') }}" class="tw:inline-block">
+                            <img src="img/images/03.png" alt="Descripción de la imagen" width="500" height="300">
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="tw:w-2/3 tw:h-full tw:flex tw:flex-col">
-                <div id="inputBox_4_4" class="tw:text-center">
-                    <a href="{{ route('createTrain') }}" class="tw:inline-block tw:h-full">
-                        <img src="img/images/04.png" alt="Descripción de la imagen" width="500" height="300">
-                    </a>
+                <div class="tw:w-2/3 tw:h-full tw:flex tw:flex-col">
+                    <div id="inputBox_4_4" class="tw:text-center">
+                        <a href="{{ route('createTrain') }}" class="tw:inline-block tw:h-full">
+                            <img src="img/images/04.png" alt="Descripción de la imagen" width="500" height="300">
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="tw:w-2/3 tw:h-full tw:flex tw:flex-col">
-                <div id="inputBox_4_5" class="tw:text-center ">
-                    <a href="" class="tw:inline-block">
-                        <img src="img/images/05.png" alt="Descripción de la imagen" width="500" height="300">
-                    </a>
+                <div class="tw:w-2/3 tw:h-full tw:flex tw:flex-col">
+                    <div id="inputBox_4_5" class="tw:text-center ">
+                        <a href="/menu/mytravels" class="tw:inline-block">
+                            <img src="img/images/05.png" alt="Descripción de la imagen" width="500" height="300">
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="tw:w-2/3 tw:h-full tw:flex tw:flex-col">
-                <div id="inputBox_4_5" class="tw:text-center ">
-                    <a href="" class="tw:inline-block">
-                        <img src="img/images/06.png" alt="Descripción de la imagen" width="500" height="300">
-                    </a>
+                <div class="tw:w-2/3 tw:h-full tw:flex tw:flex-col">
+                    <div id="inputBox_4_5" class="tw:text-center ">
+                        <a href="/menu/newtravel" class="tw:inline-block">
+                            <img src="img/images/06.png" alt="Descripción de la imagen" width="500" height="300">
+                        </a>
+                    </div>
                 </div>
-            </div>
 @if (Auth::user()->isEmployee == 2 )
 
-            <div class="tw:w-2/3 tw:h-full tw:flex tw:flex-col">
-                <div id="inputBox_4_5" class="tw:text-center ">
-                    <a href="/menu/createEmployee" class="tw:inline-block">
-                        <img src="img/images/07.png" alt="Descripción de la imagen" width="500" height="300">
-                    </a>
+                <div class="tw:w-2/3 tw:h-full tw:flex tw:flex-col">
+                    <div id="inputBox_4_5" class="tw:text-center ">
+                        <a href="/menu/createEmployee" class="tw:inline-block">
+                            <img src="img/images/07.png" alt="Descripción de la imagen" width="500" height="300">
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="tw:w-2/3 tw:h-full tw:flex tw:flex-col">
-                <div id="inputBox_4_5" class="tw:text-center ">
-                    <a href="" class="tw:inline-block">
-                        <img src="img/images/08.png" alt="Descripción de la imagen" width="500" height="300">
-                    </a>
+                <div class="tw:w-2/3 tw:h-full tw:flex tw:flex-col">
+                    <div id="inputBox_4_5" class="tw:text-center ">
+                        <a href="" class="tw:inline-block">
+                            <img src="img/images/08.png" alt="Descripción de la imagen" width="500" height="300">
+                        </a>
+                    </div>
                 </div>
-            </div>
 
 @endif
 @endif
