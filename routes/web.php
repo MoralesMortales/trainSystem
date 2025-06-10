@@ -8,6 +8,7 @@ use App\Http\Controllers\newReservation;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\RestringedArea;
 use App\Http\Controllers\trainController;
+use App\Http\Controllers\travelController;
 
 Route::get('/', function () {
     return view('mainView');
@@ -59,7 +60,6 @@ Route::get('/admin/createEmployee/confirmEmployee', [RestringedArea::class, 'ope
 
 Route::post('/admin/createEmployee/confirmEmployee/', [RestringedArea::class, 'confirm'])->name('confirmCreateEmployee.submit');
 
-
 // Reservations
 
 Route::get('/menu/newreservation', [newReservation::class, 'showCreateAvailableReservations'])->name('showAvailableReservations');
@@ -77,8 +77,6 @@ Route::get('/menu/myreservation/editreservation', function () {
     return view('main/Reservation/EditReservation');
 });
 
-
-
 Route::get('/menu/newreservation/reserving', function () {
     return view('main/Reservation/Reserving/Reserving');
 });
@@ -95,10 +93,9 @@ Route::get('/menu/newreservation/reserving/others', function () {
     return view('main/Reservation/Reserving/Others');
 });
 
+// Travel
 
-Route::get('/menu/newtravel', function () {
-    return view('main/Travel/NewTravel');
-});
+Route::get('/menu/newtravel', [travelController::class, 'showCreateTravelView'])->name('showCreateTravel');
 
 Route::get('/menu/mytravels', function () {
     return view('main/Travel/MyTravels');
