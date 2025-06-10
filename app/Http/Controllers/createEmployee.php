@@ -2,14 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class LoginAuthController extends Controller
+class createEmployee extends Controller
 {
-    public function showLoginForm()
+    public function showCreateEmployeeAdmin()
     {
-        return view('auth.login');
+        $showPassword = session('showPassword', true);
+        return view('main.EmployeeCreation.createEmployee')->with('showPassword', $showPassword);
+    }
+
+
+    public function showCreateEmployee()
+    {
+        $showPassword = false;
+        return view('main.EmployeeCreation.createEmployee')->with('showPassword', $showPassword);
     }
 
     public function formValidation(Request $request)
@@ -29,3 +37,4 @@ class LoginAuthController extends Controller
         ])->onlyInput('email');
     }
 }
+

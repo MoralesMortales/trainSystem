@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('cedula')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->boolean('isEmployee');
+            $table->tinyInteger('isEmployee');
             $table->timestamps();
         });
 

@@ -12,6 +12,7 @@
 <body>
 <div id="container">
     <x-navbar/>
+
     <div id="boxContainer" class="tw:h-9/12 tw:w-full tw:flex tw:justify-center tw:items-center tw:pt-28">
         <div class="box">
             <form action="http://localhost:8000/menu/newreservation/reserving" class="tw:h-full tw:w-full tw:flex tw:flex-col tw:justify-center tw:items-center" method="get">
@@ -32,27 +33,27 @@
                 <tbody>
                     <tr>
                         <td class="tw:text-center">
-                                <label class="tw:w-32"> 
+                                <label class="tw:w-32">
                                     Active
                                 </label>
                             </td>
                             <td class="tw:text-center">
-                                <label class="tw:w-32"> 
+                                <label class="tw:w-32">
                                     Ohio
                                 </label>
-                            </td>        
+                            </td>
                             <td class="tw:text-center">
-                                <label class="tw:w-24"> 
+                                <label class="tw:w-24">
                                     4
                                 </label>
                             </td>
                             <td class="tw:text-center">
-                                <label class="tw:w-40"> 
+                                <label class="tw:w-40">
                                     20/20/20
                                 </label>
-                            </td>     
+                            </td>
                             <td class="tw:text-center">
-                                <label class="tw:w-16"> 
+                                <label class="tw:w-16">
                                     first
                                 </label>
                             </td>
@@ -60,12 +61,12 @@
                                 <button type="submit" class=" tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
                                     <i class="fa-solid fa-eye" style="color: #000000;"></i>
                                </button>
-                            </td>  
+                            </td>
                             <td class="tw:text-center">
                                 <button type="submit" class=" tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
                                     <i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>
                                </button>
-                            </td>  
+                            </td>
                     </tr>
                 </tbody>
             </table>

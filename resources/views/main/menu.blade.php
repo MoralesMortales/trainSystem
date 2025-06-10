@@ -12,7 +12,6 @@
 <div id="container">
     <x-navbar/>
 
-
     <div class="tw:h-full tw:flex tw:w-full tw:justify-center">
 
         <div class="tw:grid tw:grid-cols-2 tw:w-5/6 tw:pt-14 tw:gap-y-10 tw:justify-items-center">
@@ -33,7 +32,7 @@
                 </div>
             </div>
 
-            @if ( Auth::user()->isEmployee == 1 )
+            @if ( Auth::user()->isEmployee == 1  ||  Auth::user()->isEmployee == 2 )
 
 
             <div class="tw:w-2/3 tw:h-full tw:flex tw:flex-col">
@@ -67,6 +66,7 @@
                     </a>
                 </div>
             </div>
+@if (Auth::user()->isEmployee == 2 )
 
             <div class="tw:w-2/3 tw:h-full tw:flex tw:flex-col">
                 <div id="inputBox_4_5" class="tw:text-center ">
@@ -85,6 +85,7 @@
             </div>
 
 @endif
+@endif
         </div>
 
     </div>
@@ -93,11 +94,13 @@
         @if(session('success'))
             Swal.fire({
                 icon: 'success',
-                title: '¡Amazing!',
+                title: '¡Amazittng!',
                 text: '{{ session('success') }}',
                 confirmButtonText: 'Accept'
             });
+         {{ Session::forget('success') }}
         @endif
+
     </script>
 
 </body>
