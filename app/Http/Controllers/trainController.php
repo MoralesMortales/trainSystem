@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\trains;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class trainController extends Controller
@@ -26,15 +27,33 @@ class trainController extends Controller
             'economicCapacity' => $request->economicCapacity ?? 0,
         ]);
 
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'type' => 'required|string|max:255',
-            'capacity' => 'required|integer|min:1',
-            'maxVelocity' => 'required|numeric|min:0',
-            'vipCapacity' => 'nullable|integer|min:0',
-            'turistCapacity' => 'nullable|integer|min:0',
-            'economicCapacity' => 'nullable|integer|min:0',
-        ]);
+$validatedData = Validator::make($request->all(), [
+    'name' => 'required|string|max:255',
+    'type' => 'required|string|max:255',
+    'capacity' => 'required|integer|min:1',
+    'maxVelocity' => 'required|numeric|min:0',
+    'vipCapacity' => 'nullable|integer|min:0',
+    'turistCapacity' => 'nullable|integer|min:0',
+    'economicCapacity' => 'nullable|integer|min:0',
+]);
+
+$validatedData->after(function ($validatedData) use ($request) {
+    if ($request->filled(['vipCapacity', 'turistCapacity', 'economicCapacity'])) {
+        $sum = $request->vipCapacity + $request->turistCapacity + $request->economicCapacity;
+        if ($sum != $request->capacity) {
+            $validatedData->errors()->add(
+                'capacity_mismatch',
+                "La suma de las capacidades (VIP: {$request->vipCapacity}, Turista: {$request->turistCapacity}, Económica: {$request->economicCapacity}) debe ser igual a {$request->capacity}"
+            );
+        }
+    }
+});
+
+if ($validatedData->fails()) {
+    return redirect()->back()->withErrors($validatedData)->withInput();
+}
+
+$validatedData = $validatedData->validated();
 
         $train = new trains();
 
