@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\cityController;
 use App\Http\Controllers\createEmployee;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginAuthController;
@@ -72,10 +73,9 @@ Route::post('/admin/menuemployee/createEmployee/confirmEmployee/', [RestringedAr
 
 Route::get('/menu/newreservation', [newReservation::class, 'showCreateAvailableReservations'])->name('showAvailableReservations');
 
+Route::get('/menu/newreservation/{travel}', [newReservation::class, 'reservingTravel'])->name('reservingTravel');
 
-Route::get('/menu/myreservation', function () {
-    return view('main/Reservation/MyReservations');
-});
+Route::post('/menu/newreservation/', [newReservation::class, 'reservingTravelStep2'])->name('reservingTravelStep2.submit');
 
 Route::get('/menu/myreservation/viewreservation', function () {
     return view('main/Reservation/ViewReservation');
@@ -85,21 +85,13 @@ Route::get('/menu/myreservation/editreservation', function () {
     return view('main/Reservation/EditReservation');
 });
 
-Route::get('/menu/newreservation/reserving', function () {
-    return view('main/Reservation/Reserving/Reserving');
-});
+Route::get('/menu/newreservation/reserving/onlyme', [newReservation::class, 'reservingonlyme'])->name('reservingOnlyme');
 
-Route::get('/menu/newreservation/reserving/onlyme', function () {
-    return view('main/Reservation/Reserving/OnlyMe');
-});
+Route::get('/menu/newreservation/reserving/meandothers', [newReservation::class, 'reservingMeAndOthers'])->name('reservingMeAndOthers');
 
-Route::get('/menu/newreservation/reserving/meandothers', function () {
-    return view('main/Reservation/Reserving/MeandOthers');
-});
+Route::post('/menu/newreservation/reserving/meandothers/send', [newReservation::class, 'reservingMeAndOthersPostPost'])->name('reservingMeAndOthersPost');
 
-Route::get('/menu/newreservation/reserving/others', function () {
-    return view('main/Reservation/Reserving/Others');
-});
+Route::get('/menu/newreservation/reserving/others', [newReservation::class, 'reservingOthers'])->name('reservingOthers');
 
 // Travel
 
@@ -107,24 +99,19 @@ Route::get('/menu/newtravel', [travelController::class, 'showCreateTravelView'])
 
 Route::post('/menu/newtravel', [travelController::class, 'postCreateTravelView'])->name('CreateTravel.submit');
 
+Route::get('/menu/mytravel', [travelController::class, 'showMyTravelView'])->name('showMyTravel');
 
-Route::get('/menu/mytravels', function () {
-    return view('main/Travel/MyTravels');
-});
+//Cities
 
-Route::get('/menu/managecitys', function () {
-    return view('main/manageCitys');
-});
+
+Route::get('/menu/managecitys', [cityController::class, 'showCities'])->name('showCities');
+
+Route::post('/menu/managecitys', [cityController::class, 'store'])->name('cities.store');
+
+Route::delete('/menu/managecitys/{city}', [cityController::class, 'destroy'])->name('cities.destroy');
 
 Route::get('/menu/reports', function () {
     return view('main/makereport');
-});
-
-
-// Reports
-
-Route::get('/menu/reports', function () {
-    return view('main/Report/makereport');
 });
 
 Route::get('/menu/reports/reservations', function () {

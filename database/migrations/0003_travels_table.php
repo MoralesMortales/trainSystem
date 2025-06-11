@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('departureHour');
             $table->string('origin');
             $table->string('destiny');
+            $table->decimal('CostVIP', 8, 2);
+            $table->decimal('CostNormal', 8, 2);
+            $table->decimal('CostTurists', 8, 2);
             $table->boolean('status')->default(true);
             $table->timestamps();
 

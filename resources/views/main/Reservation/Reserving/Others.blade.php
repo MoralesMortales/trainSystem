@@ -34,7 +34,7 @@
                                     <th class="tw:py-3 tw:px-6 tw:text-left">Delete</th>
                                 </tr>
                             </thead>
-            
+
                             <tbody id="personRowsContainer">
                                 <tr class="person-row">
                                     <td class="tw:text-center">
@@ -47,12 +47,12 @@
                                             <option value="F">Femenino</option>
                                             <option value="O">Otro</option>
                                         </select>
-                                    </td> 
+                                    </td>
                                     <td class="tw:text-center">
                                         <input type="number" name="persons[0][age]" class="tw:w-16" min="1" max="999" step="1" oninput="this.value = parseInt(this.value);" >
                                     </td>
                                     <td class="tw:text-center">
-                                        <select name="persons[0][class]"> 
+                                        <select name="persons[0][class]">
                                             <option value="">Seleccione</option>
                                             <option value="Turist">Turist</option>
                                             <option value="Normal">Normal</option>
@@ -69,7 +69,7 @@
                                         <button type="button" class="delete-row-btn tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
                                             <i class="fa-solid fa-trash" style="color: #000000;"></i>
                                         </button>
-                                    </td>                                     
+                                    </td>
                                 </tr>
                             </tbody>
                             <tbody>
@@ -134,7 +134,7 @@
             personRows.forEach(row => {
                 const classSelect = row.querySelector('select[name$="[class]"]');
                 const seatCostInput = row.querySelector('input[name$="[seat_cost]"]');
-                
+
                 const selectedClass = classSelect.value;
                 const cost = seatCosts[selectedClass] || 0;
                 seatCostInput.value = cost.toFixed(2); // Muestra el costo individual del asiento
