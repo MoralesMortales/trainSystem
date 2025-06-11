@@ -84,6 +84,13 @@
                     </div>
                 </div>
 
+                <div class="tw:w-2/3 tw:h-full tw:flex tw:flex-col">
+                    <div id="inputBox_4_5" class="tw:text-center ">
+                        <a href="menu/managecitys" class="tw:inline-block">
+                            <img src="img/images/09.png" alt="Descripción de la imagen" width="500" height="300">
+                        </a>
+                    </div>
+                </div>
 @endif
 @endif
         </div>

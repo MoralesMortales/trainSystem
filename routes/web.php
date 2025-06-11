@@ -108,3 +108,7 @@ Route::get('/menu/newtravel', [travelController::class, 'showCreateTravelView'])
 Route::get('/menu/mytravels', function () {
     return view('main/Travel/MyTravels');
 });
+
+Route::get('/menu/managecitys', function () {
+    return view('main/manageCitys');
+});
