@@ -6,8 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class reservations extends Model
 {
+    protected $primaryKey = 'reservationNumber';
+    public $incrementing = true;
+
+
        protected $fillable = [
-        'reservationNumber',
         'fullname',
         'travelCode',
         'gender',

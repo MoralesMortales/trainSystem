@@ -32,29 +32,31 @@
                     </thead>
 
                     <tbody class="tw:text-gray-900 tw:text-sm tw:font-light">
+                    @foreach ($availableTravels as $travel)
+
                         <tr class="tw:border-b tw:border-gray-200 hover:tw:bg-gray-100 tw:font-bold">
                             <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-32"> 
+                                <label class="tw:w-32">
                                     Active
                                 </label>
                             </td>
                             <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-32"> 
+                                <label class="tw:w-32">
                                     Ohio
                                 </label>
-                            </td>        
+                            </td>
                             <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-24"> 
+                                <label class="tw:w-24">
                                     4
                                 </label>
                             </td>
                             <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-40"> 
+                                <label class="tw:w-40">
                                     20/20/20
                                 </label>
-                            </td>    
+                            </td>
                             <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-16"> 
+                                <label class="tw:w-16">
                                     first
                                 </label>
                             </td>
@@ -62,267 +64,15 @@
                                 <button type="button" id="viewMoreButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
                                     <i class="fa-solid fa-eye" style="color: #000000;"></i>
                                 </button>
-                            </td>    
+                            </td>
                             <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
                                 <button type="button" id="editButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
                                     <i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>
                                 </button>
-                            </td>    
-                        </tr>                        <tr class="tw:border-b tw:border-gray-200 hover:tw:bg-gray-100 tw:font-bold">
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-32"> 
-                                    Active
-                                </label>
                             </td>
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-32"> 
-                                    Ohio
-                                </label>
-                            </td>        
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-24"> 
-                                    4
-                                </label>
-                            </td>
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-40"> 
-                                    20/20/20
-                                </label>
-                            </td>    
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-16"> 
-                                    first
-                                </label>
-                            </td>
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <button type="button" id="viewMoreButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                    <i class="fa-solid fa-eye" style="color: #000000;"></i>
-                                </button>
-                            </td>    
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <button type="button" id="editButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                    <i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>
-                                </button>
-                            </td>    
-                        </tr>                        <tr class="tw:border-b tw:border-gray-200 hover:tw:bg-gray-100 tw:font-bold">
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-32"> 
-                                    Active
-                                </label>
-                            </td>
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-32"> 
-                                    Ohio
-                                </label>
-                            </td>        
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-24"> 
-                                    4
-                                </label>
-                            </td>
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-40"> 
-                                    20/20/20
-                                </label>
-                            </td>    
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-16"> 
-                                    first
-                                </label>
-                            </td>
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <button type="button" id="viewMoreButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                    <i class="fa-solid fa-eye" style="color: #000000;"></i>
-                                </button>
-                            </td>    
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <button type="button" id="editButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                    <i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>
-                                </button>
-                            </td>    
-                        </tr>                        <tr class="tw:border-b tw:border-gray-200 hover:tw:bg-gray-100 tw:font-bold">
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-32"> 
-                                    Active
-                                </label>
-                            </td>
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-32"> 
-                                    Ohio
-                                </label>
-                            </td>        
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-24"> 
-                                    4
-                                </label>
-                            </td>
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-40"> 
-                                    20/20/20
-                                </label>
-                            </td>    
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-16"> 
-                                    first
-                                </label>
-                            </td>
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <button type="button" id="viewMoreButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                    <i class="fa-solid fa-eye" style="color: #000000;"></i>
-                                </button>
-                            </td>    
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <button type="button" id="editButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                    <i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>
-                                </button>
-                            </td>    
-                        </tr>                        <tr class="tw:border-b tw:border-gray-200 hover:tw:bg-gray-100 tw:font-bold">
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-32"> 
-                                    Active
-                                </label>
-                            </td>
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-32"> 
-                                    Ohio
-                                </label>
-                            </td>        
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-24"> 
-                                    4
-                                </label>
-                            </td>
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-40"> 
-                                    20/20/20
-                                </label>
-                            </td>    
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-16"> 
-                                    first
-                                </label>
-                            </td>
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <button type="button" id="viewMoreButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                    <i class="fa-solid fa-eye" style="color: #000000;"></i>
-                                </button>
-                            </td>    
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <button type="button" id="editButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                    <i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>
-                                </button>
-                            </td>    
-                        </tr>                        <tr class="tw:border-b tw:border-gray-200 hover:tw:bg-gray-100 tw:font-bold">
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-32"> 
-                                    Active
-                                </label>
-                            </td>
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-32"> 
-                                    Ohio
-                                </label>
-                            </td>        
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-24"> 
-                                    4
-                                </label>
-                            </td>
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-40"> 
-                                    20/20/20
-                                </label>
-                            </td>    
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-16"> 
-                                    first
-                                </label>
-                            </td>
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <button type="button" id="viewMoreButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                    <i class="fa-solid fa-eye" style="color: #000000;"></i>
-                                </button>
-                            </td>    
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <button type="button" id="editButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                    <i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>
-                                </button>
-                            </td>    
-                        </tr>                        <tr class="tw:border-b tw:border-gray-200 hover:tw:bg-gray-100 tw:font-bold">
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-32"> 
-                                    Active
-                                </label>
-                            </td>
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-32"> 
-                                    Ohio
-                                </label>
-                            </td>        
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-24"> 
-                                    4
-                                </label>
-                            </td>
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-40"> 
-                                    20/20/20
-                                </label>
-                            </td>    
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-16"> 
-                                    first
-                                </label>
-                            </td>
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <button type="button" id="viewMoreButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                    <i class="fa-solid fa-eye" style="color: #000000;"></i>
-                                </button>
-                            </td>    
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <button type="button" id="editButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                    <i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>
-                                </button>
-                            </td>    
-                        </tr>                        <tr class="tw:border-b tw:border-gray-200 hover:tw:bg-gray-100 tw:font-bold">
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-32"> 
-                                    Active
-                                </label>
-                            </td>
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-32"> 
-                                    Ohio
-                                </label>
-                            </td>        
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-24"> 
-                                    4
-                                </label>
-                            </td>
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-40"> 
-                                    20/20/20
-                                </label>
-                            </td>    
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <label class="tw:w-16"> 
-                                    first
-                                </label>
-                            </td>
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <button type="button" id="viewMoreButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                    <i class="fa-solid fa-eye" style="color: #000000;"></i>
-                                </button>
-                            </td>    
-                            <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
-                                <button type="button" id="editButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                    <i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>
-                                </button>
-                            </td>    
                         </tr>
-                                <!-- Puedes añadir más filas de trenes aquí -->
-                            <!-- Fila de ejemplo 1 -->
+                    @endforeach
+
                     </tbody>
 
                     </table>

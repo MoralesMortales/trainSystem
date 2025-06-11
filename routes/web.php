@@ -85,6 +85,10 @@ Route::get('/menu/myreservation/editreservation', function () {
     return view('main/Reservation/EditReservation');
 });
 
+
+    Route::get('/menu/myreservation', [newReservation::class, 'myReservations'])->name('myReservations');
+
+
 Route::get('/menu/newreservation/reserving/onlyme', [newReservation::class, 'reservingonlyme'])->name('reservingOnlyme');
 
 Route::get('/menu/newreservation/reserving/meandothers', [newReservation::class, 'reservingMeAndOthers'])->name('reservingMeAndOthers');

@@ -15,6 +15,31 @@ use function GuzzleHttp\json_decode;
 
 class newReservation extends Controller
 {
+    public function myReservations()
+    {
+        $user = auth()->user();
+
+        $availableTravels = Travels::with(['train' => function ($query) {
+            $query->select('train_id', 'type', 'capacity');
+        }])
+            ->where('travelCode', function ($query) use ($user) {
+                $query->select('travelCode')
+                    ->from('reservations')
+                    ->where('cedula', $user->cedula);
+            })
+            ->where('status', true)
+            ->where('departureDay', '>=', now()->toDateString())
+            ->orderBy('departureDay')
+            ->orderBy('departureHour')
+            ->get();
+
+        return view('main/Reservation/MyReservations', [
+            'availableTravels' => $availableTravels,
+            'user' => $user
+        ]);
+    }
+
+
     public function reservingOnlyme()
     {
         $travelData = session('travelData');
@@ -56,9 +81,7 @@ class newReservation extends Controller
     public function reservingMeAndOthersPostPost(Request $request)
     {
         $travelData = json_decode($request->input('travelData'), true);
-        $departureData = json_decode($request->input('DataReserve'), true);
-                dd($departureData);
-
+        $departureData = json_decode($request->input('DepaData'), true);
 
         // Verificar que los datos de sesión existan
         if (!$travelData) {
@@ -127,41 +150,28 @@ class newReservation extends Controller
         $totalCost = array_sum(array_column($validatedData['persons'], 'seat_cost'));
 
 
-        $counter = 0;
-        foreach ($validatedData['persons'] as $person) {
+        $reservation = reservations::create([
+            'travelCode' => $travelData['travelCode'],
+            'status' => true,
+            'fullname' => $departureData['Reserva'],
+            'cedula' => $departureData['cedula'],
+            'passportNumber' => $departureData['Num_passport'],
+        ]);
 
-            if ($counter === 0) {
-                $name = $person['fullname'];
-
-                $reservation = reservations::create([
-                    'reservationNumber' => uniqid(),
-                    'travelCode' => $travelData['travelCode'],
-                    'status' => true,
-                    'fullname' => $name,
-                ]);
-            }
-
+        // Luego crear los asientos
+        foreach ($validatedData['persons'] as $index => $person) {
             $seatData = [
                 'class' => $person['class'],
                 'seat' => $person['seat'],
                 'gender' => $person['gender'],
                 'fullname' => $person['fullname'],
                 'age' => $person['age'],
-                'reservationNumber' => $reservation->reservationNumber,
+                'reservationNumber' => $reservation->reservationNumber, // Usamos el ID generado
                 'status' => true,
             ];
 
             Seat::create($seatData);
-            $counter++;
         }
-
-        $reservation = reservations::create([
-            'reservationNumber' => uniqid(),
-            'travelCode' => $travelData['travelCode'],
-            'status' => true,
-            'fullname' => $name,
-        ]);
-
 
         return redirect()->route('menu')->with([
             'success' => 'Reserva realizada con éxito',
@@ -188,11 +198,22 @@ class newReservation extends Controller
 
     public function showCreateAvailableReservations()
     {
-        $travels = Travels::all();
+        $user = auth()->user();
+
+        // Obtener los códigos de viaje donde el usuario YA tiene reservas
+        $reservedTravels = reservations::where('cedula', $user->cedula)
+            ->pluck('travelCode')
+            ->toArray();
+
+        // Obtener todos los viajes disponibles EXCLUYENDO los ya reservados
+        $availableTravels = Travels::whereNotIn('travelCode', $reservedTravels)
+            ->where('status', true) // Solo viajes activos
+            ->get();
+
         $trains = trains::all();
 
         return view('main/Reservation/NewReservation',  [
-            'travels' => $travels,
+            'travels' => $availableTravels,
             'trains' => $trains
         ]);
     }
@@ -207,6 +228,8 @@ class newReservation extends Controller
     public function reservingTravelStep2(Request $request)
     {
 
+        $user = auth()->user();
+
         $validateData = $request->validate([
             'Reserva' => 'required|string|max:255',
             'Num_passport' => 'required|integer',
@@ -214,6 +237,8 @@ class newReservation extends Controller
             'Age' => 'required|integer|max:255',
             'reserving_option' => 'required|string|max:255',
         ]);
+
+        $validateData['cedula'] = $user->cedula;
 
         $travelData = json_decode($request->input('travelData'), true);
 
