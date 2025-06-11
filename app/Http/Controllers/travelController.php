@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\trains;
 use App\Models\cities;
+use App\Models\Travels;
+use Illuminate\Support\Str; // ¡Esta es la línea que falta!
 
 class travelController extends Controller
 {
@@ -23,7 +25,7 @@ class travelController extends Controller
     public function postCreateTravelView(Request $request)
     {
         $validatedData = $request->validate([
-            'train_id' => 'required|numeric|min:0|regex:/^\d+(\.\d{1,2})?$/',
+            'train_id' => 'required|numeric',
             'CostVIP' => 'required|numeric|min:0|regex:/^\d+(\.\d{1,2})?$/',
             'CostNormal' => 'required|numeric|min:0|regex:/^\d+(\.\d{1,2})?$/',
             'CostTurists' => 'required|numeric|min:0|regex:/^\d+(\.\d{1,2})?$/',
@@ -33,6 +35,22 @@ class travelController extends Controller
             'DepartmentHour' => 'required|date_format:H:i',
         ]);
 
+            $travelCode = 'TRV-' . Str::upper(Str::random(6));
+
+            $travel = Travels::create([
+                'travelCode' => $travelCode,
+                'train_id' => $validatedData['train_id'],
+                'departureDay' => $validatedData['DepartmentDay'],
+                'departureHour' => $validatedData['DepartmentHour'],
+                'origin' => $validatedData['originCity'],
+                'destiny' => $validatedData['destinyCity'],
+                'CostVIP' => $validatedData['CostVIP'],
+                'CostNormal' => $validatedData['CostNormal'],
+                'CostTurists' => $validatedData['CostTurists'],
+                'status' => true
+            ]);
+
+            $travel->save();
 
         return redirect()->route('menu')->with('success', 'Travel created successfully!');
     }
