@@ -13,12 +13,12 @@
     <x-navbar/>
     <div id="boxContainer" class="tw:h-11/12 tw:w-full tw:flex tw:justify-center tw:items-center tw:pt-28">
         <div class="box">
-            <form id="reservingForm" action="" class="tw:h-full tw:w-full tw:flex tw:flex-col tw:justify-center tw:items-center" method="get">
+            <form id="reservingForm" action="{{ route('reservingTravelStep2.submit' ) }}" class="tw:h-full tw:w-full tw:flex tw:flex-col tw:justify-center tw:items-center" method="post">
             @csrf
             <table class="min-w-full text-left text-sm font-light text-surface dark:text-white tw:mr-10px">
                 <thead class="border-b border-neutral-200 font-medium dark:border-white/10">
                     <tr>
-                        <th colspan="5" class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">Ohio - Train (A113)</th>
+                        <th colspan="5" class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">{{$travel->origin}} to {{$travel->destiny}}</th>
                     </tr>
                 </thead>
                 <thead class="border-b border-neutral-200 font-medium dark:border-white/10">
@@ -34,25 +34,27 @@
                 <tbody>
                     <tr>
                         <td class="tw:text-center">
-                            <input type="text" name="Reserva" class="tw:w-48" id="inputReserva" max="20" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '');">
+                            <input type="text" value="{{ old('Reserva') }}"  name="Reserva" class="tw:w-48" id="inputReserva" max="20" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '');">
                         </td>
                         <td class="tw:text-center">
-                            <input type="text" name="Num_passport" class="tw:w-48" id="inputPassport" maxlength="9" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-                        </td>        
-                        <td class="tw:text-center">
-                            <input type="text" name="Depart" class="tw:w-40" readonly>
+                            <input type="text" name="Num_passport" value="{{ old('Num_passport') }}" class="tw:w-48" id="inputPassport" maxlength="9" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                         </td>
                         <td class="tw:text-center">
-                            <select id="genderSelect" name="Gender"> 
-                                <option value="">Seleccione</option>
-                                <option value="M">Masculino</option>
-                                <option value="F">Femenino</option>
-                                <option value="O">Otro</option>
+                            <input type="text" value="{{ old('Depart') }}" name="Depart" class="tw:w-40" readonly placeholder="{{ \Carbon\Carbon::parse($travel->departureDay)->format('d/m/Y') }} at {{ $travel->departureHour }}">
+                        </td>
+                        <td class="tw:text-center">
+                            <select id="genderSelect" name="Gender">
+                                <option value="">Select</option>
+                                <option value="M">Masculine</option>
+                                <option value="F">Femenine</option>
                             </select>
-                        </td>          
+                        </td>
                         <td class="tw:text-center">
-                            <input type="number" name="Age" class="tw:w-16" min="1" max="100" step="1" id="inputAge">
-                        </td>                        
+                            <input type="number" value="{{ old('Age') }}" maxlength="2" name="Age" class="tw:w-16" min="1" max="100" step="1" id="inputAge" oninput="this.value = Math.max(1, Math.min(100, parseInt(this.value) || 1))">
+
+                            <input type="hidden" name="travelData" value="{{ json_encode($travel) }}">
+
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -139,14 +141,11 @@
         const inputPassport = document.getElementById('inputPassport');
         const genderSelect = document.getElementById('genderSelect');
         const inputAge = document.getElementById('inputAge');
-        const baseUrl = 'http://localhost:8000/menu/newreservation/reserving'; // Ruta base
 
-        // Inicializar el valor de edad en 1 si está vacío
         if (inputAge && (inputAge.value === '' || parseFloat(inputAge.value) <= 0)) {
             inputAge.value = 1;
         }
 
-        // Función para mostrar SweetAlert2 de error
         function showError(title, text) {
             Swal.fire({
                 icon: 'error',
@@ -156,24 +155,11 @@
             });
         }
 
-        // Validación en tiempo real para el nombre del reservante (solo letras y espacios)
         inputReserva.addEventListener('input', function() {
-            // Se realiza la limpieza en el HTML con oninput, aquí solo se valida si es válido
             if (/[^a-zA-Z\s]/.test(this.value)) {
-                // Opcional: podrías mostrar una pequeña indicación visual aquí sin un Swal.fire constante
-                // Por ahora, solo se limpia la entrada no válida.
             }
         });
 
-        // Validación en tiempo real para el número de pasaporte (solo números y máximo 9 dígitos)
-        inputPassport.addEventListener('input', function() {
-            // Se realiza la limpieza y el límite de longitud en el HTML con oninput y maxlength.
-            // Aquí se podría añadir una validación más compleja si fuera necesario,
-            // pero el HTML ya maneja lo básico.
-        });
-
-        // Prevenir la escritura manual en el campo de edad y solo permitir las flechas
-        // Aunque `readonly` ya lo hace, esto asegura un control adicional.
         inputAge.addEventListener('keydown', function(event) {
             // Permite las flechas de arriba/abajo (keyCode 38, 40)
             if (event.keyCode !== 38 && event.keyCode !== 40) {
@@ -181,7 +167,6 @@
             }
         });
 
-        // Validaciones al enviar el formulario
         reservingForm.addEventListener('submit', function(event) {
             event.preventDefault(); // Previene el envío por defecto del formulario
 
@@ -228,29 +213,11 @@
                 return;
             }
 
-            // Si todas las validaciones son correctas, procede con la lógica de los radio buttons
-            const selectedOption = document.querySelector('input[name="reserving_option"]:checked');
-
-            if (selectedOption) {
-                const optionValue = selectedOption.value;
-                let targetUrl = baseUrl;
-
-                if (optionValue === 'onlyme') {
-                    targetUrl += '/onlyme';
-                } else if (optionValue === 'meandothers') {
-                    targetUrl += '/meandothers'; // Asegúrate de que esta opción esté en tus radio buttons si la necesitas
-                } else if (optionValue === 'others') {
-                    targetUrl += '/others';
-                }
-                
-                // Redirige a la nueva URL
-                window.location.href = targetUrl;
-            } else {
-                // Muestra un mensaje si no se ha seleccionado ninguna opción de reserva
-                showError('¡Atención!', 'Por favor, selecciona una opción de reserva.');
             }
+
+
+});
         });
-    });
 </script>
 
 </body>

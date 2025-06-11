@@ -22,6 +22,18 @@ class travelController extends Controller
         ]);
     }
 
+    public function showMyTravelView()
+    {
+
+        $trains = trains::all();
+        $travels = Travels::all();
+
+        return view('main/Travel/MyTravels',  [
+            'trains' => $trains,
+            'travels' => $travels
+        ]);
+    }
+
     public function postCreateTravelView(Request $request)
     {
         $validatedData = $request->validate([
@@ -35,23 +47,24 @@ class travelController extends Controller
             'DepartmentHour' => 'required|date_format:H:i',
         ]);
 
-            $travelCode = 'TRV-' . Str::upper(Str::random(6));
+        $travelCode = 'TRV-' . Str::upper(Str::random(6));
 
-            $travel = Travels::create([
-                'travelCode' => $travelCode,
-                'train_id' => $validatedData['train_id'],
-                'departureDay' => $validatedData['DepartmentDay'],
-                'departureHour' => $validatedData['DepartmentHour'],
-                'origin' => $validatedData['originCity'],
-                'destiny' => $validatedData['destinyCity'],
-                'CostVIP' => $validatedData['CostVIP'],
-                'CostNormal' => $validatedData['CostNormal'],
-                'CostTurists' => $validatedData['CostTurists'],
-                'status' => true
-            ]);
+        $travel = Travels::create([
+            'travelCode' => $travelCode,
+            'train_id' => $validatedData['train_id'],
+            'departureDay' => $validatedData['DepartmentDay'],
+            'departureHour' => $validatedData['DepartmentHour'],
+            'origin' => $validatedData['originCity'],
+            'destiny' => $validatedData['destinyCity'],
+            'CostVIP' => $validatedData['CostVIP'],
+            'CostNormal' => $validatedData['CostNormal'],
+            'CostTurists' => $validatedData['CostTurists'],
+            'status' => true
+        ]);
 
-            $travel->save();
+        $travel->save();
 
         return redirect()->route('menu')->with('success', 'Travel created successfully!');
     }
+
 }

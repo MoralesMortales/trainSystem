@@ -20,7 +20,7 @@
                         <table class="tw:min-w-full tw:bg-gray-300 tw:rounded-lg tw:shadow-md tw:overflow-hidden" name="Tabla de Reservas">
                             <thead class="tw:bg-gray-400 tw:text-gray-800 tw:uppercase tw:text-sm tw:leading-normal">
                                 <tr>
-                                    <th colspan="7" class="tw:text-center tw:py-2 tw:text-xl">Ohio - Train (A113)</th>
+                                    <th colspan="7" class="tw:text-center tw:py-2 tw:text-xl">Ohio - Train (A113) </th>
                                 </tr>
                             </thead>
                             <thead class="tw:bg-gray-400 tw:text-gray-800 tw:uppercase tw:text-sm tw:leading-normal" name="Datos de la persona">
@@ -34,28 +34,29 @@
                                     <th class="tw:py-3 tw:px-6 tw:text-left">Delete</th>
                                 </tr>
                             </thead>
-            
+
                             <tbody id="personRowsContainer">
                                 <tr class="person-row">
                                     <td class="tw:text-center">
-                                        <input type="text" name="persons[0][fullname]" class="tw:w-48">
+                                        <input type="text" name="persons[0][fullname]" class="tw:w-48" value="{{ $DataReserve['Reserva'] }}" readonly>
                                     </td>
                                     <td class="tw:text-center">
-                                        <select name="persons[0][gender]">
+                                        <select name="persons[0][gender]" disabled>
                                             <option value=""></option>
-                                            <option value="M">Masculino</option>
-                                            <option value="F">Femenino</option>
-                                            <option value="O">Otro</option>
+                                            <option value="M" {{ ($DataReserve['Gender'] ?? '') == 'M' ? 'selected' : '' }}>Masculino</option>
+                                            <option value="F" {{ ($DataReserve['Gender'] ?? '') == 'F' ? 'selected' : '' }}>Femenino</option>
+                                            <option value="O" {{ ($DataReserve['Gender'] ?? '') == 'O' ? 'selected' : '' }}>Otro</option>
                                         </select>
-                                    </td> 
-                                    <td class="tw:text-center">
-                                        <input type="number" name="persons[0][age]" class="tw:w-16" min="1" max="999" step="1" oninput="this.value = parseInt(this.value);" >
+                                        <input type="hidden" name="persons[0][gender]" value="{{ $DataReserve['Gender'] ?? '' }}">
                                     </td>
                                     <td class="tw:text-center">
-                                        <select name="persons[0][class]"> 
+                                        <input type="number" name="persons[0][age]" class="tw:w-16" min="1" max="999" step="1" oninput="this.value = parseInt(this.value);" value="{{ $DataReserve['Age'] ?? '' }}" readonly>
+                                    </td>
+                                    <td class="tw:text-center">
+                                        <select name="persons[0][class]">
                                             <option value="">Seleccione</option>
                                             <option value="Turist">Turist</option>
-                                            <option value="Normal">Normal</option>
+                                            <option value="Normal">Economic</option>
                                             <option value="VIP">VIP</option>
                                         </select>
                                     </td>
@@ -66,10 +67,10 @@
                                         <input type="text" name="persons[0][seat_cost]" class="tw:w-40" placeholder="0" readonly>
                                     </td>
                                     <td class="tw:text-center">
-                                        <button type="button" class="delete-row-btn tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
+                                        <button type="button" class="delete-row-btn tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center" disabled>
                                             <i class="fa-solid fa-trash" style="color: #000000;"></i>
                                         </button>
-                                    </td>                                     
+                                    </td>
                                 </tr>
                             </tbody>
                             <tbody>
@@ -133,7 +134,7 @@
             personRows.forEach(row => {
                 const classSelect = row.querySelector('select[name$="[class]"]');
                 const seatCostInput = row.querySelector('input[name$="[seat_cost]"]');
-                
+
                 const selectedClass = classSelect.value;
                 const cost = seatCosts[selectedClass] || 0;
                 seatCostInput.value = cost.toFixed(2); // Muestra el costo individual del asiento
@@ -314,7 +315,10 @@
                 if (!originalRow) return;
                 const newRow = originalRow.cloneNode(true);
                 newRow.querySelectorAll('input, select').forEach(input => {
-                    input.value = (input.tagName === 'SELECT' ? input.options[0].value : '');
+                    // Solo limpiar los campos editables (no los de la primera fila)
+                    if (!input.hasAttribute('readonly') && !input.disabled) {
+                        input.value = (input.tagName === 'SELECT' ? input.options[0].value : '');
+                    }
                     const currentName = input.getAttribute('name');
                     if (currentName) {
                         input.setAttribute('name', currentName.replace(/\[\d+\]/, '[' + personIndex + ']'));
@@ -325,9 +329,15 @@
                         input.removeAttribute('readonly');
                     }
                 });
+                // Habilitar los campos en la nueva fila (excepto seat_cost)
+                newRow.querySelectorAll('input:not([name$="[seat_cost]"]), select').forEach(input => {
+                    if (input.disabled) input.disabled = false;
+                    if (input.readOnly) input.readOnly = false;
+                });
                 // Reasigna el event listener al nuevo botón de eliminar en la fila clonada
                 const newDeleteButton = newRow.querySelector('.delete-row-btn');
                 if (newDeleteButton) {
+                    newDeleteButton.disabled = false;
                     newDeleteButton.addEventListener('click', function() {
                         if (personRowsContainer.children.length > 1) { // Asegura que no se elimine la última fila
                             newRow.remove();
@@ -372,6 +382,18 @@
         });
     });
 </script>
+
+<style>
+    .person-row:first-child .delete-row-btn {
+        opacity: 0.5;
+        display:none;
+        cursor: not-allowed;
+    }
+    input[readonly], select[disabled] {
+        background-color: #f3f4f6;
+        cursor: not-allowed;
+    }
+</style>
 
 </body>
 </html>
