@@ -29,6 +29,8 @@
                                     <th class="tw:py-3 tw:px-6 tw:text-left">Fullname</th>
                                                                 <input type="hidden" name="travelData" value="{{ json_encode($travelData) }}">
 
+{$DataReserve}
+
                                     <th class="tw:py-3 tw:px-6 tw:text-left">Gender</th>
                                     <th class="tw:py-3 tw:px-6 tw:text-left">Age</th>
                                     <th class="tw:py-3 tw:px-6 tw:text-left">Class</th>

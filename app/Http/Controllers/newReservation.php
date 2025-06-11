@@ -56,6 +56,9 @@ class newReservation extends Controller
     public function reservingMeAndOthersPostPost(Request $request)
     {
         $travelData = json_decode($request->input('travelData'), true);
+        $departureData = json_decode($request->input('DataReserve'), true);
+                dd($departureData);
+
 
         // Verificar que los datos de sesión existan
         if (!$travelData) {
@@ -123,9 +126,9 @@ class newReservation extends Controller
 
         $totalCost = array_sum(array_column($validatedData['persons'], 'seat_cost'));
 
+
         $counter = 0;
         foreach ($validatedData['persons'] as $person) {
-
 
             if ($counter === 0) {
                 $name = $person['fullname'];

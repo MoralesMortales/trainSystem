@@ -11,7 +11,8 @@ class reservations extends Model
         'fullname',
         'travelCode',
         'gender',
-        'travelCode',
+        'passportNumber',
+        'cedula',
         'status'
     ];
 public function reservation()
