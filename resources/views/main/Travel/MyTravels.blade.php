@@ -177,7 +177,7 @@
                                 <!-- Puedes añadir más filas de trenes aquí -->
                             <!-- Fila de ejemplo 1 -->
                         </tbody>
-                                                <tbody class="tw:text-gray-900 tw:text-sm tw:font-light">
+                        <tbody class="tw:text-gray-900 tw:text-sm tw:font-light">
 
                                 <tr class="tw:border-b tw:border-gray-200 hover:tw:bg-gray-100 tw:font-bold">
                                     <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">Active</td>
@@ -206,43 +206,27 @@
     </div>
 
 <script>
-function confirmDelete(trainId) {
-    Swal.fire({
-        title: '¿Are you sure?',
-        text: "This action is permanent!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Yes, delete',
-        cancelButtonText: 'Cancel'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            deleteTrain(trainId);
+
+
+    // Script para manejar la redirección de los botones
+    document.addEventListener('DOMContentLoaded', function() {
+        const viewMoreButton = document.getElementById('viewMoreButton');
+        const editButton = document.getElementById('editButton');
+
+        if (viewMoreButton) {
+            viewMoreButton.addEventListener('click', function() {
+                // Redirige a la URL de View More
+                window.location.href = 'http://localhost:8000/menu/myreservation/viewreservation';
+            });
+        }
+
+        if (editButton) {
+            editButton.addEventListener('click', function() {
+                // Redirige a la URL de Edit
+                window.location.href = 'http://localhost:8000/menu/myreservation/editreservation';
+            });
         }
     });
-}
-
-function deleteTrain(trainId) {
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = "{{ route('Trains.destroy', ':trainId') }}".replace(':trainId', trainId);
-
-    const csrf = document.createElement('input');
-    csrf.type = 'hidden';
-    csrf.name = '_token';
-    csrf.value = '{{ csrf_token() }}';
-    form.appendChild(csrf);
-
-    const method = document.createElement('input');
-    method.type = 'hidden';
-    method.name = '_method';
-    method.value = 'DELETE';
-    form.appendChild(method);
-
-    document.body.appendChild(form);
-    form.submit();
-}
 </script>
 </body>
 

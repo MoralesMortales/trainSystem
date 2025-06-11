@@ -1,8 +1,3 @@
-/* Variables para bordes */
-:root {
-    --borde-negro-ciudad: 1px solid black;
-}
-
 #container{
     min-height: 100dvh;
     background-image: url("../../public/img/trains/train.png");
@@ -40,6 +35,7 @@
 
 .box{
     background-color: rgba(217, 217, 217, .83);
+    padding-bottom: 1em;
     max-height: 35vh;
 }
 
@@ -55,10 +51,9 @@ input{
     text-align: center;
 }
 
-table th{
-/*     border: black 1px solid; */
+table{
+
     text-align: center;
-    padding: 7px 24px;
 }
 
 table th{
@@ -71,9 +66,4 @@ table td{
 /*     border: black 1px solid; */
     text-align: center;
     padding: 10px 10px;
-}
-
-/* Asegurar que las celdas de las filas de ciudad también tengan el borde */
-.city-row td {
-    border: var(--borde-negro-ciudad);
 }

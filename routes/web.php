@@ -48,17 +48,25 @@ Route::delete('/menu/trains/{train}', [trainController::class, 'destroy'])->midd
 
 // Employee Management
 
-Route::get('/menu/createEmployee', [createEmployee::class, 'showCreateEmployee'])->middleware('auth')->name('showEmployeeBase');
+Route::get('/menu/menuemployee', action: function () {
+    return view('main/EmployeeCreation/menuEmployee');
+});
 
-Route::get('/admin/createEmployee', [createEmployee::class, 'showCreateEmployeeAdmin'])->name('showEmployeeAdmin');
+Route::get('/menu/menuemployee/manageemployees', action: function () {
+    return view('main/EmployeeCreation/ManageEmployees');
+});
 
-Route::post('/admin/createEmployee/password', [RestringedArea::class, 'RestringedAreaSubmit'])->name('restringed.submit');
+Route::get('/menu/menuemployee/createEmployee', [createEmployee::class, 'showCreateEmployee'])->middleware('auth')->name('showEmployeeBase');
 
-Route::post('/admin/createEmployee', [RestringedArea::class, 'createEmployeeSubmit'])->name('createEmployeeFr.submit');
+Route::get('/admin/menuemployee/createEmployee', [createEmployee::class, 'showCreateEmployeeAdmin'])->name('showEmployeeAdmin');
 
-Route::get('/admin/createEmployee/confirmEmployee', [RestringedArea::class, 'openConfirmEmployeeView'])->name('openConfirmEmployeeView');
+Route::post('/admin/menuemployee/createEmployee/password', [RestringedArea::class, 'RestringedAreaSubmit'])->name('restringed.submit');
 
-Route::post('/admin/createEmployee/confirmEmployee/', [RestringedArea::class, 'confirm'])->name('confirmCreateEmployee.submit');
+Route::post('/admin/menuemployee/createEmployee', [RestringedArea::class, 'createEmployeeSubmit'])->name('createEmployeeFr.submit');
+
+Route::get('/admin/menuemployee/createEmployee/confirmEmployee', [RestringedArea::class, 'openConfirmEmployeeView'])->name('openConfirmEmployeeView');
+
+Route::post('/admin/menuemployee/createEmployee/confirmEmployee/', [RestringedArea::class, 'confirm'])->name('confirmCreateEmployee.submit');
 
 // Reservations
 
@@ -99,4 +107,8 @@ Route::get('/menu/newtravel', [travelController::class, 'showCreateTravelView'])
 
 Route::get('/menu/mytravels', function () {
     return view('main/Travel/MyTravels');
+});
+
+Route::get('/menu/managecitys', function () {
+    return view('main/manageCitys');
 });
