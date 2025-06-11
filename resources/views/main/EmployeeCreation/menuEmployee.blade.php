@@ -19,7 +19,7 @@
             <div class="tw:w-2/3 tw:h-full tw:flex tw:flex-col">
                 <div id="inputBox_4_1" class="tw:text-center">
                     <a href="/menu/menuemployee/manageemployees" class="tw:inline-block">
-                        <img src="../img/images/01.png" alt="Descripción de la imagen" width="500" height="300">
+                        <img src="../img/images/10.png" alt="Descripción de la imagen" width="500" height="300">
                     </a>
                 </div>
             </div>
@@ -27,7 +27,7 @@
             <div class="tw:w-2/3 tw:h-full tw:flex tw:flex-col">
                 <div id="inputBox_4_2" class="tw:text-center ">
                     <a href="/menu/menuemployee/createEmployee" class="tw:inline-block">
-                        <img src="../img/images/02.png" alt="Descripción de la imagen" width="500" height="300">
+                        <img src="../img/images/11.png" alt="Descripción de la imagen" width="500" height="300">
                     </a>
                 </div>
             </div>

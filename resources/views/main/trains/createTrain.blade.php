@@ -25,7 +25,7 @@
                     <tr>
                         <td>
                             <label class="tw:font-bold" style="font-size: 14px;">Train name</label>
-                            <input type="text" name="train_name" value="{{ old('train_name') }}" class="tw:border tw:rounded">
+                            <input type="text" name="name" value="{{ old('name') }}" class="tw:border tw:rounded">
                         </td>
                         <td>
                             <label class="tw:font-bold" style="font-size: 14px;">Type</label>

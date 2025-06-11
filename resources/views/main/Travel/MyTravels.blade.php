@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TrainSystem - My Trains</title>
     @vite(['resources/css/app.css'])
-    <!-- Puedes crear un CSS específico para MyTrains si lo necesitas, similar a CreateTrain.css -->
     @vite(['resources/css/MyTrains.css'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -22,181 +21,43 @@
                         <thead class="tw:bg-gray-400 tw:text-gray-800 tw:uppercase tw:text-sm tw:leading-normal">
                             <tr>
                                 <th class="tw:py-3 tw:px-6 tw:text-left">Status</th>
-                                <th class="tw:py-3 tw:px-6 tw:text-left">Name Travel</th>
-                                <th class="tw:py-3 tw:px-6 tw:text-left">Quantity Tickets</th>
-                                <th class="tw:py-3 tw:px-6 tw:text-left">Date</th>
+                                <th class="tw:py-3 tw:px-6 tw:text-left">Travel Code</th>
+                                <th class="tw:py-3 tw:px-6 tw:text-left">Origin</th>
+                                <th class="tw:py-3 tw:px-6 tw:text-left">Destiny</th>
+                                <th class="tw:py-3 tw:px-6 tw:text-left">Departure</th>
                                 <th class="tw:py-3 tw:px-6 tw:text-left">View More</th>
                                 <th class="tw:py-3 tw:px-6 tw:text-left">Edit</th>
                             </tr>
                         </thead>
 
                         <tbody class="tw:text-gray-900 tw:text-sm tw:font-light">
-
-                                <tr class="tw:border-b tw:border-gray-200 hover:tw:bg-gray-100 tw:font-bold">
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">Active</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">Ohio</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">4</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">20/20/20</td>
-                                    <td class="tw:text-center">
-                                        <button type="button" id="viewMoreButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                            <i class="fa-solid fa-eye" style="color: #000000;"></i>
-                                            </button>
-                                    </td>    
-                                    <td class="tw:text-center">
-                                        <button type="button" id="editButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                            <i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>
-                                        </button>
-                                    </td>                                       
-                                </tr>
-                                <!-- Puedes añadir más filas de trenes aquí -->
-                            <!-- Fila de ejemplo 1 -->
-                        </tbody>
-                                                <tbody class="tw:text-gray-900 tw:text-sm tw:font-light">
-
-                                <tr class="tw:border-b tw:border-gray-200 hover:tw:bg-gray-100 tw:font-bold">
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">Active</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">Ohio</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">4</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">20/20/20</td>
-                                    <td class="tw:text-center">
-                                        <button type="button" id="viewMoreButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                            <i class="fa-solid fa-eye" style="color: #000000;"></i>
-                                            </button>
-                                    </td>    
-                                    <td class="tw:text-center">
-                                        <button type="button" id="editButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                            <i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>
-                                        </button>
-                                    </td>                                       
-                                </tr>
-                                <!-- Puedes añadir más filas de trenes aquí -->
-                            <!-- Fila de ejemplo 1 -->
-                        </tbody>
-                                                <tbody class="tw:text-gray-900 tw:text-sm tw:font-light">
-
-                                <tr class="tw:border-b tw:border-gray-200 hover:tw:bg-gray-100 tw:font-bold">
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">Active</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">Ohio</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">4</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">20/20/20</td>
-                                    <td class="tw:text-center">
-                                        <button type="button" id="viewMoreButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                            <i class="fa-solid fa-eye" style="color: #000000;"></i>
-                                            </button>
-                                    </td>    
-                                    <td class="tw:text-center">
-                                        <button type="button" id="editButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                            <i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>
-                                        </button>
-                                    </td>                                       
-                                </tr>
-                                <!-- Puedes añadir más filas de trenes aquí -->
-                            <!-- Fila de ejemplo 1 -->
-                        </tbody>
-                                                <tbody class="tw:text-gray-900 tw:text-sm tw:font-light">
-
-                                <tr class="tw:border-b tw:border-gray-200 hover:tw:bg-gray-100 tw:font-bold">
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">Active</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">Ohio</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">4</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">20/20/20</td>
-                                    <td class="tw:text-center">
-                                        <button type="button" id="viewMoreButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                            <i class="fa-solid fa-eye" style="color: #000000;"></i>
-                                            </button>
-                                    </td>    
-                                    <td class="tw:text-center">
-                                        <button type="button" id="editButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                            <i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>
-                                        </button>
-                                    </td>                                       
-                                </tr>
-                                <!-- Puedes añadir más filas de trenes aquí -->
-                            <!-- Fila de ejemplo 1 -->
-                        </tbody>
-                                                <tbody class="tw:text-gray-900 tw:text-sm tw:font-light">
-
-                                <tr class="tw:border-b tw:border-gray-200 hover:tw:bg-gray-100 tw:font-bold">
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">Active</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">Ohio</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">4</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">20/20/20</td>
-                                    <td class="tw:text-center">
-                                        <button type="button" id="viewMoreButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                            <i class="fa-solid fa-eye" style="color: #000000;"></i>
-                                            </button>
-                                    </td>    
-                                    <td class="tw:text-center">
-                                        <button type="button" id="editButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                            <i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>
-                                        </button>
-                                    </td>                                       
-                                </tr>
-                                <!-- Puedes añadir más filas de trenes aquí -->
-                            <!-- Fila de ejemplo 1 -->
-                        </tbody>
-                                                <tbody class="tw:text-gray-900 tw:text-sm tw:font-light">
-
-                                <tr class="tw:border-b tw:border-gray-200 hover:tw:bg-gray-100 tw:font-bold">
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">Active</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">Ohio</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">4</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">20/20/20</td>
-                                    <td class="tw:text-center">
-                                        <button type="button" id="viewMoreButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                            <i class="fa-solid fa-eye" style="color: #000000;"></i>
-                                            </button>
-                                    </td>    
-                                    <td class="tw:text-center">
-                                        <button type="button" id="editButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                            <i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>
-                                        </button>
-                                    </td>                                       
-                                </tr>
-                                <!-- Puedes añadir más filas de trenes aquí -->
-                            <!-- Fila de ejemplo 1 -->
-                        </tbody>
-                        <tbody class="tw:text-gray-900 tw:text-sm tw:font-light">
-
-                                <tr class="tw:border-b tw:border-gray-200 hover:tw:bg-gray-100 tw:font-bold">
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">Active</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">Ohio</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">4</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">20/20/20</td>
-                                    <td class="tw:text-center">
-                                        <button type="button" id="viewMoreButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                            <i class="fa-solid fa-eye" style="color: #000000;"></i>
-                                            </button>
-                                    </td>    
-                                    <td class="tw:text-center">
-                                        <button type="button" id="editButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                            <i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>
-                                        </button>
-                                    </td>                                       
-                                </tr>
-                                <!-- Puedes añadir más filas de trenes aquí -->
-                            <!-- Fila de ejemplo 1 -->
-                        </tbody>
-                        <tbody class="tw:text-gray-900 tw:text-sm tw:font-light">
-
-                                <tr class="tw:border-b tw:border-gray-200 hover:tw:bg-gray-100 tw:font-bold">
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">Active</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">Ohio</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">4</td>
-                                    <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">20/20/20</td>
-                                    <td class="tw:text-center">
-                                        <button type="button" id="viewMoreButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                            <i class="fa-solid fa-eye" style="color: #000000;"></i>
-                                            </button>
-                                    </td>    
-                                    <td class="tw:text-center">
-                                        <button type="button" id="editButton" class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
-                                            <i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>
-                                        </button>
-                                    </td>                                       
-                                </tr>
-                                <!-- Puedes añadir más filas de trenes aquí -->
-                            <!-- Fila de ejemplo 1 -->
+                            @foreach($travels as $travel)
+                            <tr class="tw:border-b tw:border-gray-200 hover:tw:bg-gray-100 tw:font-bold">
+                                <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
+                                    @if($travel->status)
+                                        <span class="tw-text-green-600">Active</span>
+                                    @else
+                                        <span class="tw-text-red-600">Inactive</span>
+                                    @endif
+                                </td>
+                                <td style="font-size:10px;" class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">{{ $travel->travelCode }}</td>
+                                <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">{{ $travel->origin }}</td>
+                                <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">{{ $travel->destiny }}</td>
+                                <td class="tw:py-3 tw:px-6 tw:text-left whitespace-nowrap">
+                                    {{ \Carbon\Carbon::parse($travel->departureDay)->format('d/m/Y') }} at {{ $travel->departureHour }}
+                                </td>
+                                <td class="tw:text-center">
+                                    <button type="button"                                        class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
+                                        <i class="fa-solid fa-eye" style="color: #000000;"></i>
+                                    </button>
+                                </td>
+                                <td class="tw:text-center">
+                                    <button type="button"                                         class="tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
+                                        <i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -205,29 +66,5 @@
         </div>
     </div>
 
-<script>
-
-
-    // Script para manejar la redirección de los botones
-    document.addEventListener('DOMContentLoaded', function() {
-        const viewMoreButton = document.getElementById('viewMoreButton');
-        const editButton = document.getElementById('editButton');
-
-        if (viewMoreButton) {
-            viewMoreButton.addEventListener('click', function() {
-                // Redirige a la URL de View More
-                window.location.href = 'http://localhost:8000/menu/mytravels/viewtravel';
-            });
-        }
-
-        if (editButton) {
-            editButton.addEventListener('click', function() {
-                // Redirige a la URL de Edit
-                window.location.href = 'http://localhost:8000/menu/mytravels/edittravel';
-            });
-        }
-    });
-</script>
 </body>
-
 </html>

@@ -8,7 +8,6 @@ html, body {
        Si es un tren diurno, un azul cielo o gris claro. */
 
     /* Asegúrate de que el body pueda expandirse si el contenido es más alto */
-    min-height: 100vh;
 }
 
 
