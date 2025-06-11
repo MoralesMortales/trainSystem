@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\CityController;
+use App\Http\Controllers\cityController;
 use App\Http\Controllers\createEmployee;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginAuthController;
@@ -55,11 +55,17 @@ Route::get('/menu/newreservation/{travel}', [newReservation::class, 'reservingTr
 Route::post('/menu/newreservation/', [newReservation::class, 'reservingTravelStep2'])->name('reservingTravelStep2.submit');
 
 // Rutas de las opciones de reserva
+Route::get('/menu/newreservation/reserving', function () {
+    return view('main/Reservation/Reserving/Reserving');
+});
 Route::get('/menu/newreservation/reserving/onlyme', [newReservation::class, 'reservingOnlyme'])->name('reservingonlyme'); // <-- ¡RUTA AÑADIDA/CORREGIDA!
 Route::get('/menu/newreservation/reserving/meandothers', [newReservation::class, 'reservingMeAndOthers'])->name('reservingMeAndOthers');
 Route::post('/menu/newreservation/reserving/meandothers/send', [newReservation::class, 'reservingMeAndOthersPostPost'])->name('reservingMeAndOthersPost');
 Route::get('/menu/newreservation/reserving/others', [newReservation::class, 'reservingOthers'])->name('reservingOthers');
 
+Route::get('/menu/myreservations', function () {
+    return view('main/Reservation/MyReservations');
+});
 
 Route::get('/menu/myreservation/viewreservation', function () {
     return view('main/Reservation/ViewReservation');

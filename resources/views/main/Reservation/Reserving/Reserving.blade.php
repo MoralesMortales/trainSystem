@@ -39,6 +39,7 @@
                         <td class="tw:text-center">
                             <input type="text" name="Num_passport" value="{{ old('Num_passport') }}" class="tw:w-48" id="inputPassport" maxlength="9" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                         </td>
+
                         <td class="tw:text-center">
                             <input type="text" value="{{ old('depart') }}" name="depart" class="tw:w-40" readonly placeholder="{{ \carbon\carbon::parse($travel->departureDay)->format('d/m/Y') }} at {{ $travel->departureHour }}">
                         </td>
@@ -47,12 +48,16 @@
                                 <option value="">Select</option>
                                 <option value="M">Masculine</option>
                                 <option value="F">Femenine</option>
+
                             </select>
+                        </td>
                         </td>
                         <td class="tw:text-center">
                             <input type="number" value="{{ old('Age') }}" maxlength="2" name="Age" class="tw:w-16" min="1" max="100" step="1" id="inputAge" oninput="this.value = Math.max(1, Math.min(100, parseInt(this.value) || 1))">
 
                             <input type="hidden" name="travelData" value="{{ json_encode($travel) }}">
+
+
 
                         </td>
                     </tr>
@@ -160,6 +165,9 @@
             }
         });
 
+            }
+        });
+
         inputAge.addEventListener('keydown', function(event) {
             // Permite las flechas de arriba/abajo (keyCode 38, 40)
             if (event.keyCode !== 38 && event.keyCode !== 40) {
@@ -221,3 +229,4 @@
 
 </body>
 </html>
+

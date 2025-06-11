@@ -35,6 +35,7 @@
                     <table class="button-group tw:flex tw:flex-col tw:items-center tw:pl-13 tw:justify-center tw:space-y-4 tw:min-h-[300px]">
                         <tbody>
                             <div>
+                            <div>
                                 <td>
                                     <button type="button" id="addCityBtn" class="tw:w-48 tw:h-13 tw:bg-green-200 tw:text-2xl tw:font-bold tw:rounded-lg hover:tw:bg-green-300 focus:tw:outline-none focus:tw:ring-2 focus:tw:ring-green-400 focus:tw:ring-opacity-75 tw:transition-colors tw:duration-200">
                                         Add City
@@ -253,3 +254,4 @@
 
 </body>
 </html>
+

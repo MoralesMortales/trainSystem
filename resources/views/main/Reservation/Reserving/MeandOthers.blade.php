@@ -53,24 +53,24 @@
                                     <td class="tw:text-center">
                                         <input type="number" name="persons[0][age]" class="tw:w-16" min="1" max="999" step="1" oninput="this.value = parseInt(this.value);" value="{{ $DataReserve['Age'] ?? '' }}" readonly>
                                     </td>
-<td class="tw:text-center">
-    <select name="persons[0][class]" onchange="updateAvailableSeats(this)">
-        <option value="">Seleccione</option>
-        <option value="Turist">Turist</option>
-        <option value="Normal">Economic</option>
-        <option value="VIP">VIP</option>
-    </select>
-</td>
-<td class="tw:text-center">
-    <select name="persons[0][seat]" class="seat-select" disabled>
-        <option value="">Seleccione clase primero</option>
-    </select>
-</td>
+                                    <td class="tw:text-center">
+                                        <select name="persons[0][class]" onchange="updateAvailableSeats(this)">
+                                            <option value="">Seleccione</option>
+                                            <option value="Turist">Turist</option>
+                                            <option value="Normal">Economic</option>
+                                            <option value="VIP">VIP</option>
+                                        </select>
+                                    </td>
+                                    <td class="tw:text-center">
+                                        <select name="persons[0][seat]" class="seat-select" disabled>
+                                            <option value="">Seleccione clase primero</option>
+                                        </select>
+                                    </td>
                                     <td class="tw:text-center">
                                         <input type="text" name="persons[0][seat_cost]" class="tw:w-40" placeholder="0" readonly>
                                     </td>
                                     <td class="tw:text-center">
-                                        <button type="button" class="delete-row-btn tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center" disabled>
+                                        <button type="button" class="delete-row-btn tw:text-black tw:font-bold tw:py-2 tw:px-4 tw:rounded tw:inline-flex tw:items-center">
                                             <i class="fa-solid fa-trash" style="color: #000000;"></i>
                                         </button>
                                     </td>

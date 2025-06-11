@@ -19,7 +19,7 @@
 {{-- Contenedor principal para el contenido del formulario --}}
 <div id="container" class="tw:w-full tw:flex tw:flex-col tw:items-center tw:flex-grow">
     {{-- boxContainer es responsable de empujar el contenido hacia abajo de la navbar --}}
-    <div id="boxContainer" class="tw:h-9/12 tw:w-full tw:flex tw:justify-center tw:items-center tw:pt-28">
+    <div id="boxContainer" class="tw:h-9/12 tw:w-full tw:flex tw:justify-center tw:items-center tw:pt-44">
         <div class="box">
             <form id="reservingForm" action="{{ route('CreateTravel.submit') }}" class="tw:h-full tw:w-full tw:flex tw:flex-col tw:justify-center tw:items-center" method="post">
             @csrf
