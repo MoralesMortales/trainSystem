@@ -89,6 +89,8 @@ Route::get('/menu/newreservation/reserving/onlyme', [newReservation::class, 'res
 
 Route::get('/menu/newreservation/reserving/meandothers', [newReservation::class, 'reservingMeAndOthers'])->name('reservingMeAndOthers');
 
+Route::post('/menu/newreservation/reserving/meandothers/send', [newReservation::class, 'reservingMeAndOthersPostPost'])->name('reservingMeAndOthersPost');
+
 Route::get('/menu/newreservation/reserving/others', [newReservation::class, 'reservingOthers'])->name('reservingOthers');
 
 // Travel

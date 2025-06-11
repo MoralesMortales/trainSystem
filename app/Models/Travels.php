@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Model;
 
 class Travels extends Model
@@ -9,7 +8,6 @@ class Travels extends Model
 
     protected $primaryKey = 'travelCode';
     public $incrementing = false;
-    protected $keyType = 'string';
 
     protected $fillable = [
         'travelCode',

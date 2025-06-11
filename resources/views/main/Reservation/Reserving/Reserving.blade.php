@@ -40,7 +40,7 @@
                             <input type="text" name="Num_passport" value="{{ old('Num_passport') }}" class="tw:w-48" id="inputPassport" maxlength="9" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                         </td>
                         <td class="tw:text-center">
-                            <input type="text" value="{{ old('Depart') }}" name="Depart" class="tw:w-40" readonly placeholder="{{ \Carbon\Carbon::parse($travel->departureDay)->format('d/m/Y') }} at {{ $travel->departureHour }}">
+                            <input type="text" value="{{ old('depart') }}" name="depart" class="tw:w-40" readonly placeholder="{{ \carbon\carbon::parse($travel->departureDay)->format('d/m/Y') }} at {{ $travel->departureHour }}">
                         </td>
                         <td class="tw:text-center">
                             <select id="genderSelect" name="Gender">

@@ -15,7 +15,8 @@
         <div id="boxContainer" class="tw:h-full tw:w-full tw:flex tw:justify-center tw:items-center tw:pt-20">
             <div class="box tw:w-10/12 md:tw:w-8/12 tw:h-auto tw:min-h-[70vh] tw:bg-gray-200 tw:bg-opacity-80 tw:rounded-lg tw:p-6 tw:shadow-lg tw:flex tw:flex-col">
 
-                <form id="reservationForm" class="tw:overflow-x-auto tw:flex-grow">
+                <form id="reservationForm" {{ route('reservingMeAndOthersPost') }} class="tw:overflow-x-auto tw:flex-grow" method="post">
+                @csrf
                     <div>
                         <table class="tw:min-w-full tw:bg-gray-300 tw:rounded-lg tw:shadow-md tw:overflow-hidden" name="Tabla de Reservas">
                             <thead class="tw:bg-gray-400 tw:text-gray-800 tw:uppercase tw:text-sm tw:leading-normal">
@@ -52,17 +53,19 @@
                                     <td class="tw:text-center">
                                         <input type="number" name="persons[0][age]" class="tw:w-16" min="1" max="999" step="1" oninput="this.value = parseInt(this.value);" value="{{ $DataReserve['Age'] ?? '' }}" readonly>
                                     </td>
-                                    <td class="tw:text-center">
-                                        <select name="persons[0][class]">
-                                            <option value="">Seleccione</option>
-                                            <option value="Turist">Turist</option>
-                                            <option value="Normal">Economic</option>
-                                            <option value="VIP">VIP</option>
-                                        </select>
-                                    </td>
-                                    <td class="tw:text-center">
-                                        <input type="number" name="persons[0][seat]" class="tw:w-16" min="1" max="999" step="1" oninput="this.value = parseInt(this.value);">
-                                    </td>
+<td class="tw:text-center">
+    <select name="persons[0][class]" onchange="updateAvailableSeats(this)">
+        <option value="">Seleccione</option>
+        <option value="Turist">Turist</option>
+        <option value="Normal">Economic</option>
+        <option value="VIP">VIP</option>
+    </select>
+</td>
+<td class="tw:text-center">
+    <select name="persons[0][seat]" class="seat-select" disabled>
+        <option value="">Seleccione clase primero</option>
+    </select>
+</td>
                                     <td class="tw:text-center">
                                         <input type="text" name="persons[0][seat_cost]" class="tw:w-40" placeholder="0" readonly>
                                     </td>
@@ -118,6 +121,98 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+
+const seatCosts = {
+    'Turist': parseFloat("{{ $travelData['CostTurists'] ?? 0 }}"),
+    'Normal': parseFloat("{{ $travelData['CostNormal'] ?? 0 }}"),
+    'VIP': parseFloat("{{ $travelData['CostVIP'] ?? 0 }}")
+};
+
+// Asientos disponibles por clase
+const availableSeats = @json($availableSeats ?? []);
+
+// Actualizar asientos disponibles cuando cambia la clase
+function updateAvailableSeats(selectElement) {
+    const row = selectElement.closest('tr');
+    const seatSelect = row.querySelector('select[name$="[seat]"]');
+    const seatCostInput = row.querySelector('input[name$="[seat_cost]"]');
+    const selectedClass = selectElement.value;
+
+    // Habilitar/deshabilitar selector de asientos
+    seatSelect.disabled = !selectedClass;
+
+    // Limpiar opciones anteriores
+    seatSelect.innerHTML = '';
+
+    if (selectedClass) {
+        // Agregar opción por defecto
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+
+        // Verificar si hay asientos disponibles
+        const seats = availableSeats[selectedClass] || [];
+        if (seats.length === 0) {
+            defaultOption.textContent = 'No hay asientos disponibles';
+            seatSelect.appendChild(defaultOption);
+            seatSelect.disabled = true;
+
+            // Mostrar alerta al usuario
+            Swal.fire({
+                icon: 'warning',
+                title: 'No hay disponibilidad',
+                text: `No hay asientos disponibles en clase ${selectedClass}`,
+                confirmButtonText: 'Entendido'
+            });
+
+            // Resetear la selección de clase
+            selectElement.value = '';
+            seatCostInput.value = '0';
+        } else {
+            defaultOption.textContent = 'Seleccione un asiento';
+            seatSelect.appendChild(defaultOption);
+
+            // Agregar asientos disponibles
+            seats.forEach(seat => {
+                const option = document.createElement('option');
+                option.value = seat;
+                option.textContent = seat;
+                seatSelect.appendChild(option);
+            });
+
+            // Actualizar costo
+            seatCostInput.value = seatCosts[selectedClass].toFixed(2);
+        }
+    } else {
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = 'Seleccione clase primero';
+        seatSelect.appendChild(defaultOption);
+        seatCostInput.value = '0';
+    }
+
+    calculateTotalCost();
+}
+
+// Modificar la función calculateTotalCost para usar los precios dinámicos
+function calculateTotalCost() {
+    let currentTotal = 0;
+    const personRows = personRowsContainer.querySelectorAll('.person-row');
+
+    personRows.forEach(row => {
+        const classSelect = row.querySelector('select[name$="[class]"]');
+        const seatCostInput = row.querySelector('input[name$="[seat_cost]"]');
+        const selectedClass = classSelect.value;
+
+        if (selectedClass) {
+            const cost = seatCosts[selectedClass] || 0;
+            seatCostInput.value = cost.toFixed(2);
+            currentTotal += cost;
+        }
+    });
+
+    totalCostSpan.textContent = currentTotal.toFixed(2);
+}
+
     document.addEventListener('DOMContentLoaded', function () {
         const reservationForm = document.getElementById('reservationForm');
         const personRowsContainer = document.getElementById('personRowsContainer');
