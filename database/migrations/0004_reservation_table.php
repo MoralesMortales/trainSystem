@@ -14,9 +14,6 @@ return new class extends Migration
             $table->id('reservationNumber');
             $table->string('travelCode');
 
-            $table->string('fullname');
-            $table->string('gender');
-            $table->string('passportNumber')->unique();
             $table->unsignedBigInteger('cedula');
 
             $table->boolean('status')->default(true);

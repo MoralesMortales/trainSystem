@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\reservations;
 use App\Models\Seat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -52,56 +53,118 @@ class newReservation extends Controller
         ]);
     }
 
-public function reservingMeAndOthersPostPost(Request $request)
-{
-    $validatedData = $request->validate([
-        'persons' => 'required|array|min:1',
-        'persons.*.fullname' => 'required|string|max:255|regex:/^[a-zA-Z\s]+$/',
-        'persons.*.gender' => 'required|in:M,F,O',
-        'persons.*.age' => 'required|integer|min:1|max:999',
-        'persons.*.class' => 'required|in:Turist,Normal,VIP',
-        'persons.*.seat' => [
-            'required',
-            'string',
-            function ($attribute, $value, $fail) use ($request) {
-                // Obtener el índice de la persona
-                $index = explode('.', $attribute)[1];
-                $class = $request->input("persons.{$index}.class");
+    public function reservingMeAndOthersPostPost(Request $request)
+    {
+        $travelData = json_decode($request->input('travelData'), true);
 
-                // Verificar si el asiento está disponible para esa clase
-                $availableSeats = []; // Aquí deberías obtener los asientos disponibles para $class
+        // Verificar que los datos de sesión existan
+        if (!$travelData) {
+            return redirect()->route('ruta.inicial')->with('error', 'La sesión ha expirado. Por favor, comienza el proceso de reserva nuevamente.');
+        }
 
-                if (!in_array($value, $availableSeats)) {
-                    $fail("El asiento seleccionado no está disponible para la clase $class.");
+        // Validación de los datos del formulario
+        $validatedData = $request->validate([
+            'persons' => 'required|array|min:1',
+            'persons.*.fullname' => 'required|string|max:255|regex:/^[a-zA-Z\s]+$/',
+            'persons.*.gender' => 'required|in:M,F,O',
+            'persons.*.age' => 'required|integer|min:1|max:999',
+            'persons.*.class' => 'required|in:Turist,Normal,VIP',
+            'persons.*.seat' => [
+                'required',
+                'string',
+                'not_in:0',
+                function ($attribute, $value, $fail) use ($travelData) {
+                    $index = explode('.', $attribute)[1];
+                    $class = request()->input("persons.{$index}.class");
+
+                    // Obtener asientos ya reservados para esta clase
+                    $reservedSeats = Seat::join('reservations', 'seats.reservationNumber', '=', 'reservations.reservationNumber')
+                        ->where('reservations.travelCode', $travelData['travelCode'])
+                        ->where('seats.class', $class)
+                        ->pluck('seat')
+                        ->toArray();
+
+                    // Obtener capacidad del tren para esta clase
+                    $train = trains::find($travelData['train_id']);
+                    $capacity = match ($class) {
+                        'VIP' => $train->vipCapacity,
+                        'Turist' => $train->turistCapacity,
+                        'Normal' => $train->economicCapacity,
+                        default => 0
+                    };
+
+                    // Generar todos los asientos posibles (1 hasta capacidad)
+                    $allSeats = range(1, $capacity);
+
+                    // Calcular asientos disponibles
+                    $availableSeats = array_diff($allSeats, $reservedSeats);
+
+                    // Verificar si el asiento está disponible
+                    if (!in_array($value, $availableSeats)) {
+                        $fail("El asiento $value no está disponible en clase $class. Asientos disponibles: " . implode(', ', $availableSeats));
+                    }
                 }
+            ],
+            'persons.*.seat_cost' => 'required|numeric|min:0',
+        ], [
+            'persons.required' => 'Debe haber al menos una persona para la reserva.',
+            'persons.*.fullname.required' => 'El nombre completo es obligatorio.',
+            'persons.*.fullname.regex' => 'El nombre solo puede contener letras y espacios.',
+            'persons.*.gender.required' => 'El género es obligatorio.',
+            'persons.*.age.required' => 'La edad es obligatoria.',
+            'persons.*.age.integer' => 'La edad debe ser un número entero.',
+            'persons.*.age.min' => 'La edad mínima es 1 año.',
+            'persons.*.age.max' => 'La edad máxima permitida es 999 años.',
+            'persons.*.class.required' => 'La clase es obligatoria.',
+            'persons.*.seat.required' => 'El asiento es obligatorio.',
+            'persons.*.seat.not_in' => 'El número de asiento no puede ser 0.',
+            'persons.*.seat_cost.required' => 'El costo del asiento es obligatorio.',
+        ]);
+
+        $totalCost = array_sum(array_column($validatedData['persons'], 'seat_cost'));
+
+        $counter = 0;
+        foreach ($validatedData['persons'] as $person) {
+
+
+            if ($counter === 0) {
+                $name = $person['fullname'];
+
+                $reservation = reservations::create([
+                    'reservationNumber' => uniqid(),
+                    'travelCode' => $travelData['travelCode'],
+                    'status' => true,
+                    'fullname' => $name,
+                ]);
             }
-        ],
-        'persons.*.seat_cost' => 'required|numeric|min:0',
-    ], [
-        'persons.required' => 'Debe haber al menos una persona para la reserva.',
-        'persons.*.fullname.required' => 'El nombre completo es obligatorio.',
-        'persons.*.fullname.regex' => 'El nombre solo puede contener letras y espacios.',
-        'persons.*.gender.required' => 'El género es obligatorio.',
-        'persons.*.age.required' => 'La edad es obligatoria.',
-        'persons.*.age.integer' => 'La edad debe ser un número entero.',
-        'persons.*.age.min' => 'La edad mínima es 1 año.',
-        'persons.*.age.max' => 'La edad máxima permitida es 999 años.',
-        'persons.*.class.required' => 'La clase es obligatoria.',
-        'persons.*.seat.required' => 'El asiento es obligatorio.',
-        'persons.*.seat_cost.required' => 'El costo del asiento es obligatorio.',
-    ]);
 
-    // Si la validación pasa, procesar los datos...
-    // $validatedData contendrá los datos validados
+            $seatData = [
+                'class' => $person['class'],
+                'seat' => $person['seat'],
+                'gender' => $person['gender'],
+                'fullname' => $person['fullname'],
+                'age' => $person['age'],
+                'reservationNumber' => $reservation->reservationNumber,
+                'status' => true,
+            ];
 
-    // Ejemplo de cómo acceder a los datos:
-    foreach ($validatedData['persons'] as $person) {
-        // Procesar cada persona
+            Seat::create($seatData);
+            $counter++;
+        }
+
+        $reservation = reservations::create([
+            'reservationNumber' => uniqid(),
+            'travelCode' => $travelData['travelCode'],
+            'status' => true,
+            'fullname' => $name,
+        ]);
+
+
+        return redirect()->route('menu')->with([
+            'success' => 'Reserva realizada con éxito',
+            'reservationNumber' => $reservation->reservationNumber
+        ]);
     }
-
-    // Redireccionar o retornar respuesta
-    return redirect()->route('myreservation')->with('success', 'Reserva realizada con éxito');
-}
 
     private function getAvailableSeats($class, $capacity, $reservedSeats)
     {
