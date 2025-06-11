@@ -110,3 +110,22 @@ Route::post('/menu/managecitys', [cityController::class, 'store'])->name('cities
 
 Route::delete('/menu/managecitys/{city}', [cityController::class, 'destroy'])->name('cities.destroy');
 
+Route::get('/menu/reports', function () {
+    return view('main/makereport');
+});
+
+Route::get('/menu/reports/reservations', function () {
+    return view('main/Report/reservations');
+});
+
+Route::get('/menu/reports/seasonaltrips', function () {
+    return view('main/Report/seasonalTrips');
+});
+
+Route::get('/menu/reports/canceled', function () {
+    return view('main/Report/canceled');
+});
+
+Route::get('/menu/reports/destiny', function () {
+    return view('main/Report/destiny');
+});
