@@ -224,7 +224,7 @@
 
             // Si alguna validación falla, muestra el error y detén el envío
             if (!isValid) {
-                showError('Error de Validación', errorMessage);
+                showError('Validation Error', errorMessage);
                 return;
             }
 

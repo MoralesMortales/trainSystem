@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class cities extends Model
 {
-    protected $fillable = [
-        'name',
-    ];
+    use HasFactory;
+    protected $fillable = ['name']; // O los campos que tenga tu tabla cities
 }

@@ -40,7 +40,7 @@
 
 .box{
     background-color: rgba(217, 217, 217, .83);
-    padding-bottom: 1em;
+    max-height: 35vh;
 }
 
 select{
@@ -50,9 +50,13 @@ select{
 }
 
 input{
-    background-color: white;
-    border: black .3px solid;
     text-align: center;
+}
+
+table th{
+/*     border: black 1px solid; */
+    text-align: center;
+    padding: 7px 24px;
 }
 
 table th{
@@ -68,6 +72,7 @@ table td{
 }
 
 /* Asegurar que las celdas de las filas de ciudad también tengan el borde */
-.city-row td {
+.person-row td input{
     border: var(--borde-negro-ciudad);
+    background-color: white;
 }

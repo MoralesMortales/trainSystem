@@ -16,10 +16,10 @@
         <div class="box">
             <form action="{{ route('register.submit') }}" class="tw:h-full tw:w-full tw:flex tw:flex-col tw:justify-center tw:items-center" method="post">
             @csrf
-            <table class="min-w-full text-left text-sm font-light text-surface dark:text-white tw:mr-10px">
-                <thead>
+            <table class="tw:min-w-full tw:bg-gray-300 tw:rounded-lg tw:shadow-md tw:overflow-hidden">
+                <thead class="tw:bg-gray-400 tw:text-gray-800 tw:uppercase tw:text-sm tw:leading-normal">
                     <tr>
-                        <th colspan="6" class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">Ohio - Train (A113)</th>
+                        <th colspan="7" class="tw:text-center tw:py-2 tw:text-xl tw:font-bold">Ohio - Train (A113)</th>
                         
                     </tr>
                 </thead>

@@ -25,5 +25,6 @@ class trains extends Model
         'economicCapacity',
         'status',
     ];
+    public $incrementing = true; // Si train_id es auto-incremental 
 }
 

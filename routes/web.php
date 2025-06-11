@@ -9,6 +9,8 @@ use App\Http\Controllers\registerController;
 use App\Http\Controllers\RestringedArea;
 use App\Http\Controllers\trainController;
 use App\Http\Controllers\travelController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\CityController; // <-- Añade esta línea
 
 Route::get('/', function () {
     return view('mainView');
@@ -48,13 +50,13 @@ Route::delete('/menu/trains/{train}', [trainController::class, 'destroy'])->midd
 
 // Employee Management
 
+Route::get('/menu/menuemployee/manageemployees', [EmployeeController::class, 'manageEmployees'])->name('manage.employees');
+
 Route::get('/menu/menuemployee', action: function () {
     return view('main/EmployeeCreation/menuEmployee');
 });
 
-Route::get('/menu/menuemployee/manageemployees', action: function () {
-    return view('main/EmployeeCreation/ManageEmployees');
-});
+Route::delete('/menu/menuemployee/{user}', [EmployeeController::class, 'destroy'])->name('employees.destroy'); // <-- AÑADE ESTA LÍNEA
 
 Route::get('/menu/menuemployee/createEmployee', [createEmployee::class, 'showCreateEmployee'])->middleware('auth')->name('showEmployeeBase');
 
@@ -103,15 +105,26 @@ Route::get('/menu/newreservation/reserving/others', function () {
 
 // Travel
 
+// Rutas para la gestión de viajes
 Route::get('/menu/newtravel', [travelController::class, 'showCreateTravelView'])->name('showCreateTravel');
+Route::post('/travels', [travelController::class, 'storeTravel'])->name('travels.store'); // Ruta para guardar el viaje
 
 Route::get('/menu/mytravels', function () {
     return view('main/Travel/MyTravels');
 });
 
-Route::get('/menu/managecitys', function () {
-    return view('main/manageCitys');
+Route::get('/menu/mytravels/viewtravel', function () {
+    return view('main/Travel/ViewTravel');
 });
+
+Route::get('/menu/mytravels/edittravel', function () {
+    return view('main/Travel/EditTravel');
+});
+
+// Rutas para la gestión de ciudades
+Route::get('/menu/managecitys', [CityController::class, 'manageCities'])->name('cities.manage');
+Route::post('/cities', [CityController::class, 'store'])->name('cities.store');
+Route::delete('/cities/{city}', [CityController::class, 'destroy'])->name('cities.destroy');
 
 Route::get('/menu/reports', function () {
     return view('main/makereport');

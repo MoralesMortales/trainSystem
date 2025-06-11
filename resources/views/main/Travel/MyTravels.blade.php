@@ -216,14 +216,14 @@
         if (viewMoreButton) {
             viewMoreButton.addEventListener('click', function() {
                 // Redirige a la URL de View More
-                window.location.href = 'http://localhost:8000/menu/myreservation/viewreservation';
+                window.location.href = 'http://localhost:8000/menu/mytravels/viewtravel';
             });
         }
 
         if (editButton) {
             editButton.addEventListener('click', function() {
                 // Redirige a la URL de Edit
-                window.location.href = 'http://localhost:8000/menu/myreservation/editreservation';
+                window.location.href = 'http://localhost:8000/menu/mytravels/edittravel';
             });
         }
     });
