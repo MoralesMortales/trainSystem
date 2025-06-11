@@ -97,6 +97,9 @@ Route::get('/menu/newreservation/reserving/others', function () {
 
 Route::get('/menu/newtravel', [travelController::class, 'showCreateTravelView'])->name('showCreateTravel');
 
+Route::post('/menu/newtravel', [travelController::class, 'postCreateTravelView'])->name('CreateTravel.submit');
+
+
 Route::get('/menu/mytravels', function () {
     return view('main/Travel/MyTravels');
 });

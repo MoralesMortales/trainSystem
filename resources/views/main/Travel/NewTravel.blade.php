@@ -13,7 +13,7 @@
     <x-navbar/>
     <div id="boxContainer" class="tw:h-11/12 tw:w-full tw:flex tw:justify-center tw:items-center tw:pt-28">
         <div class="box">
-            <form id="reservingForm" action="" class="tw:h-full tw:w-full tw:flex tw:flex-col tw:justify-center tw:items-center" method="get">
+            <form id="reservingForm" action="{{ route('CreateTravel.submit') }}" class="tw:h-full tw:w-full tw:flex tw:flex-col tw:justify-center tw:items-center" method="post">
             @csrf
             <table class="min-w-full text-left text-sm font-light text-surface dark:text-white tw:mr-10px">
                 <thead class="border-b border-neutral-200 font-medium dark:border-white/10">
@@ -34,10 +34,10 @@
     </select>
                         </td>
                         <td class="tw:text-center">
-                            <input type="text" name="Department Day" class="tw:w-48">
+    <input type="date" value="{{ old('DepartmentDay') }}" name="DepartmentDay" class="tw-w-48 tw-p-2 tw-border tw-rounded">
                         </td>
                         <td class="tw:text-center">
-                            <input type="text" name="Department Hour" class="tw:w-48">
+    <input type="time" value="{{ old('DepartmentHour') }}" name="DepartmentHour" class="tw-w-48 tw-p-2 tw-border tw-rounded" step="any">
                         </td>
                     </tr>
                 </tbody>
@@ -54,7 +54,7 @@
                 <tbody>
                     <tr>
                         <td class="tw:text-center">
-                               <select name="train_id" class="tw-w-48 tw-bg-white tw-border tw-border-gray-300 tw-rounded tw-py-2 tw-px-3">
+                               <select name="originCity" required class="tw-w-48 tw-bg-white tw-border tw-border-gray-300 tw-rounded tw-py-2 tw-px-3">
         @foreach($cities as $city)
             <option value="{{ $city->name }}">{{ $city->name }}</option>
         @endforeach
@@ -62,7 +62,7 @@
 
                         </td>
                         <td class="tw:text-center">
-                               <select name="train_id" class="tw-w-48 tw-bg-white tw-border tw-border-gray-300 tw-rounded tw-py-2 tw-px-3">
+                               <select name="destinyCity"required class="tw-w-48 tw-bg-white tw-border tw-border-gray-300 tw-rounded tw-py-2 tw-px-3">
         @foreach($cities as $city)
             <option value="{{ $city->name }}">{{ $city->name }}</option>
         @endforeach
@@ -83,13 +83,13 @@
                 <tbody>
                     <tr>
                         <td class="tw:text-center">
-                            <input type="text" name="Cost VIP" class="tw:w-48">
+                            <input type="number" value="{{ old('CostVIP') }}"  name="CostVIP" class="tw:w-48"required>
                         </td>
                         <td class="tw:text-center">
-                            <input type="text" name="Cost Normal" class="tw:w-48">
+                            <input type="number" name="CostNormal" value="{{ old('CostNormal') }}"  class="tw:w-48"required>
                         </td>
                         <td class="tw:text-center">
-                            <input type="text" name="Cost Turists   " class="tw:w-48">
+                            <input type="number" name="CostTurists" value="{{ old('CostTurists') }}"  class="tw:w-48" required>
                         </td>
                     </tr>
                 </tbody>
@@ -100,7 +100,7 @@
                     <tr>
                         <td colspan="6" class="tw:text-center">
                             <div id="btnBottom" class="tw:flex tw:justify-center tw:items-center tw:pt-2 tw:pb-2 tw:w-full">
-                                <button id="confirmRedirectButton" type="button" class="tw:w-54 tw:h-13 tw:bg-green-200 tw:text-2xl tw:font-bold tw:rounded-lg hover:tw:bg-green-300">
+                                <button id="confirmRedirectButton" type="submit" class="tw:w-54 tw:h-13 tw:bg-green-200 tw:text-2xl tw:font-bold tw:rounded-lg hover:tw:bg-green-300">
                                     Confirm
                                 </button>
                             </div>
@@ -137,16 +137,6 @@
             confirmButtonText: 'Accept'
         });
     @endif
-
-    // Script para la redirección del botón
-    document.addEventListener('DOMContentLoaded', function() {
-        const confirmButton = document.getElementById('confirmRedirectButton');
-        if (confirmButton) {
-            confirmButton.addEventListener('click', function() {
-                window.location.href = 'http://localhost:8000/menu';
-            });
-        }
-    });
 </script>
 
 </body>
