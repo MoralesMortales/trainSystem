@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\cityController;
 use App\Http\Controllers\createEmployee;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginAuthController;
@@ -112,6 +113,12 @@ Route::get('/menu/mytravels', function () {
     return view('main/Travel/MyTravels');
 });
 
-Route::get('/menu/managecitys', function () {
-    return view('main/manageCitys');
-});
+//Cities
+
+
+Route::get('/menu/managecitys', [cityController::class, 'showCities'])->name('showCities');
+
+Route::post('/menu/managecitys', [cityController::class, 'store'])->name('cities.store');
+
+Route::delete('/menu/managecitys/{city}', [cityController::class, 'destroy'])->name('cities.destroy');
+
