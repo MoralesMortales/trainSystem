@@ -8,13 +8,19 @@ use App\Models\cities;
 use App\Models\Travels;
 use Illuminate\Support\Str; // ¡Esta es la línea que falta!
 
-class travelController extends Controller
+class TravelController extends Controller
 {
-
+    /**
+     * Muestra el formulario para crear un nuevo viaje.
+     * Recupera los trenes y ciudades para poblar los selectores.
+     */
     public function showCreateTravelView()
     {
-        $trains = trains::all();
-        $cities = cities::all();
+        // Recuperar todos los trenes
+        $trains = trains::all(); 
+
+        // Recuperar todas las ciudades
+        $cities = cities::all(); 
 
         return view('main/Travel/NewTravel',  [
             'trains' => $trains,

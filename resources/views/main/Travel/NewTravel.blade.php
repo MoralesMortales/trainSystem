@@ -3,15 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrainSystem</title>
-@vite(['resources/css/app.css'])
-@vite(['resources/css/OnlyMe.css'])
+    <title>TrainSystem - Nuevo Viaje</title>
+    @vite(['resources/css/app.css'])
+    @vite(['resources/css/OnlyMe.css'])
+    {{-- SweetAlert2 CSS --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.min.css">
 </head>
 
-<body>
-<div id="container">
-    <x-navbar/>
-    <div id="boxContainer" class="tw:h-11/12 tw:w-full tw:flex tw:justify-center tw:items-center tw:pt-28">
+{{-- El body asegurará que la página ocupe toda la altura y posicione su contenido --}}
+<body class="tw:min-h-screen tw:flex tw:flex-col tw:items-center tw:justify-start tw:bg-gray-100">
+
+{{-- El componente de la barra de navegación --}}
+<x-navbar/>
+
+{{-- Contenedor principal para el contenido del formulario --}}
+<div id="container" class="tw:w-full tw:flex tw:flex-col tw:items-center tw:flex-grow">
+    {{-- boxContainer es responsable de empujar el contenido hacia abajo de la navbar --}}
+    <div id="boxContainer" class="tw:h-9/12 tw:w-full tw:flex tw:justify-center tw:items-center tw:pt-44">
         <div class="box">
             <form id="reservingForm" action="{{ route('CreateTravel.submit') }}" class="tw:h-full tw:w-full tw:flex tw:flex-col tw:justify-center tw:items-center" method="post">
             @csrf
@@ -112,25 +120,25 @@
                 </tbody>
             </table>
 
-            @if ($errors->any())
-                <div class="tw:text-red-700 tw:font-bold tw:mb-4 tw:text-center tw:mt-4">
-                    Please correct the following errors:
-                    <ul class="tw:list-disc tw:list-inside">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+                {{-- Aquí se mostrarán los errores de validación si el formulario no es AJAX (por ejemplo, si JS está deshabilitado o falla) --}}
+                @if ($errors->any())
+                    <div class="tw:text-red-700 tw:font-bold tw:mb-4 tw:text-center tw:mt-4">
+                        Por favor, corrige los siguientes errores:
+                        <ul class="tw:list-disc tw:list-inside">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
             </form>
-
         </div>
-
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{{-- SweetAlert2 JS --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.all.min.js"></script>
 <script>
     @if(session('success'))
         Swal.fire({

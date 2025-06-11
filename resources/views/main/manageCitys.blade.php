@@ -15,17 +15,19 @@
         <div id="boxContainer" class="tw:h-full tw:w-full tw:flex tw:justify-center tw:items-center tw:pt-20">
             <div class="box tw:w-10/12 md:tw:w-8/12 tw:h-auto tw:min-h-[70vh] tw:bg-gray-200 tw:bg-opacity-80 tw:rounded-lg tw:p-6 tw:shadow-lg tw:flex tw:flex-col tw:items-center tw:justify-center">
 
-<div class="tabla tw:flex tw:h-1/2 tw:overflow-y-hidden tw:w-full tw:justify-center tw:items-start">
-    <div style="height: 400px;" class="tw:w-full tw:p-4 tw:bg-white tw:rounded-lg tw:shadow-md tw:overflow-y-auto">
-                        <table class="tw:min-w-full tw:h-full tw:overflow-y-hidden">
-                            <tbody id="cityListContainer" class="tw:max-h-[300px] tw:w-full ">
-  @foreach($cities as $city)
-                    <tr class="city-row tw:border-b tw:border-gray-200 last:tw:border-b-0" data-city-id="{{ $city->id }}">
-                        <td class="tw:p-3 tw:text-lg tw:cursor-pointer hover:tw:bg-gray-100">
-                            {{ $city->name }}
-                        </td>
-                    </tr>
-                    @endforeach
+                <div class="tabla tw:flex tw:w-full tw:justify-center tw:items-start "> 
+                    <div class="tw:p-4 tw:bg-white tw:rounded-lg tw:shadow-md tw:overflow-hidden">
+                        <table class="tw:min-w-full">
+                            <tbody id="cityListContainer" class="tw:block tw:max-h-[300px] tw:overflow-y-auto">
+                                @forelse($cities as $city)
+                                    <tr class="city-row tw:border-b tw:border-gray-200 last:tw:border-b-0" data-city-id="{{ $city->id }}">
+                                        <td class="tw:p-3 tw:text-lg tw:cursor-pointer hover:tw:bg-gray-100" data-city-name="{{ $city->name }}">{{ $city->name }}</td>
+                                    </tr>
+                                @empty
+                                    <tr id="noCitiesRow" class="tw:text-center">
+                                        <td colspan="1" class="tw:py-3">No hay ciudades para mostrar.</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -33,8 +35,9 @@
                     <table class="button-group tw:flex tw:flex-col tw:items-center tw:pl-13 tw:justify-center tw:space-y-4 tw:min-h-[300px]">
                         <tbody>
                             <div>
+                            <div>
                                 <td>
-                                    <button type="button" id="addCityBtn" class="tw:w-48 tw:h-16 tw:bg-green-500 tw:text-white tw:text-xl tw:font-bold tw:rounded-lg hover:tw:bg-green-600 tw:transition-colors">
+                                    <button type="button" id="addCityBtn" class="tw:w-48 tw:h-13 tw:bg-green-200 tw:text-2xl tw:font-bold tw:rounded-lg hover:tw:bg-green-300 focus:tw:outline-none focus:tw:ring-2 focus:tw:ring-green-400 focus:tw:ring-opacity-75 tw:transition-colors tw:duration-200">
                                         Add City
                                     </button>
                                 </td>
@@ -43,7 +46,7 @@
                         <tbody>
                             <div>
                                 <td>
-                                    <button type="button" id="removeCityBtn" class="tw:w-48 tw:h-16 tw:bg-red-500 tw:text-white tw:text-xl tw:font-bold tw:rounded-lg hover:tw:bg-red-600 tw:transition-colors">
+                                    <button type="button" id="removeCityBtn" class="tw:w-48 tw:h-13 tw:bg-red-200 tw:text-2xl tw:font-bold tw:rounded-lg hover:tw:bg-red-300 focus:tw:outline-none focus:tw:ring-2 focus:tw:ring-red-400 focus:tw:ring-opacity-75 tw:transition-colors tw:duration-200">
                                         Remove City
                                     </button>
                                 </td>
@@ -69,125 +72,186 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const cityListContainer = document.getElementById('cityListContainer');
-    const addCityBtn = document.getElementById('addCityBtn');
-    const removeCityBtn = document.getElementById('removeCityBtn');
-    let selectedCityId = null;
+    document.addEventListener('DOMContentLoaded', function () {
+        const cityListContainer = document.getElementById('cityListContainer');
+        const addCityBtn = document.getElementById('addCityBtn');
+        const removeCityBtn = document.getElementById('removeCityBtn');
+        let selectedCityRow = null; // Para mantener la referencia a la fila seleccionada
 
-    // Función para agregar nueva ciudad (AJAX)
-    addCityBtn.addEventListener('click', function() {
-        Swal.fire({
-            title: 'Agregar Nueva Ciudad',
-            input: 'text',
-            inputLabel: 'Nombre de la Ciudad:',
-            showCancelButton: true,
-            confirmButtonText: 'Agregar',
-            cancelButtonText: 'Cancelar',
-            inputValidator: (value) => {
-                if (!value) return '¡Necesitas escribir algo!';
-                if (!/^[a-zA-Z\sáéíóúÁÉÍÓÚñÑ]+$/.test(value)) {
-                    return 'El nombre solo debe contener letras y espacios';
+        // Función para actualizar el estado de "noCitiesRow"
+        function updateNoCitiesRow() {
+            const noCitiesRowExists = document.getElementById('noCitiesRow');
+            const cityRows = cityListContainer.querySelectorAll('.city-row');
+
+            if (cityRows.length === 0) {
+                if (!noCitiesRowExists) {
+                    const row = document.createElement('tr');
+                    row.id = 'noCitiesRow';
+                    row.classList.add('tw:text-center');
+                    row.innerHTML = '<td colspan="1" class="tw:py-3 tw:w-full">No hay ciudades para mostrar.</td>'; 
+                    cityListContainer.appendChild(row);
                 }
-                return null;
+            } else {
+                if (noCitiesRowExists) {
+                    noCitiesRowExists.remove();
+                }
             }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                fetch("{{ route('cities.store') }}", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    body: JSON.stringify({name: result.value})
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        const newRow = document.createElement('tr');
-                        newRow.className = 'city-row tw:border-b tw:border-gray-200 last:tw:border-b-0';
-                        newRow.dataset.cityId = data.city.id;
-                        newRow.innerHTML = `
-                            <td class="tw:p-3 tw:text-lg tw:cursor-pointer hover:tw:bg-gray-100">
-                                ${data.city.name}
-                            </td>`;
-                        cityListContainer.appendChild(newRow);
-                        attachRowEvents(newRow);
-                        Swal.fire('¡Éxito!', data.message, 'success');
+        }
+
+        // Función para manejar la selección de una ciudad
+        function attachCityRowClickListener(row) {
+            row.addEventListener('click', function() {
+                if (selectedCityRow) {
+                    selectedCityRow.classList.remove('tw:bg-blue-200');
+                    selectedCityRow.classList.add('hover:tw:bg-gray-100'); 
+                }
+                selectedCityRow = this;
+                selectedCityRow.classList.add('tw:bg-blue-200');
+                selectedCityRow.classList.remove('hover:tw:bg-gray-100'); 
+            });
+        }
+
+        document.querySelectorAll('.city-row').forEach(row => {
+            attachCityRowClickListener(row);
+        });
+
+        updateNoCitiesRow();
+
+        addCityBtn.addEventListener('click', function() {
+            Swal.fire({
+                title: 'Agregar Nueva Ciudad',
+                input: 'text',
+                inputLabel: 'Nombre de la Ciudad:',
+                inputPlaceholder: 'Ej: Barcelona',
+                showCancelButton: true,
+                confirmButtonText: 'Agregar',
+                cancelButtonText: 'Cancelar',
+                inputValidator: (value) => {
+                    if (!value) {
+                        return '¡Necesitas escribir algo!';
                     }
-                })
-                .catch(error => {
-                    Swal.fire('Error', 'Ocurrió un error al agregar la ciudad', 'error');
+                    if (!/^[a-zA-Z\s]+$/.test(value)) {
+                        return 'El nombre de la ciudad solo debe contener letras y espacios.';
+                    }
+                    const existingCities = Array.from(cityListContainer.querySelectorAll('.city-row td')).map(td => td.dataset.cityName.toLowerCase());
+                    if (existingCities.includes(value.toLowerCase())) {
+                        return 'Esta ciudad ya existe en la lista.';
+                    }
+                    return null;
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const cityName = result.value;
+
+                    fetch('{{ route('cities.store') }}', { // Esta ruta debería usar '/cities' si así la tienes en web.php
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({ name: cityName })
+                    })
+                    .then(response => {
+                        const contentType = response.headers.get("content-type");
+                        if (contentType && contentType.indexOf("application/json") !== -1) {
+                            return response.json();
+                        } else {
+                            return response.text().then(text => { throw new Error(text || "Respuesta no JSON del servidor"); });
+                        }
+                    })
+                    .then(data => {
+                        if (data.message) {
+                            Swal.fire('¡Agregada!', data.message, 'success');
+                            const newRow = document.createElement('tr');
+                            newRow.classList.add('city-row', 'tw:border-b', 'tw:border-gray-200', 'last:tw:border-b-0');
+                            newRow.setAttribute('data-city-id', data.city.id);
+                            newRow.innerHTML = `<td class="tw:p-3 tw:text-lg tw:cursor-pointer hover:tw:bg-gray-100" data-city-name="${data.city.name}">${data.city.name}</td>`;
+                            cityListContainer.appendChild(newRow);
+                            cityListContainer.scrollTop = cityListContainer.scrollHeight;
+                            attachCityRowClickListener(newRow);
+                            updateNoCitiesRow();
+                        } else if (data.errors) {
+                            const errorMessages = Object.values(data.errors).flat().join('\n');
+                            Swal.fire('Error de Validación', errorMessages, 'error');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error al agregar la ciudad:', error);
+                        Swal.fire('Error', 'Ocurrió un error al intentar agregar la ciudad. ' + error.message, 'error');
+                    });
+                }
+            });
+        });
+
+        removeCityBtn.addEventListener('click', function() {
+            if (selectedCityRow) {
+                const cityId = selectedCityRow.dataset.cityId;
+                const cityName = selectedCityRow.querySelector('td').dataset.cityName;
+
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: `¿Quieres eliminar la ciudad "${cityName}"?`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // ¡LA CORRECCIÓN ESTÁ AQUÍ! Ahora la URL coincide con tu web.php
+                        fetch(`/menu/managecitys/${cityId}`, { 
+                            method: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            }
+                        })
+                        .then(response => {
+                            const contentType = response.headers.get("content-type");
+                            if (contentType && contentType.indexOf("application/json") !== -1) {
+                                return response.json();
+                            } else {
+                                return response.text().then(text => { throw new Error(text || "Respuesta no JSON del servidor"); });
+                            }
+                        })
+                        .then(data => {
+                            if (data.message) {
+                                Swal.fire('¡Eliminada!', data.message, 'success');
+                                selectedCityRow.remove();
+                                selectedCityRow = null;
+                                updateNoCitiesRow();
+                            } else if (data.errors) {
+                                const errorMessages = Object.values(data.errors).flat().join('\n');
+                                Swal.fire('Error', errorMessages, 'error');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error al eliminar la ciudad:', error);
+                            Swal.fire('Error', 'Ocurrió un error al intentar eliminar la ciudad. ' + error.message, 'error');
+                        });
+                    }
+                });
+            } else {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Ninguna ciudad seleccionada',
+                    text: 'Por favor, selecciona una ciudad de la lista para eliminarla.',
+                    confirmButtonText: 'Entendido'
                 });
             }
         });
     });
 
-    // Función para eliminar ciudad (AJAX)
-removeCityBtn.addEventListener('click', function() {
-    if (!selectedCityId) {
-        Swal.fire('Info', 'Selecciona una ciudad primero', 'info');
-        return;
-    }
-
-    Swal.fire({
-        title: '¿Eliminar ciudad?',
-        text: "¡No podrás revertir esto!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, eliminar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            fetch(`/menu/managecitys/${selectedCityId}`, {
-                method: 'DELETE',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    document.querySelector(`tr[data-city-id="${selectedCityId}"]`).remove();
-                    selectedCityId = null;
-                    Swal.fire('¡Eliminada!', data.message, 'success');
-                } else {
-                    Swal.fire('Error', data.message || 'Error al eliminar la ciudad', 'error');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                Swal.fire('Error', 'No se pudo eliminar la ciudad', 'error');
-            });
-        }
-    });
-});
-
-    // Función para manejar selección de filas
-    function attachRowEvents(row) {
-        row.addEventListener('click', function() {
-            document.querySelectorAll('.city-row').forEach(r => {
-                r.classList.remove('tw:bg-blue-200');
-            });
-            this.classList.add('tw:bg-blue-200');
-            selectedCityId = this.dataset.cityId;
+    @if(session('success'))
+        Swal.fire({
+            icon: 'success',
+            title: '¡Amazing!',
+            text: '{{ session('success') }}',
+            confirmButtonText: 'Accept'
         });
-    }
-
-    // Adjuntar eventos a las filas existentes
-    document.querySelectorAll('.city-row').forEach(row => {
-        attachRowEvents(row);
-    });
-});
+    @endif
 </script>
 
 </body>
 </html>
+

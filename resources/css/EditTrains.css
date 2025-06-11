@@ -1,10 +1,15 @@
-#container {
+/* Variables para bordes */
+:root {
+    --borde-negro-ciudad: 1px solid black;
+}
+
+#container{
     min-height: 100dvh;
     background-image: url("../../public/img/trains/train.png");
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: fixed; /* ¡Importante para que la imagen de fondo no se desplace! */
-    padding-top: 80px;
+    height: 100dvh;
+
 }
 
 #inputs{
@@ -35,10 +40,34 @@
 
 .box{
     background-color: rgba(155, 196, 121, 0.83); /* Verde de Tailwind 500 */
+    padding-bottom: 1em;
 }
 
+select{
+    background-color: rgba(255, 255, 255, 0.75);
+    border: black 1px solid;
+    text-align: center;
+}
 
 input{
     background-color: white;
     border: black .3px solid;
+    text-align: center;
+}
+
+table th{
+/*     border: black 1px solid; */
+    text-align: center;
+    padding: 7px 24px;
+}
+
+table td{
+/*     border: black 1px solid; */
+    text-align: center;
+    padding: 10px 10px;
+}
+
+/* Asegurar que las celdas de las filas de ciudad también tengan el borde */
+.city-row td {
+    border: var(--borde-negro-ciudad);
 }

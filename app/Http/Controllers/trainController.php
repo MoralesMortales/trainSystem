@@ -43,7 +43,7 @@ class trainController extends Controller
                 if ($sum != $request->capacity) {
                     $validatedData->errors()->add(
                         'capacity_mismatch',
-                        "La suma de las capacidades (VIP: {$request->vipCapacity}, Turista: {$request->turistCapacity}, Económica: {$request->economicCapacity}) debe ser igual a {$request->capacity}"
+                        "The sum of the capacities (VIP: {$request->vipCapacity}, Tourist: {$request->turistCapacity}, Economy: {$request->economicCapacity}) must be equal to {$request->capacity}"
                     );
                 }
             }
@@ -100,7 +100,7 @@ class trainController extends Controller
                 if ($sum != $request->capacity) {
                     $validatedData->errors()->add(
                         'capacity_mismatch',
-                        "La suma de las capacidades (VIP: {$request->vipCapacity}, Turista: {$request->turistCapacity}, Económica: {$request->economicCapacity}) debe ser igual a {$request->capacity}"
+                        "The sum of the capacities (VIP: {$request->vipCapacity}, Tourist: {$request->turistCapacity}, Economy: {$request->economicCapacity}) must be equal to {$request->capacity}"
                     );
                 }
             }
